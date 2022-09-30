@@ -3,10 +3,9 @@ package main;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import main.entities.Bomber;
+import main.entities.bomber.Bomber;
 import main.entities.Entity;
 import main.graphics.Sprite;
 import main.keyBoard.KeyEventGame;
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.ModuleLayer.*;
 import static main.PropertiesConstant.*;
 
 public class GamePlay {
@@ -61,7 +59,7 @@ public class GamePlay {
 
             @Override
             public void handle(long l) {
-                ((Bomber) bomberman).setDirectionBomber(keyEventGame.getKeyCode());
+                ((Bomber) bomberman).setDirectionBomber(keyEventGame.getKeyCode(), map);
                 render();
                 update();
             }

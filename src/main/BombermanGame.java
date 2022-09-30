@@ -1,11 +1,8 @@
 package main;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.keyBoard.KeyEventGame;
 import main.menu.MenuSetup;
@@ -19,6 +16,7 @@ public class BombermanGame extends Application {
     }
 
     static Group root = new Group();
+
     @Override
     public void start(Stage stage) throws Exception {
         MenuSetup menu = new MenuSetup();
@@ -26,6 +24,7 @@ public class BombermanGame extends Application {
         stage.setScene(scene);
         stage.setTitle(TITLE);
         stage.show();
+
 
         GamePlay gamePlay = new GamePlay();
         gamePlay.start(stage);

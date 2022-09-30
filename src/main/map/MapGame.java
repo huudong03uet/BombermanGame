@@ -1,6 +1,10 @@
 package main.map;
 
 import main.entities.*;
+import main.entities.tile.Brick;
+import main.entities.tile.Grass;
+import main.entities.tile.Portal;
+import main.entities.tile.Wall;
 import main.graphics.Sprite;
 
 import java.io.*;
@@ -17,7 +21,6 @@ public class MapGame {
         File file = new File("res\\levels\\level1.txt");
         Scanner scanner = new Scanner(file);
         String firstLine = scanner.nextLine();
-        //scanner.nextLine();
         for (int i = 0; i < HEIGHT_TILE; i++) {
             String line = scanner.nextLine();
             for (int j = 0; j < WIDTH_TILE; j++) {

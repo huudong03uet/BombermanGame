@@ -2,13 +2,13 @@ package main.keyBoard;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyEvent;
 
 public class KeyEventGame {
 
     private EventHandler keyEventGame;
     KeyCode keyCode;
+
     public KeyEventGame() {
         keyEventGame = new EventHandler<KeyEvent>() {
             @Override
@@ -29,6 +29,7 @@ public class KeyEventGame {
             }
         };
     }
+
     public EventHandler getKeyEventGame() {
         return keyEventGame;
     }

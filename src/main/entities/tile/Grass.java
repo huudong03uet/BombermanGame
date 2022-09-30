@@ -1,8 +1,8 @@
-package main.entities;
+package main.entities.tile;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.stage.Screen;
+import main.entities.Entity;
 
 public class Grass extends Entity {
 
@@ -15,8 +15,5 @@ public class Grass extends Entity {
 
     }
 
-    @Override
-    public void render(GraphicsContext gc) {
-        gc.drawImage(img, x, y);
-    }
+
 }
