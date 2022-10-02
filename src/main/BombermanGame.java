@@ -4,9 +4,6 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import main.keyBoard.KeyEventGame;
-import main.menu.MenuSetup;
-import main.menu.*;
 
 import static main.PropertiesConstant.*;
 
@@ -19,7 +16,6 @@ public class BombermanGame extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        MenuSetup menu = new MenuSetup();
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         stage.setScene(scene);
         stage.setTitle(TITLE);
