@@ -11,14 +11,15 @@ import static main.PropertiesConstant.*;
 import static main.PropertiesStatic.*;
 
 public class Bomber extends CanMoveEntity {
-
+    protected Image[][] imagesTwoWay = new Image[4][BOMBER_SPRITE];
     private KeyCode keyCode = null;
     private int directionPrevious = 0;
     private Image imageRender = img;
-    private int countMove = 0;
+    private int indexAnimate = 0;
 
     public Bomber(int x, int y) {
         super(x, y, Sprite.player_right.getFxImage(Sprite.player_right.get_realWidth(), Sprite.player_right.get_realHeight()));
+        speed = SPEED_BOMBER;
 
         imagesTwoWay[0][0] = Sprite.player_right.getFxImage(Sprite.player_right.get_realWidth(), Sprite.player_right.get_realHeight());
         imagesTwoWay[1][0] = Sprite.player_down.getFxImage(Sprite.player_down.get_realWidth(), Sprite.player_down.get_realHeight());
@@ -40,46 +41,28 @@ public class Bomber extends CanMoveEntity {
         super(x, y, img);
     }
 
-    public void setKeyCode(KeyCode keyCode) {
-        this.keyCode = keyCode;
-    }
-
-    public void setKeyCodeToNull() {
-        this.keyCode = null;
-        setDirectionToNull();
-    }
-
-    public void setDirectionToNull() {
-        direction = 4;
-    }
-
-    public void setKeyCodeAfterMove(KeyCode keyCode) {
-        this.keyCode = keyCode;
-    }
-
-
-    public void setCoordinateBomber(char[][] mapGame) {
+    @Override
+    public void setCoordinate(char[][] mapGame) {
         setKeyCodeFromDirection();
-        setCoordinateAfterMove(keyCode);
+        setCoordinateAfterMove();
         if (checkWallCollision(mapGame)) {
-            setCoordinateAfterMoveReverse(keyCode);
+            setCoordinateAfterMoveReverse();
         }
         setCoordinatesRenderMap();
     }
 
-
-    private void updateSprite() {
+    public void updateSprite() {
         if (direction == 4) {
             numberSprite = 0;
         } else {
-            numberSprite = countMove / 4;
-            countMove += 1;
-        }
 
-        if (countMove == SPEED_ONE_FRAME) {
-            numberSprite = 0;
-            countMove = 0;
-            setDirectionToNull();
+            numberSprite = indexAnimate / (FRAME_PER_ONE_BOMBER / (BOMBER_SPRITE - 1)) + 1;
+            indexAnimate += 1;
+            if (indexAnimate >= FRAME_PER_ONE_BOMBER) {
+                indexAnimate = 0;
+                direction = 4;
+            }
+
         }
     }
 
@@ -103,7 +86,6 @@ public class Bomber extends CanMoveEntity {
     public void setKeyCodeFromDirection() {
         if (direction == 0) {
             keyCode = KeyCode.RIGHT;
-           // System.out.println("RIGHT + 1");
         } else if (direction == 1) {
             keyCode = KeyCode.DOWN;
         } else if (direction == 2) {
@@ -114,4 +96,32 @@ public class Bomber extends CanMoveEntity {
             keyCode = null;
         }
     }
+
+    @Override
+    public void setCoordinateAfterMoveReverse() {
+        if (keyCode == KeyCode.RIGHT) {
+            this.x -= speed;
+        } else if (keyCode == KeyCode.LEFT) {
+            this.x += speed;
+        } else if (keyCode == KeyCode.UP) {
+            this.y += speed;
+        } else if (keyCode == KeyCode.DOWN) {
+            this.y -= speed;
+        }
+    }
+
+    @Override
+    public void setCoordinateAfterMove() {
+        if (keyCode == KeyCode.RIGHT) {
+            this.x += speed;
+        } else if (keyCode == KeyCode.LEFT) {
+            this.x -= speed;
+        } else if (keyCode == KeyCode.UP) {
+            this.y -= speed;
+        } else if (keyCode == KeyCode.DOWN) {
+            this.y += speed;
+        }
+    }
+
+
 }

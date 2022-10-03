@@ -27,5 +27,16 @@ public abstract class Entity implements Renderable {
         gc.drawImage(img, x - xHide, y - yHide);
     }
 
+    public int getY() {
+        return y;
+    }
+
+    public Image getSprite() {
+        return img;
+    }
     public abstract void update();
+
+    public int getX() {
+        return x;
+    }
 }

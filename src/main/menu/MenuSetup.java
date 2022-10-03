@@ -7,7 +7,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 
 
-public class MenuSetup  {
+public class MenuSetup {
     MenuBar menuBar = new MenuBar();
 
     Menu fileMenu = new Menu("File");
@@ -21,7 +21,6 @@ public class MenuSetup  {
     public MenuSetup() {
 
     }
-
 
 
     public void addMenu() {
@@ -38,14 +37,7 @@ public class MenuSetup  {
     public void setMenuBar(Group root) {
         addMenu();
         BorderPane borderPane = new BorderPane();
-
-
-
-
         borderPane.setTop(menuBar);
-        // render border pane without insert into image
-
-
         root.getChildren().add(borderPane);
     }
 }

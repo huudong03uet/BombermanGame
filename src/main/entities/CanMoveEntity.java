@@ -1,48 +1,49 @@
 package main.entities;
 
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
+import main.graphics.Renderable;
 
-import static main.PropertiesConstant.BOMBER_SPRITE;
-import static main.PropertiesConstant.SPEED;
+import static main.PropertiesConstant.SCALE;
+import static main.PropertiesConstant.TILE_SIZE;
 
-public abstract class CanMoveEntity extends AnimateEntity {
-    private KeyCode keyCode = KeyCode.RIGHT;
-    protected Image[][] imagesTwoWay = new Image[4][BOMBER_SPRITE];
+public abstract class CanMoveEntity extends AnimateEntity
+implements Renderable
+{
+    protected int directionAnimate;
+    protected int speed = 2;
+    protected int indexAnimate = 0;
+
     public CanMoveEntity(int x, int y, Image img) {
         super(x, y, img);
     }
+    public boolean checkWallCollision(char[][] mapGame) {
+        int xTopLeft = x / (TILE_SIZE * SCALE);
+        int yTopLeft = y / (TILE_SIZE * SCALE);
 
-    public void setDirection(KeyCode keyCode, char[][] mapGame) {
-        setCoordinateAfterMove(keyCode);
-        if(checkWallCollision(mapGame)) {
-            setCoordinateAfterMoveReverse(keyCode);
+        int xTopRight = (x + (int) img.getWidth() - 1) / (TILE_SIZE * SCALE);
+        int yTopRight = y / (TILE_SIZE * SCALE);
+
+        int xBottomLeft = x / (TILE_SIZE * SCALE);
+        int yBottomLeft = (y + (int) img.getHeight() - 1) / (TILE_SIZE * SCALE);
+
+        int xBottomRight = (x + (int) img.getWidth() - 1) / (TILE_SIZE * SCALE);
+        int yBottomRight = (y + (int) img.getHeight() - 1) / (TILE_SIZE * SCALE);
+
+
+        if (mapGame[yTopLeft][xTopLeft] == '#' || mapGame[yTopRight][xTopRight] == '#' ||
+                mapGame[yBottomLeft][xBottomLeft] == '#' || mapGame[yBottomRight][xBottomRight] == '#') {
+
+            return true;
         }
-        setCoordinatesRenderMap();
+        if (mapGame[yTopLeft][xTopLeft] == '*' || mapGame[yTopRight][xTopRight] == '*' ||
+                mapGame[yBottomLeft][xBottomLeft] == '*' || mapGame[yBottomRight][xBottomRight] == '*') {
+
+            return true;
+        }
+        return false;
     }
 
-    public void setCoordinateAfterMoveReverse(KeyCode keyCode) {
-        if(keyCode == KeyCode.RIGHT) {
-            this.x -= SPEED;
-        } else if(keyCode == KeyCode.LEFT) {
-            this.x += SPEED;
-        } else if(keyCode == KeyCode.UP) {
-            this.y += SPEED;
-        } else if(keyCode == KeyCode.DOWN) {
-            this.y -= SPEED;
-        }
-    }
-
-    public void setCoordinateAfterMove(KeyCode keyCode) {
-        if(keyCode == KeyCode.RIGHT) {
-            this.x += SPEED;
-        } else if(keyCode == KeyCode.LEFT) {
-            this.x -= SPEED;
-        } else if(keyCode == KeyCode.UP) {
-            this.y -= SPEED;
-        } else if(keyCode == KeyCode.DOWN) {
-            this.y += SPEED;
-        }
-    }
-
+    public abstract void setCoordinate(char[][] mapGame);
+    public abstract void setCoordinateAfterMove();
+    public abstract void setCoordinateAfterMoveReverse();
 }
