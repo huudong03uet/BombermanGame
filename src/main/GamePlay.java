@@ -5,14 +5,12 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import main.entities.bomber.Bomber;
 import main.entities.Entity;
-import main.graphics.Sprite;
-import main.keyBoard.KeyEventGame;
+import main.entities.bomber.Bomber;
+import main.keyEvent.KeyEventGame;
 import main.map.MapGame;
 import main.menu.MenuSetup;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,37 +31,37 @@ public class GamePlay {
     KeyEventGame keyEventGame;
 
     public GamePlay() {
-        canvas = new Canvas(WIDTH, HEIGHT);
-
-        BombermanGame.root.getChildren().add(canvas);
-
         menu = new MenuSetup();
-        menu.setMenuBar(BombermanGame.root);
 
+
+        canvas = new Canvas(WIDTH, HEIGHT);
+        BombermanGame.root.getChildren().add(canvas);
+        menu.setMenuBar(BombermanGame.root);
         mapGame = new MapGame();
         keyEventGame = new KeyEventGame();
-        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+        bomberman = new Bomber(1, 1);
+        //bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage(Sprite.player_right.get_realWidth(), Sprite.player_right.get_realHeight()));
     }
 
 
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         gc = canvas.getGraphicsContext2D();
-
         stage.addEventHandler(KeyEvent.KEY_PRESSED, keyEventGame.getKeyEventGame());
+
 
         mapGame.readMapFromFile(map);
         mapGame.updateMap(stillObjects, map);
 
         entities.add(bomberman);
         AnimationTimer timer = new AnimationTimer() {
-
             @Override
             public void handle(long l) {
-                ((Bomber) bomberman).setDirectionBomber(keyEventGame.getKeyCode(), map);
+                ((Bomber) bomberman).setCoordinateBomber(map);
                 render();
                 update();
 
             }
+
         };
 
         timer.start();

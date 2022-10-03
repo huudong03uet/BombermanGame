@@ -7,14 +7,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
-
 import javax.swing.*;
-import java.awt.*;
-
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.beans.EventHandler;
 
 public class MenuSetup {
     public MenuBar menuBar = new MenuBar();
@@ -34,6 +27,9 @@ public class MenuSetup {
 
     public void addMenu() {
         fileMenu.getItems().addAll(fileMenu1, fileMenu2, fileMenu3);
+        helpMenu1.setOnAction(e -> {
+            System.out.println("Help");
+        });
         HelpMenu.getItems().addAll(helpMenu1);
         menuBar.getMenus().addAll(fileMenu, HelpMenu);
     }
@@ -42,16 +38,8 @@ public class MenuSetup {
         addMenu();
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menuBar);
+        // render border pane without insert into image
+
         root.getChildren().add(borderPane);
-    }
-
-    public void move() {
-        fileMenu3.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent arg0) {
-                // TODO Auto-generated method stub
-                System.out.println("Button clicked");
-
-            }
-        } );
     }
 }

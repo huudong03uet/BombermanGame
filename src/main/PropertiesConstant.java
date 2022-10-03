@@ -13,4 +13,10 @@ public final class PropertiesConstant {
     public static int HEIGHT = 13 * TILE_SIZE * SCALE;
 
     public static int SPEED = 2;
+    public static int SPEED_ONE_FRAME = 12;
+
+    public static int BOMBER_SPRITE = 3;
+
+
+
 }

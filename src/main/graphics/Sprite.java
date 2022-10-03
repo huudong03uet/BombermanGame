@@ -258,6 +258,22 @@ public class Sprite {
         return resample(input, SCALED_SIZE / DEFAULT_SIZE);
     }
 
+    public Image getFxImage(int xSize, int ySize) {
+        WritableImage wr = new WritableImage(xSize, ySize);
+        PixelWriter pw = wr.getPixelWriter();
+        for (int x = 0; x < xSize; x++) {
+            for (int y = 0; y < ySize; y++) {
+                if (_pixels[x + y * ySize] == TRANSPARENT_COLOR) {
+                    pw.setArgb(x, y, 0);
+                } else {
+                    pw.setArgb(x, y, _pixels[x + y * ySize]);
+                }
+            }
+        }
+        Image input = new ImageView(wr).getImage();
+        return resample(input, SCALED_SIZE / DEFAULT_SIZE);
+    }
+
     private Image resample(Image input, int scaleFactor) {
         final int W = (int) input.getWidth();
         final int H = (int) input.getHeight();
@@ -283,5 +299,13 @@ public class Sprite {
         }
 
         return output;
+    }
+
+    public int get_realWidth() {
+        return _realWidth;
+    }
+
+    public int get_realHeight() {
+        return _realHeight;
     }
 }
