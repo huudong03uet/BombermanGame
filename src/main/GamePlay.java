@@ -62,6 +62,7 @@ public class GamePlay {
                 ((Bomber) bomberman).setDirectionBomber(keyEventGame.getKeyCode(), map);
                 render();
                 update();
+
             }
         };
 
