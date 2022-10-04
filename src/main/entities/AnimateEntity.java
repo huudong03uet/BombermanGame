@@ -26,4 +26,5 @@ public abstract class AnimateEntity extends Entity
             xHide = x - WIDTH / 2;
         }
     }
+
 }

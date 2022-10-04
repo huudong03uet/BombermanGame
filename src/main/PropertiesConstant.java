@@ -1,6 +1,7 @@
 package main;
 
 public final class PropertiesConstant {
+
     public static String TITLE = "BombermanGame";
     public static int WIDTH_TILE = 32;
 
@@ -13,9 +14,13 @@ public final class PropertiesConstant {
 
     public static int SPEED_BOMBER = 2;
     public static int SPEED_ONE_FRAME = 12;
+
     public static int FRAME_PER_ONE_BOMBER = 12;
     public static int BOMBER_SPRITE = 3;
+    public static int BOMBER_DEAD_SPRITE = 3;
     public static int BALLOOM_SPRITE = 3;
+    public static int DOLL_SPRITE = 3;
+
 
     public static int FRAME_PER_SECOND = 60;
 

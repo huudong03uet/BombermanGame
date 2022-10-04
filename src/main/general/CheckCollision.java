@@ -1,7 +1,6 @@
 package main.general;
 
-import main.entities.bomber.Bomber;
-import main.entities.enemy.Balloom;
+import main.entities.Entity;
 
 public class CheckCollision {
     private double bottomA;
@@ -14,27 +13,23 @@ public class CheckCollision {
     private double rightA;
     private double rightB;
 
-    public boolean checkCollision(Object object1, Object object2) {
-        if (object1 instanceof Bomber && object2 instanceof Balloom) {
-            setCoordinateBomberAndBalloom((Bomber) object1, (Balloom) object2);
-            return checkCollisionTwoObject();
-        }
-        return true;
+
+    public boolean checkCollision(Entity entity1, Entity entity2) {
+        bottomA = entity1.getY() + entity1.getSprite().getHeight();
+        bottomB = entity2.getY() + entity2.getSprite().getHeight() - 5;
+
+        topA = entity1.getY();
+        topB = entity2.getY() + 5;
+
+        leftA = entity1.getX();
+        leftB = entity2.getX() + 5;
+
+        rightA = entity1.getX() + entity1.getSprite().getWidth();
+        rightB = entity2.getX() + entity2.getSprite().getWidth() - 5;
+
+        return checkCollisionTwoObject();
     }
 
-    public void setCoordinateBomberAndBalloom(Bomber bomber, Balloom balloom) {
-        bottomA = bomber.getY() + bomber.getSprite().getHeight();
-        bottomB = balloom.getY() + balloom.getSprite().getHeight() - 5;
-
-        topA = bomber.getY();
-        topB = balloom.getY() + 5;
-
-        leftA = bomber.getX();
-        leftB = balloom.getX() + 5;
-
-        rightA = bomber.getX() + bomber.getSprite().getWidth();
-        rightB = balloom.getX() + balloom.getSprite().getWidth() - 5;
-    }
 
     public boolean checkCollisionTwoObject() {
         if (bottomA <= topB) {

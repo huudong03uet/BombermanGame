@@ -6,11 +6,12 @@ import main.graphics.Sprite;
 
 import static main.PropertiesConstant.*;
 
-public class Balloom extends Enemy {
-    private final int FRAME_PER_ONE = FRAME_PER_SECOND / 2;
-    protected Image[][] imagesTwoWay = new Image[4][BALLOOM_SPRITE];
+public class Doll extends Enemy {
 
-    public Balloom(int x, int y, Image img) {
+    private final int FRAME_PER_ONE = FRAME_PER_SECOND / 2;
+    protected Image[][] imagesTwoWay = new Image[4][DOLL_SPRITE];
+
+    public Doll(int x, int y, Image img) {
         super(x, y, img);
     }
 
@@ -31,26 +32,24 @@ public class Balloom extends Enemy {
         } else if (directionAnimate == 3) {
             y -= speed;
         }
-
     }
 
-    public Balloom(int x, int y) {
-        super(x, y, Sprite.balloom_right1.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right1.get_realHeight()));
-        imagesTwoWay[0][0] = Sprite.balloom_right1.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right2.get_realHeight());
-        imagesTwoWay[1][0] = Sprite.balloom_right1.getFxImage(Sprite.balloom_left1.get_realWidth(), Sprite.balloom_left2.get_realHeight());
-        imagesTwoWay[2][0] = Sprite.balloom_left1.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right2.get_realHeight());
-        imagesTwoWay[3][0] = Sprite.balloom_left1.getFxImage(Sprite.balloom_left1.get_realWidth(), Sprite.balloom_left2.get_realHeight());
+    public Doll(int x, int y) {
+        super(x, y, Sprite.doll_right1.getFxImage(Sprite.doll_right1.get_realWidth(), Sprite.doll_right1.get_realHeight()));
+        imagesTwoWay[0][0] = Sprite.doll_right1.getFxImage(Sprite.doll_right1.get_realWidth(), Sprite.doll_right1.get_realHeight());
+        imagesTwoWay[1][0] = Sprite.doll_left1.getFxImage(Sprite.doll_left1.get_realWidth(), Sprite.doll_left1.get_realHeight());
+        imagesTwoWay[2][0] = Sprite.doll_right1.getFxImage(Sprite.doll_right1.get_realWidth(), Sprite.doll_right1.get_realHeight());
+        imagesTwoWay[3][0] = Sprite.doll_left1.getFxImage(Sprite.doll_left1.get_realWidth(), Sprite.doll_left1.get_realHeight());
 
-        imagesTwoWay[0][1] = Sprite.balloom_right2.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right2.get_realHeight());
-        imagesTwoWay[1][1] = Sprite.balloom_right2.getFxImage(Sprite.balloom_left1.get_realWidth(), Sprite.balloom_left2.get_realHeight());
-        imagesTwoWay[2][1] = Sprite.balloom_left2.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right2.get_realHeight());
-        imagesTwoWay[3][1] = Sprite.balloom_left2.getFxImage(Sprite.balloom_left1.get_realWidth(), Sprite.balloom_left2.get_realHeight());
+        imagesTwoWay[0][1] = Sprite.doll_right2.getFxImage(Sprite.doll_right2.get_realWidth(), Sprite.doll_right2.get_realHeight());
+        imagesTwoWay[1][1] = Sprite.doll_left2.getFxImage(Sprite.doll_left2.get_realWidth(), Sprite.doll_left2.get_realHeight());
+        imagesTwoWay[2][1] = Sprite.doll_right2.getFxImage(Sprite.doll_right2.get_realWidth(), Sprite.doll_right2.get_realHeight());
+        imagesTwoWay[3][1] = Sprite.doll_left2.getFxImage(Sprite.doll_left2.get_realWidth(), Sprite.doll_left2.get_realHeight());
 
-        imagesTwoWay[0][2] = Sprite.balloom_right3.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right2.get_realHeight());
-        imagesTwoWay[1][2] = Sprite.balloom_right3.getFxImage(Sprite.balloom_left1.get_realWidth(), Sprite.balloom_left2.get_realHeight());
-        imagesTwoWay[2][2] = Sprite.balloom_left3.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right2.get_realHeight());
-        imagesTwoWay[3][2] = Sprite.balloom_left3.getFxImage(Sprite.balloom_left1.get_realWidth(), Sprite.balloom_left2.get_realHeight());
-
+        imagesTwoWay[0][2] = Sprite.doll_right3.getFxImage(Sprite.doll_right3.get_realWidth(), Sprite.doll_right3.get_realHeight());
+        imagesTwoWay[1][2] = Sprite.doll_left3.getFxImage(Sprite.doll_left3.get_realWidth(), Sprite.doll_left3.get_realHeight());
+        imagesTwoWay[2][2] = Sprite.doll_right3.getFxImage(Sprite.doll_right3.get_realWidth(), Sprite.doll_right3.get_realHeight());
+        imagesTwoWay[3][2] = Sprite.doll_left3.getFxImage(Sprite.doll_left3.get_realWidth(), Sprite.doll_left3.get_realHeight());
     }
 
 
@@ -100,7 +99,7 @@ public class Balloom extends Enemy {
     public void findCoordinatesRenderFromMap(char[][] mapGame) {
         for (int i = 0; i < HEIGHT_TILE; i++) {
             for (int j = 0; j < WIDTH_TILE; j++) {
-                if (mapGame[i][j] == '1') {
+                if (mapGame[i][j] == '3') {
                     y = i * TILE_SIZE * SCALE;
                     x = j * TILE_SIZE * SCALE;
                     mapGame[i][j] = ' ';
