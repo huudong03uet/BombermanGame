@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.entities.Entity;
+import main.entities.bomb.Bomb;
 import main.entities.bomber.Bomber;
 import main.entities.enemy.Balloom;
 import main.general.CheckCollision;
@@ -26,7 +27,7 @@ public class GamePlay {
     private MapGame mapGame;
     private Entity bomberman;
     private Entity balloom;
-
+    private Entity bomb;
     private List<Entity> entities = new ArrayList<>();
 
     private final List<Entity> stillObjects = new ArrayList<>();
@@ -46,6 +47,7 @@ public class GamePlay {
         checkCollision = new CheckCollision();
         bomberman = new Bomber(1, 1);
         balloom = new Balloom(1, 1);
+        bomb = new Bomb(1, 2);
         //bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage(Sprite.player_right.get_realWidth(), Sprite.player_right.get_realHeight()));
     }
 
@@ -59,8 +61,10 @@ public class GamePlay {
 
         entities.add(bomberman);
         entities.add(balloom);
+        stillObjects.add(bomb);
 
         ((Balloom) balloom).findCoordinatesRenderFromMap(map);
+
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
