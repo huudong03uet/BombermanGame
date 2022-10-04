@@ -3,7 +3,10 @@ package main.entities.bomb;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.entities.AnimateEntity;
-import static main.PropertiesConstant.*;
+
+import static main.PropertiesConstant.BOMB_SPRITE;
+import static main.PropertiesConstant.FRAME_PER_SECOND;
+
 import static main.graphics.Sprite.*;
 
 public class Bomb extends AnimateEntity {

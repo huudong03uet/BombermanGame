@@ -29,7 +29,6 @@ implements Renderable
         int xBottomRight = (x + (int) img.getWidth() - 1) / (TILE_SIZE * SCALE);
         int yBottomRight = (y + (int) img.getHeight() - 1) / (TILE_SIZE * SCALE);
 
-
         if (mapGame[yTopLeft][xTopLeft] == '#' || mapGame[yTopRight][xTopRight] == '#' ||
                 mapGame[yBottomLeft][xBottomLeft] == '#' || mapGame[yBottomRight][xBottomRight] == '#') {
 
