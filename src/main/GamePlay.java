@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.entities.Entity;
+import main.entities.bomb.Bomb;
 import main.entities.bomber.Bomber;
 import main.entities.enemy.Balloom;
 import main.entities.enemy.Doll;
@@ -30,6 +31,7 @@ public class GamePlay {
     private Entity oneal;
     private Entity doll;
 
+    private Entity bomb;
     private List<Entity> entities = new ArrayList<>();
     private Bomber bomberman;
 
@@ -55,6 +57,8 @@ public class GamePlay {
         balloom = new Balloom(1, 1);
         oneal = new Oneal(1, 1);
         doll = new Doll(1, 1);
+        bomb = new Bomb(1, 2);
+
     }
 
 
@@ -71,9 +75,12 @@ public class GamePlay {
         entities.add(oneal);
         entities.add(doll);
 
+        stillObjects.add(bomb);
+
         ((Balloom) balloom).findCoordinatesRenderFromMap(map);
         ((Oneal) oneal).findCoordinatesRenderFromMap(map);
         ((Doll) doll).findCoordinatesRenderFromMap(map);
+
 
         AnimationTimer timer = new AnimationTimer() {
             @Override

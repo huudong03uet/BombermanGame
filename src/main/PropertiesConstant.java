@@ -19,9 +19,11 @@ public final class PropertiesConstant {
     public static int BOMBER_SPRITE = 3;
     public static int BOMBER_DEAD_SPRITE = 3;
     public static int BALLOOM_SPRITE = 3;
+
     public static int DOLL_SPRITE = 3;
 
-
     public static int FRAME_PER_SECOND = 60;
-
+    public static int BOMB_SPRITE = 3;
+    public static double timeToExplore = 12000;
+    public static double timeRemain = 60;
 }
