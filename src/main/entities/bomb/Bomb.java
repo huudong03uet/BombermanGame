@@ -3,12 +3,6 @@ package main.entities.bomb;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.entities.AnimateEntity;
-import main.entities.CanMoveEntity;
-import main.graphics.Sprite;
-import main.graphics.SpriteSheet;
-
-import java.awt.*;
-
 import static main.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
 
@@ -37,7 +31,6 @@ public class Bomb extends AnimateEntity {
         countBomb++;
         if(countBomb >= 120) {
             countBomb = 0;
-            System.out.println("no");
         }
     }
 }
