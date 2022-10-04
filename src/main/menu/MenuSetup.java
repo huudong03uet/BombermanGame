@@ -18,12 +18,14 @@ public class MenuSetup {
     public MenuItem fileMenu2 = new MenuItem("Pause");
     public MenuItem fileMenu3 = new MenuItem("Exit");
 
+
     public Menu HelpMenu = new Menu("Help");
     public MenuItem helpMenu1 = new MenuItem("Instruction");
 
     public MenuSetup() {
 
     }
+
 
     public void addMenu() {
         fileMenu.getItems().addAll(fileMenu1, fileMenu2, fileMenu3);
@@ -47,8 +49,6 @@ public class MenuSetup {
         addMenu();
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menuBar);
-        // render border pane without insert into image
-
         root.getChildren().add(borderPane);
     }
 }
