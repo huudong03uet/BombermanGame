@@ -26,10 +26,8 @@ public class CheckCollision {
 
         rightA = entity1.getX() + entity1.getSprite().getWidth();
         rightB = entity2.getX() + entity2.getSprite().getWidth() - 5;
-
         return checkCollisionTwoObject();
     }
-
 
     public boolean checkCollisionTwoObject() {
         if (bottomA <= topB) {

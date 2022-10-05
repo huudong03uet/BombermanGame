@@ -5,11 +5,14 @@ import main.entities.CanMoveEntity;
 
 import java.util.ArrayList;
 
+import static main.PropertiesConstant.*;
+
 public abstract class Enemy extends CanMoveEntity {
+    protected int speed = SPEED_ENEMY;
+
     public Enemy(int x, int y, Image img) {
         super(x, y, img);
     }
-
 
     public abstract void updateSprite();
 
@@ -28,8 +31,8 @@ public abstract class Enemy extends CanMoveEntity {
 
         }
         if (arrayList.size() == 2) {
-            if (!(directionAnimateNow == 0 && arrayList.contains(2) || directionAnimateNow == 2 && arrayList.contains(0)
-                    || directionAnimateNow == 1 && arrayList.contains(3) || directionAnimateNow == 3 && arrayList.contains(1))) {
+            if (!(directionAnimateNow == RIGHT && arrayList.contains(LEFT) || directionAnimateNow == LEFT && arrayList.contains(RIGHT)
+                    || directionAnimateNow == DOWN && arrayList.contains(UP) || directionAnimateNow == UP && arrayList.contains(DOWN))) {
                 if (directionAnimateNow == arrayList.get(0)) {
                     directionAnimate = arrayList.get(1);
                 } else {
@@ -39,30 +42,27 @@ public abstract class Enemy extends CanMoveEntity {
                 directionAnimate = directionAnimateNow;
             }
         } else if (arrayList.size() == 1) {
-            if (directionAnimateNow == 0) {
-                directionAnimate = 2;
-            } else if (directionAnimateNow == 1) {
-                directionAnimate = 3;
-            } else if (directionAnimateNow == 2) {
-                directionAnimate = 0;
-            } else if (directionAnimateNow == 3) {
-                directionAnimate = 1;
+            if (directionAnimateNow == RIGHT) {
+                directionAnimate = LEFT;
+            } else if (directionAnimateNow == DOWN) {
+                directionAnimate = UP;
+            } else if (directionAnimateNow == LEFT) {
+                directionAnimate = RIGHT;
+            } else if (directionAnimateNow == UP) {
+                directionAnimate = DOWN;
             }
         } else {
-            if (directionAnimateNow == 0) {
-                arrayList.remove((Integer) 2);
-            } else if (directionAnimateNow == 1) {
-                arrayList.remove((Integer) 3);
-            } else if (directionAnimateNow == 2) {
-                arrayList.remove((Integer) 0);
-            } else if (directionAnimateNow == 3) {
-                arrayList.remove((Integer) 1);
+            if (directionAnimateNow == RIGHT) {
+                arrayList.remove((Integer) LEFT);
+            } else if (directionAnimateNow == DOWN) {
+                arrayList.remove((Integer) UP);
+            } else if (directionAnimateNow == LEFT) {
+                arrayList.remove((Integer) RIGHT);
+            } else if (directionAnimateNow == UP) {
+                arrayList.remove((Integer) DOWN);
             }
             int numberRandom = (int) (Math.random() * arrayList.size());
             directionAnimate = arrayList.get(numberRandom);
         }
-
-
     }
-
 }

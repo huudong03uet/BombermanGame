@@ -2,9 +2,10 @@ package main.entities.enemy;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import main.graphics.Sprite;
+import main.entities.Entity;
 
 import static main.PropertiesConstant.*;
+import static main.graphics.Sprite.*;
 
 public class Balloom extends Enemy {
     private final int FRAME_PER_ONE = FRAME_PER_SECOND / 2;
@@ -21,6 +22,12 @@ public class Balloom extends Enemy {
     }
 
     @Override
+    public void setCoordinate(char[][] mapGame, Entity player) {
+        setDirection(mapGame);
+        setCoordinateAfterMove();
+    }
+
+    @Override
     public void setCoordinateAfterMove() {
         if (directionAnimate == 0) {
             x += speed;
@@ -31,25 +38,24 @@ public class Balloom extends Enemy {
         } else if (directionAnimate == 3) {
             y -= speed;
         }
-
     }
 
     public Balloom(int x, int y) {
-        super(x, y, Sprite.balloom_right1.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right1.get_realHeight()));
-        imagesTwoWay[0][0] = Sprite.balloom_right1.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right2.get_realHeight());
-        imagesTwoWay[1][0] = Sprite.balloom_right1.getFxImage(Sprite.balloom_left1.get_realWidth(), Sprite.balloom_left2.get_realHeight());
-        imagesTwoWay[2][0] = Sprite.balloom_left1.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right2.get_realHeight());
-        imagesTwoWay[3][0] = Sprite.balloom_left1.getFxImage(Sprite.balloom_left1.get_realWidth(), Sprite.balloom_left2.get_realHeight());
+        super(x, y, balloom_right1.getFxImage(balloom_right1.get_realWidth(), balloom_right1.get_realHeight()));
+        imagesTwoWay[RIGHT][0] = balloom_right1.getFxImage(balloom_right1.get_realWidth(), balloom_right2.get_realHeight());
+        imagesTwoWay[DOWN][0] = balloom_right1.getFxImage(balloom_left1.get_realWidth(), balloom_left2.get_realHeight());
+        imagesTwoWay[LEFT][0] = balloom_left1.getFxImage(balloom_right1.get_realWidth(), balloom_right2.get_realHeight());
+        imagesTwoWay[UP][0] = balloom_left1.getFxImage(balloom_left1.get_realWidth(), balloom_left2.get_realHeight());
 
-        imagesTwoWay[0][1] = Sprite.balloom_right2.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right2.get_realHeight());
-        imagesTwoWay[1][1] = Sprite.balloom_right2.getFxImage(Sprite.balloom_left1.get_realWidth(), Sprite.balloom_left2.get_realHeight());
-        imagesTwoWay[2][1] = Sprite.balloom_left2.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right2.get_realHeight());
-        imagesTwoWay[3][1] = Sprite.balloom_left2.getFxImage(Sprite.balloom_left1.get_realWidth(), Sprite.balloom_left2.get_realHeight());
+        imagesTwoWay[RIGHT][1] = balloom_right2.getFxImage(balloom_right1.get_realWidth(), balloom_right2.get_realHeight());
+        imagesTwoWay[DOWN][1] = balloom_right2.getFxImage(balloom_left1.get_realWidth(), balloom_left2.get_realHeight());
+        imagesTwoWay[LEFT][1] = balloom_left2.getFxImage(balloom_right1.get_realWidth(), balloom_right2.get_realHeight());
+        imagesTwoWay[UP][1] = balloom_left2.getFxImage(balloom_left1.get_realWidth(), balloom_left2.get_realHeight());
 
-        imagesTwoWay[0][2] = Sprite.balloom_right3.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right2.get_realHeight());
-        imagesTwoWay[1][2] = Sprite.balloom_right3.getFxImage(Sprite.balloom_left1.get_realWidth(), Sprite.balloom_left2.get_realHeight());
-        imagesTwoWay[2][2] = Sprite.balloom_left3.getFxImage(Sprite.balloom_right1.get_realWidth(), Sprite.balloom_right2.get_realHeight());
-        imagesTwoWay[3][2] = Sprite.balloom_left3.getFxImage(Sprite.balloom_left1.get_realWidth(), Sprite.balloom_left2.get_realHeight());
+        imagesTwoWay[RIGHT][2] = balloom_right3.getFxImage(balloom_right1.get_realWidth(), balloom_right2.get_realHeight());
+        imagesTwoWay[DOWN][2] = balloom_right3.getFxImage(balloom_left1.get_realWidth(), balloom_left2.get_realHeight());
+        imagesTwoWay[LEFT][2] = balloom_left3.getFxImage(balloom_right1.get_realWidth(), balloom_right2.get_realHeight());
+        imagesTwoWay[UP][2] = balloom_left3.getFxImage(balloom_left1.get_realWidth(), balloom_left2.get_realHeight());
 
     }
 
@@ -85,14 +91,14 @@ public class Balloom extends Enemy {
     @Override
     public void render(GraphicsContext gc) {
         int frame = indexAnimate / (FRAME_PER_ONE / BOMBER_SPRITE);
-        if (directionAnimate == 0) {
-            img = imagesTwoWay[0][frame];
-        } else if (directionAnimate == 1) {
-            img = imagesTwoWay[1][frame];
-        } else if (directionAnimate == 2) {
-            img = imagesTwoWay[2][frame];
-        } else if (directionAnimate == 3) {
-            img = imagesTwoWay[3][frame];
+        if (directionAnimate == RIGHT) {
+            img = imagesTwoWay[RIGHT][frame];
+        } else if (directionAnimate == DOWN) {
+            img = imagesTwoWay[DOWN][frame];
+        } else if (directionAnimate == LEFT) {
+            img = imagesTwoWay[LEFT][frame];
+        } else if (directionAnimate == UP) {
+            img = imagesTwoWay[UP][frame];
         }
         super.render(gc);
     }
@@ -100,13 +106,14 @@ public class Balloom extends Enemy {
     public void findCoordinatesRenderFromMap(char[][] mapGame) {
         for (int i = 0; i < HEIGHT_TILE; i++) {
             for (int j = 0; j < WIDTH_TILE; j++) {
-                if (mapGame[i][j] == '1') {
+                if (mapGame[i][j] == CHAR_BALLOOM) {
                     y = i * TILE_SIZE * SCALE;
                     x = j * TILE_SIZE * SCALE;
-                    mapGame[i][j] = ' ';
+                    mapGame[i][j] = CHAR_BLANK;
                     return;
                 }
             }
         }
     }
+
 }

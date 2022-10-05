@@ -5,6 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import main.entities.CanMoveEntity;
 import main.entities.Entity;
 import main.entities.bomb.Bomb;
 import main.entities.bomb.Flame;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static main.PropertiesConstant.*;
+import static main.PropertiesStatic.placeBomb;
 
 public class GamePlay {
     private GraphicsContext gc;
@@ -28,21 +30,12 @@ public class GamePlay {
 
     private MenuSetup menu;
     private MapGame mapGame;
-    private Entity balloom;
-    private Entity oneal;
-    private Entity doll;
-
-    private Entity bomb;
-    private Entity flameHorizontal1;
-    private Entity flameHorizontal2;
-    private Entity flameHoLeft;
-    private Entity flameHoRight;
-    private Entity flameVertical1;
-    private Entity flameVertical2;
-    private Entity flameVerUp;
-    private Entity flameVerDown;
+    private List<Entity> enemies = new ArrayList<>();
     private List<Entity> entities = new ArrayList<>();
+
     private Bomber bomberman;
+    private List<Bomb> bombs = new ArrayList<>();
+    private List<Flame> flames = new ArrayList<>();
 
     private final List<Entity> stillObjects = new ArrayList<>();
     private char[][] map = new char[HEIGHT_TILE][WIDTH_TILE];
@@ -56,25 +49,11 @@ public class GamePlay {
         BombermanGame.root.getChildren().add(canvas);
 
         menu.setMenuBar(BombermanGame.root);
-        mapGame = new MapGame();
-
         keyEventGame = new KeyEventGame();
-
         checkCollision = new CheckCollision();
 
+        mapGame = new MapGame();
         bomberman = new Bomber(1, 1);
-        balloom = new Balloom(1, 1);
-        oneal = new Oneal(1, 1);
-        doll = new Doll(1, 1);
-        bomb = new Bomb(3, 3);
-        flameHorizontal1 = new Flame(bomb.getX() + 1, bomb.getY(), 0);
-        flameHorizontal2 = new Flame(bomb.getX() - 1, bomb.getY(), 0);
-        flameHoRight = new Flame(flameHorizontal1.getX() + 1, flameHorizontal1.getY(), 1);
-        flameHoLeft = new Flame(flameHorizontal2.getX() - 1, flameHorizontal2.getY(), 2);
-        flameVertical1 = new Flame(bomb.getX(), bomb.getY() + 1, 3);
-        flameVertical2 = new Flame(bomb.getX(), bomb.getY() - 1, 3);
-        flameVerDown = new Flame(flameVertical1.getX(), flameVertical1.getY() + 1, 4);
-        flameVerUp = new Flame(flameVertical2.getX(), flameVertical2.getY() - 1, 5);
     }
 
 
@@ -83,52 +62,24 @@ public class GamePlay {
         stage.addEventHandler(KeyEvent.KEY_PRESSED, keyEventGame.getKeyEventGame());
         stage.addEventHandler(KeyEvent.KEY_RELEASED, keyEventGame.getKeyEventGame1());
 
-
         mapGame.readMapFromFile(map);
         mapGame.updateMap(stillObjects, map);
 
-        entities.add(balloom);
-        entities.add(oneal);
-        entities.add(doll);
-
-        stillObjects.add(bomb);
-        stillObjects.add(flameHorizontal1);
-        stillObjects.add(flameHorizontal2);
-        stillObjects.add(flameHoRight);
-        stillObjects.add(flameHoLeft);
-        stillObjects.add(flameVertical1);
-        stillObjects.add(flameVertical2);
-        stillObjects.add(flameVerDown);
-        stillObjects.add(flameVerUp);
-
-        ((Balloom) balloom).findCoordinatesRenderFromMap(map);
-        ((Oneal) oneal).findCoordinatesRenderFromMap(map);
-        ((Doll) doll).findCoordinatesRenderFromMap(map);
-
-
+        createEntity();
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
                 bomberman.setCoordinate(map);
 
-                ((Balloom) balloom).setCoordinate(map);
-                ((Oneal) oneal).setCoordinate(map);
-                ((Doll) doll).setCoordinate(map);
+                setCoordinateEntity();
 
-                if (checkCollision.checkCollision(bomberman, balloom)) {
-                    bomberman.setIsDead(true);
-                }
-                if(checkCollision.checkCollision(bomberman, oneal)){
-                    bomberman.setIsDead(true);
-                }
-                if(checkCollision.checkCollision(bomberman, doll)){
-                    bomberman.setIsDead(true);
-                }
+                setupBombAndFlame(bomberman);
+
+                checkCollision();
 
                 render();
                 remove();
                 update();
-
             }
 
         };
@@ -136,23 +87,23 @@ public class GamePlay {
         timer.start();
     }
 
+
     public void remove() {
         if (bomberman.getIsRemove()) {
             System.out.println("remove");
-            
             System.exit(0);
         }
-        for (int i = 0; i < entities.size(); i++) {
-            if (entities.get(i).getIsRemove()) {
-                entities.remove(i);
+        for (int i = 0; i < enemies.size(); i++) {
+            if (enemies.get(i).getIsRemove()) {
+                enemies.remove(i);
             }
         }
     }
 
     public void update() {
         bomberman.update();
-        for (int i = 0; i < entities.size(); i++) {
-            entities.get(i).update();
+        for (int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).update();
         }
     }
 
@@ -162,10 +113,79 @@ public class GamePlay {
         for (int i = 0; i < stillObjects.size(); i++) {
             stillObjects.get(i).render(gc);
         }
-        for (int i = 0; i < entities.size(); i++) {
-            entities.get(i).render(gc);
+
+        for(int i = 0; i < bombs.size(); i++) {
+            bombs.get(i).render(gc);
         }
+
+        for(int i = 0; i < flames.size(); i++) {
+            flames.get(i).render(gc);
+        }
+        for (int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).render(gc);
+        }
+
         bomberman.render(gc);
     }
 
+    public void checkCollision() {
+        for (int i = 0; i < enemies.size(); i++) {
+            if (checkCollision.checkCollision(bomberman, enemies.get(i))) {
+                bomberman.setIsDead(true);
+            }
+        }
+    }
+
+    public void setCoordinateEntity() {
+        for (int i = 0; i < enemies.size(); i++) {
+            ((CanMoveEntity) enemies.get(i)).setCoordinate(map, bomberman);
+        }
+    }
+
+    public void createEntity() {
+        for (int i = 0; i < HEIGHT_TILE; i++) {
+            for (int j = 0; j < WIDTH_TILE; j++) {
+                if (map[i][j] == '1') {
+                    enemies.add(new Balloom(j, i));
+                } else if (map[i][j] == '2') {
+                    enemies.add(new Oneal(j, i));
+                } else if (map[i][j] == '3') {
+                    enemies.add(new Doll(j, i));
+                }
+            }
+        }
+    }
+
+    public void setupBombAndFlame(Entity player) {
+        player.getYCenter();
+        createBomb(player);
+        createFlame();
+        removeFlame();
+    }
+
+    public void createBomb(Entity player) {
+        if(placeBomb == true) {
+            bombs.add(new Bomb(player.getXCenter(), player.getYCenter()));
+            placeBomb = false;
+        }
+    }
+
+    public void createFlame() {
+        for(int i = 0; i < bombs.size(); i++) {
+            if(bombs.get(i).getIsExploded() == true) {
+                flames.add(new Flame(bombs.get(i).getXCenter(), bombs.get(i).getYCenter()));
+                bombs.remove(i);
+            }
+        }
+    }
+
+    public void removeFlame() {
+        for(int i = 0; i < flames.size(); i++) {
+            if(flames.get(i).getIsRemove() == true) {
+                flames.remove(i);
+            }
+        }
+    }
 }
+
+

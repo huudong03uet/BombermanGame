@@ -7,15 +7,15 @@ import static main.PropertiesConstant.SCALE;
 import static main.PropertiesConstant.TILE_SIZE;
 
 public abstract class CanMoveEntity extends AnimateEntity
-implements Renderable
-{
+        implements Renderable {
     protected int directionAnimate;
-    protected int speed = 2;
+
     protected int indexAnimate = 0;
 
     public CanMoveEntity(int x, int y, Image img) {
         super(x, y, img);
     }
+
     public boolean checkWallCollision(char[][] mapGame) {
         int xTopLeft = x / (TILE_SIZE * SCALE);
         int yTopLeft = y / (TILE_SIZE * SCALE);
@@ -43,6 +43,8 @@ implements Renderable
     }
 
     public abstract void setCoordinate(char[][] mapGame);
+    public abstract void setCoordinate(char[][] mapGame, Entity player);
     public abstract void setCoordinateAfterMove();
+
     public abstract void setCoordinateAfterMoveReverse();
 }

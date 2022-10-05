@@ -10,7 +10,7 @@ import static main.graphics.Sprite.*;
 public class Bomb extends AnimateEntity {
     protected Image[] images = new Image[BOMB_SPRITE];
     protected int countBomb = 0;
-
+    protected boolean isExploded = false;
     public Bomb(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
@@ -32,8 +32,13 @@ public class Bomb extends AnimateEntity {
         img = images[indexAnimate];
         super.render(gc);
         countBomb++;
-        if (countBomb >= timeToExplore) {
+        if (countBomb >= 120) {
             countBomb = 0;
+            isExploded = true;
         }
+    }
+
+    public boolean getIsExploded() {
+        return isExploded;
     }
 }
