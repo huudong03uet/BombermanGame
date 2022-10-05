@@ -24,6 +24,12 @@ public final class PropertiesConstant {
 
     public static int FRAME_PER_SECOND = 60;
     public static int BOMB_SPRITE = 3;
-    public static double timeToExplore = 12000;
+    public static int FLAME_HORIZONTAL_SPRITE = 3;
+    public static int FLAME_HORIZONTAL_LEFT = 3;
+    public static int FLAME_HORIZONTAL_RIGHT = 3;
+    public static int FLAME_VERTICAL_SPRITE = 3;
+    public static int FLAME_VERTICAL_UP = 3;
+    public static int FLAME_VERTICAL_DOWN = 3;
+    public static double timeToExplore = 120;
     public static double timeRemain = 60;
 }

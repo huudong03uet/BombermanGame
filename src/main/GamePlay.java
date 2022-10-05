@@ -7,6 +7,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.entities.Entity;
 import main.entities.bomb.Bomb;
+import main.entities.bomb.Flame;
 import main.entities.bomber.Bomber;
 import main.entities.enemy.Balloom;
 import main.entities.enemy.Doll;
@@ -32,6 +33,14 @@ public class GamePlay {
     private Entity doll;
 
     private Entity bomb;
+    private Entity flameHorizontal1;
+    private Entity flameHorizontal2;
+    private Entity flameHoLeft;
+    private Entity flameHoRight;
+    private Entity flameVertical1;
+    private Entity flameVertical2;
+    private Entity flameVerUp;
+    private Entity flameVerDown;
     private List<Entity> entities = new ArrayList<>();
     private Bomber bomberman;
 
@@ -57,8 +66,15 @@ public class GamePlay {
         balloom = new Balloom(1, 1);
         oneal = new Oneal(1, 1);
         doll = new Doll(1, 1);
-        bomb = new Bomb(1, 2);
-
+        bomb = new Bomb(3, 3);
+        flameHorizontal1 = new Flame(bomb.getX() + 1, bomb.getY(), 0);
+        flameHorizontal2 = new Flame(bomb.getX() - 1, bomb.getY(), 0);
+        flameHoRight = new Flame(flameHorizontal1.getX() + 1, flameHorizontal1.getY(), 1);
+        flameHoLeft = new Flame(flameHorizontal2.getX() - 1, flameHorizontal2.getY(), 2);
+        flameVertical1 = new Flame(bomb.getX(), bomb.getY() + 1, 3);
+        flameVertical2 = new Flame(bomb.getX(), bomb.getY() - 1, 3);
+        flameVerDown = new Flame(flameVertical1.getX(), flameVertical1.getY() + 1, 4);
+        flameVerUp = new Flame(flameVertical2.getX(), flameVertical2.getY() - 1, 5);
     }
 
 
@@ -76,6 +92,14 @@ public class GamePlay {
         entities.add(doll);
 
         stillObjects.add(bomb);
+        stillObjects.add(flameHorizontal1);
+        stillObjects.add(flameHorizontal2);
+        stillObjects.add(flameHoRight);
+        stillObjects.add(flameHoLeft);
+        stillObjects.add(flameVertical1);
+        stillObjects.add(flameVertical2);
+        stillObjects.add(flameVerDown);
+        stillObjects.add(flameVerUp);
 
         ((Balloom) balloom).findCoordinatesRenderFromMap(map);
         ((Oneal) oneal).findCoordinatesRenderFromMap(map);

@@ -32,7 +32,7 @@ public abstract class Entity implements Renderable {
     }
 
     public int getY() {
-        return y;
+        return y / Sprite.SCALED_SIZE;
     }
 
     public Image getSprite() {
@@ -41,6 +41,6 @@ public abstract class Entity implements Renderable {
     public abstract void update();
 
     public int getX() {
-        return x;
+        return x / Sprite.SCALED_SIZE;
     }
 }
