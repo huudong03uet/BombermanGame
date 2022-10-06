@@ -20,6 +20,9 @@ public class Doll extends Enemy {
     @Override
     public void setCoordinate(char[][] mapGame) {
         setDirection(mapGame);
+        if(directionAnimate == STOP) {
+            return;
+        }
         setCoordinateAfterMove();
     }
 
@@ -165,7 +168,8 @@ public class Doll extends Enemy {
 
     @Override
     public void render(GraphicsContext gc) {
-        int frame = indexAnimate / (FRAME_PER_ONE / BOMBER_SPRITE);
+        int frame = indexAnimate % FRAME_PER_ONE / (FRAME_PER_ONE / BOMBER_SPRITE);
+        indexAnimate++;
         if (directionAnimate == RIGHT) {
             img = imagesTwoWay[RIGHT][frame];
         } else if (directionAnimate == DOWN) {

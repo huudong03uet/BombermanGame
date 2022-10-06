@@ -10,13 +10,13 @@ import static main.graphics.Sprite.*;
 public class Bomb extends AnimateEntity {
     protected Image[] images = new Image[BOMB_SPRITE];
     protected int countBomb = 0;
-    protected boolean isExploded = false;
+
+
     public Bomb(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
 
     public void update() {
-        update();
     }
 
     public Bomb(int x, int y) {
@@ -28,17 +28,13 @@ public class Bomb extends AnimateEntity {
 
     @Override
     public void render(GraphicsContext gc) {
-        int indexAnimate = (countBomb % 60) / ((FRAME_PER_SECOND) / BOMB_SPRITE);
+        int indexAnimate = (countBomb % 30) / ((FRAME_PER_SECOND / 2) / BOMB_SPRITE);
         img = images[indexAnimate];
         super.render(gc);
         countBomb++;
-        if (countBomb >= 120) {
+        if (countBomb >= TIME_REMAIN * 3) {
             countBomb = 0;
             isExploded = true;
         }
-    }
-
-    public boolean getIsExploded() {
-        return isExploded;
     }
 }

@@ -17,8 +17,9 @@ public class MapGame {
     private int level;
 
     public MapGame() {
-        level = 5;
+        level = 1;
     }
+
     public String mapPath() {
         return "res\\levels\\level" + level + ".txt";
     }
@@ -26,7 +27,7 @@ public class MapGame {
     public void readMapFromFile(char[][] map) throws IOException {
         File file = new File(mapPath());
         Scanner scanner = new Scanner(file);
-        String firstLine = scanner.nextLine();
+        scanner.nextLine();
         for (int i = 0; i < HEIGHT_TILE; i++) {
             String line = scanner.nextLine();
             for (int j = 0; j < WIDTH_TILE; j++) {
