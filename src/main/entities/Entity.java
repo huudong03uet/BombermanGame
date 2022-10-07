@@ -21,11 +21,25 @@ public abstract class Entity implements Renderable {
     protected Image img;
 
     protected boolean isRemove = false;
+    protected boolean isExploded = false;
+
+    public boolean getIsExploded() {
+        return isExploded;
+    }
+
+    public void setIsExploded(boolean isExploded) {
+        this.isExploded = isExploded;
+    }
 
     public boolean getIsRemove() {
         return isRemove;
     }
 
+
+
+    public boolean setIsRemove(boolean isRemove) {
+        return this.isRemove = isRemove;
+    }
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity(int xUnit, int yUnit, Image img) {
         this.xUnit = xUnit;

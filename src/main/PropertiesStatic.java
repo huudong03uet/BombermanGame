@@ -1,5 +1,8 @@
 package main;
 
+import static main.PropertiesConstant.HEIGHT_TILE;
+import static main.PropertiesConstant.WIDTH_TILE;
+
 public class PropertiesStatic {
     /**
      * Coordinate to subtract from the position of the bomberman.
@@ -8,6 +11,10 @@ public class PropertiesStatic {
     public static int xHide = 0;
     public final static int yHide = 0; // the height of the map is fixed
 
+    /**
+     * The map of the game.
+     */
+    public static char[][] map = new char[HEIGHT_TILE][WIDTH_TILE];
     /**
      * Direction of bomberman.
      */

@@ -10,6 +10,7 @@ import static main.PropertiesConstant.*;
 public abstract class Enemy extends CanMoveEntity {
     protected int speed = SPEED_ENEMY;
 
+
     public Enemy(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -29,6 +30,10 @@ public abstract class Enemy extends CanMoveEntity {
             }
             setCoordinateAfterMoveReverse();
 
+        }
+        if(arrayList.size() == 0) {
+            directionAnimate = STOP;
+            return;
         }
         if (arrayList.size() == 2) {
             if (!(directionAnimateNow == RIGHT && arrayList.contains(LEFT) || directionAnimateNow == LEFT && arrayList.contains(RIGHT)
