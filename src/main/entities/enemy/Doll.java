@@ -15,18 +15,22 @@ public class Doll extends Enemy {
 
     public Doll(int x, int y, Image img) {
         super(x, y, img);
+
     }
 
     @Override
     public void setCoordinate(char[][] mapGame) {
-        setDirection(mapGame);
         if(directionAnimate == STOP) {
             return;
         }
+        setDirection(mapGame);
         setCoordinateAfterMove();
     }
 
     public void setCoordinate(char[][] mapGame, Entity player) {
+        if(directionAnimate == STOP) {
+            return;
+        }
         setDirection(mapGame, player);
         setCoordinateAfterMove();
     }
@@ -48,27 +52,24 @@ public class Doll extends Enemy {
             setCoordinateAfterMoveReverse();
 
         }
+        if(arrayList.size() == 0) {
+            directionAnimate = STOP;
+            return;
+        }
         if (arrayList.size() == 2) {
-            if (!(directionAnimateNow == 0 && arrayList.contains(2) || directionAnimateNow == 2 && arrayList.contains(0)
-                    || directionAnimateNow == 1 && arrayList.contains(3) || directionAnimateNow == 3 && arrayList.contains(1))) {
+            if (directionAnimateNow == 0 && arrayList.contains(2) || directionAnimateNow == 2 && arrayList.contains(0)
+                    || directionAnimateNow == 1 && arrayList.contains(3) || directionAnimateNow == 3 && arrayList.contains(1)) {
+
+                directionAnimate = directionAnimateNow;
+            } else {
                 if (directionAnimateNow == arrayList.get(0)) {
                     directionAnimate = arrayList.get(1);
                 } else {
                     directionAnimate = arrayList.get(0);
                 }
-            } else {
-                directionAnimate = directionAnimateNow;
             }
         } else if (arrayList.size() == 1) {
-            if (directionAnimateNow == 0) {
-                directionAnimate = 2;
-            } else if (directionAnimateNow == 1) {
-                directionAnimate = 3;
-            } else if (directionAnimateNow == 2) {
-                directionAnimate = 0;
-            } else if (directionAnimateNow == 3) {
-                directionAnimate = 1;
-            }
+            directionAnimate = arrayList.get(0);
         } else {
             if (directionAnimateNow == 0) {
                 arrayList.remove((Integer) 2);
@@ -136,6 +137,8 @@ public class Doll extends Enemy {
         imagesTwoWay[DOWN][2] = doll_left3.getFxImage(doll_left3.get_realWidth(), doll_left3.get_realHeight());
         imagesTwoWay[LEFT][2] = doll_right3.getFxImage(doll_right3.get_realWidth(), doll_right3.get_realHeight());
         imagesTwoWay[UP][2] = doll_left3.getFxImage(doll_left3.get_realWidth(), doll_left3.get_realHeight());
+
+        imagesExploded[0] = doll_dead.getFxImage(doll_dead.get_realWidth(), doll_dead.get_realHeight());
     }
 
 
@@ -168,18 +171,32 @@ public class Doll extends Enemy {
 
     @Override
     public void render(GraphicsContext gc) {
-        int frame = indexAnimate % FRAME_PER_ONE / (FRAME_PER_ONE / BOMBER_SPRITE);
-        indexAnimate++;
-        if (directionAnimate == RIGHT) {
-            img = imagesTwoWay[RIGHT][frame];
-        } else if (directionAnimate == DOWN) {
-            img = imagesTwoWay[DOWN][frame];
-        } else if (directionAnimate == LEFT) {
-            img = imagesTwoWay[LEFT][frame];
-        } else if (directionAnimate == UP) {
-            img = imagesTwoWay[UP][frame];
+        if (isExploded == true) {
+            int frame = timeRemain % TIME_EXPLOYED / (TIME_EXPLOYED / BOMBER_SPRITE);
+            timeRemain++;
+            if (timeRemain >= TIME_EXPLOYED) {
+                timeRemain = 0;
+                isRemove = true;
+            } else {
+                img = imagesExploded[frame];
+            }
+
+        } else {
+            int frame = indexAnimate % FRAME_PER_ONE / (FRAME_PER_ONE / BOMBER_SPRITE);
+            indexAnimate++;
+            if (directionAnimate == RIGHT) {
+                img = imagesTwoWay[RIGHT][frame];
+            } else if (directionAnimate == DOWN) {
+                img = imagesTwoWay[DOWN][frame];
+            } else if (directionAnimate == LEFT) {
+                img = imagesTwoWay[LEFT][frame];
+            } else if (directionAnimate == UP) {
+                img = imagesTwoWay[UP][frame];
+            }
+
         }
         super.render(gc);
+
     }
 
     public void findCoordinatesRenderFromMap(char[][] mapGame) {

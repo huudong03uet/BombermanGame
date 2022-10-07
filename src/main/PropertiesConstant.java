@@ -87,12 +87,14 @@ public final class PropertiesConstant {
      * The general feature of the enemy.
      */
     public final static int SPEED_ENEMY = 1;
+    public final static int TIME_EXPLOYED = 60;
 
 
     /**
      * The feature of the balloom.
      */
     public final static int BALLOOM_SPRITE = 3;
+
 
     /**
      * The feature of the oneal.

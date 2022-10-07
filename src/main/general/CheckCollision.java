@@ -17,21 +17,22 @@ public class CheckCollision {
 
 
     public boolean checkCollision(Entity entity1, Entity entity2) {
-        int distance = 0;
-        if(entity1 instanceof Bomb || entity2 instanceof Bomb) {
+        int distance = 0; int notDistance = 10;
+        if (entity1 instanceof Bomb) {
             distance = 10;
-         }
-        bottomA = entity1.getY() + entity1.getSprite().getHeight() + distance;
-        bottomB = entity2.getY() + entity2.getSprite().getHeight() ;
+            notDistance = 0;
+        }
+        bottomA = entity1.getY() + entity1.getSprite().getHeight() - notDistance;
+        bottomB = entity2.getY() + entity2.getSprite().getHeight() - notDistance;
 
-        topA = entity1.getY() - distance;
-        topB = entity2.getY();
+        topA = entity1.getY() + notDistance;
+        topB = entity2.getY() + notDistance;
 
-        leftA = entity1.getX() - distance;
-        leftB = entity2.getX();
+        leftA = entity1.getX() + notDistance;
+        leftB = entity2.getX() + notDistance;
 
-        rightA = entity1.getX() + entity1.getSprite().getWidth() + distance; ;
-        rightB = entity2.getX() + entity2.getSprite().getWidth() ;
+        rightA = entity1.getX() + entity1.getSprite().getWidth() + distance - notDistance;
+        rightB = entity2.getX() + entity2.getSprite().getWidth() - notDistance;
         return checkCollisionTwoObject();
     }
 

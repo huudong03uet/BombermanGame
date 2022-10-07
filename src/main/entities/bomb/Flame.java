@@ -114,9 +114,6 @@ public class Flame extends AnimateEntity {
 
     public boolean checkHideFlameByEntity(int x, int y) {
         if(y < 0 || y > HEIGHT_TILE - 1 || x < 0 || x > WIDTH_TILE - 1) return false;
-        if(map[y][x] == '1') {
-            return true;
-        }
         if(map[y][x] == '*') {
             return true;
         }

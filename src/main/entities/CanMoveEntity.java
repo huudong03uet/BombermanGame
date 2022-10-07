@@ -3,8 +3,7 @@ package main.entities;
 import javafx.scene.image.Image;
 import main.graphics.Renderable;
 
-import static main.PropertiesConstant.SCALE;
-import static main.PropertiesConstant.TILE_SIZE;
+import static main.PropertiesConstant.*;
 
 public abstract class CanMoveEntity extends AnimateEntity
         implements Renderable {
@@ -40,6 +39,12 @@ public abstract class CanMoveEntity extends AnimateEntity
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void setIsExploded(boolean isExploded) {
+        directionAnimate = STOP;
+        super.setIsExploded(isExploded);
     }
 
     public abstract void setCoordinate(char[][] mapGame);

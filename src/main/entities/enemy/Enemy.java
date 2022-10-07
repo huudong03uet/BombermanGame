@@ -6,13 +6,19 @@ import main.entities.CanMoveEntity;
 import java.util.ArrayList;
 
 import static main.PropertiesConstant.*;
+import static main.graphics.Sprite.*;
+import static main.graphics.Sprite.mob_dead3;
 
 public abstract class Enemy extends CanMoveEntity {
     protected int speed = SPEED_ENEMY;
-
+    protected Image[] imagesExploded = new Image[BALLOOM_SPRITE + 1];
+    protected int timeRemain = 0;
 
     public Enemy(int x, int y, Image img) {
         super(x, y, img);
+        imagesExploded[1] = mob_dead1.getFxImage(mob_dead1.get_realWidth(), mob_dead1.get_realHeight());
+        imagesExploded[2] = mob_dead2.getFxImage(mob_dead2.get_realWidth(), mob_dead2.get_realHeight());
+        imagesExploded[3] = mob_dead3.getFxImage(mob_dead3.get_realWidth(), mob_dead3.get_realHeight());
     }
 
     public abstract void updateSprite();
@@ -47,15 +53,7 @@ public abstract class Enemy extends CanMoveEntity {
                 directionAnimate = directionAnimateNow;
             }
         } else if (arrayList.size() == 1) {
-            if (directionAnimateNow == RIGHT) {
-                directionAnimate = LEFT;
-            } else if (directionAnimateNow == DOWN) {
-                directionAnimate = UP;
-            } else if (directionAnimateNow == LEFT) {
-                directionAnimate = RIGHT;
-            } else if (directionAnimateNow == UP) {
-                directionAnimate = DOWN;
-            }
+            directionAnimate = arrayList.get(0);
         } else {
             if (directionAnimateNow == RIGHT) {
                 arrayList.remove((Integer) LEFT);

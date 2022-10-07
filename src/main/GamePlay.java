@@ -173,6 +173,13 @@ public class GamePlay {
                 }
             }
         }
+        for(int i = 0; i < enemies.size(); i++) {
+            for(int j = 0; j < flames.size(); j++) {
+                if(checkCollision.checkCollisionWithFlame(enemies.get(i), flames.get(j))) {
+                    enemies.get(i).setIsExploded(true);
+                }
+            }
+        }
     }
 
     public void createEntity() {

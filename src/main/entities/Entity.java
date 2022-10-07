@@ -4,8 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.graphics.Renderable;
 
-import static main.PropertiesStatic.xHide;
-import static main.PropertiesStatic.yHide;
+import static main.PropertiesStatic.*;
 import static main.graphics.Sprite.*;
 import static main.PropertiesConstant.*;
 
