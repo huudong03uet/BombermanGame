@@ -3,6 +3,7 @@ package main;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.entities.CanMoveEntity;
@@ -164,7 +165,7 @@ public class GamePlay {
     }
 
     public void createBomb(Entity player) {
-        if(placeBomb == true) {
+        if(placeBomb) {
             bombs.add(new Bomb(player.getXCenter(), player.getYCenter()));
             placeBomb = false;
         }
@@ -172,7 +173,7 @@ public class GamePlay {
 
     public void createFlame() {
         for(int i = 0; i < bombs.size(); i++) {
-            if(bombs.get(i).getIsExploded() == true) {
+            if(bombs.get(i).getIsExploded()) {
                 flames.add(new Flame(bombs.get(i).getXCenter(), bombs.get(i).getYCenter()));
                 bombs.remove(i);
             }
@@ -181,7 +182,7 @@ public class GamePlay {
 
     public void removeFlame() {
         for(int i = 0; i < flames.size(); i++) {
-            if(flames.get(i).getIsRemove() == true) {
+            if(flames.get(i).getIsRemove()) {
                 flames.remove(i);
             }
         }

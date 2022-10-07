@@ -9,6 +9,8 @@ import static main.PropertiesStatic.yHide;
 import static main.graphics.Sprite.*;
 import static main.PropertiesConstant.*;
 
+import main.entities.bomb.Bomb.*;
+
 public class Flame extends AnimateEntity {
     protected int countFlame = 0;
     protected Image[] imagesCenter = new Image[FLAME_CENTER_SPRITE];
@@ -114,10 +116,40 @@ public class Flame extends AnimateEntity {
     @Override
     public void render(GraphicsContext gc) {
         int indexAnimate = countFlame / ((FRAME_PER_SECOND) / FLAME_HORIZONTAL_SPRITE);
-
         img = imagesCenter[indexAnimate];
         renderFlame(gc, x, y);
+        img = imagesHorizontal[indexAnimate];
+        renderFlame(gc, x + TILE_SIZE * SCALE, y);
+        img = imagesHorizontal[indexAnimate];
+        renderFlame(gc, x - TILE_SIZE * SCALE, y);
 
+        img = imageHorizontalRight[indexAnimate];
+        renderFlame(gc, x + TILE_SIZE * SCALE * 2, y);
+
+        img = imageHorizontalLeft[indexAnimate];
+        renderFlame(gc, x - TILE_SIZE * SCALE * 2, y);
+
+        img = imagesVertical[indexAnimate];
+        renderFlame(gc, x, y + TILE_SIZE * SCALE);
+        img = imagesVertical[indexAnimate];
+        renderFlame(gc, x, y - TILE_SIZE * SCALE);
+
+        img = imageVerticalDown[indexAnimate];
+        renderFlame(gc, x, y + TILE_SIZE * SCALE * 2);
+
+        img = imageVerticalUp[indexAnimate];
+        renderFlame(gc, x, y - TILE_SIZE * SCALE * 2);
+
+        countFlame++;
+        if (countFlame >= TIME_REMAIN) {
+            isRemove = true;
+            countFlame = 0;
+        }
+    }
+    public void render(GraphicsContext gc, char[][] mapGame) {
+        int indexAnimate = countFlame / ((FRAME_PER_SECOND) / FLAME_HORIZONTAL_SPRITE);
+        img = imagesCenter[indexAnimate];
+        renderFlame(gc, x, y);
         img = imagesHorizontal[indexAnimate];
         renderFlame(gc, x + TILE_SIZE * SCALE, y);
         img = imagesHorizontal[indexAnimate];
