@@ -10,6 +10,8 @@ import static main.graphics.Sprite.*;
 import static main.PropertiesConstant.*;
 import static main.PropertiesStatic.*;
 
+import main.entities.bomb.Bomb.*;
+
 public class Flame extends AnimateEntity {
     protected int countFlame = 0;
     protected Image[] imagesCenter = new Image[FLAME_CENTER_SPRITE];
@@ -125,6 +127,7 @@ public class Flame extends AnimateEntity {
     @Override
     public void render(GraphicsContext gc) {
         int indexAnimate = countFlame / ((FRAME_PER_SECOND) / FLAME_HORIZONTAL_SPRITE);
+
 
         if(!checkHideFlameByEntity(getXCenter(), getYCenter())) {
             img = imagesCenter[indexAnimate];

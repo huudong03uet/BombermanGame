@@ -3,6 +3,7 @@ package main;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.entities.CanMoveEntity;
@@ -203,6 +204,7 @@ public class GamePlay {
         }
         for (int i = 0; i < bombs.size(); i++) {
             if (bombs.get(i).getIsExploded() == true) {
+
                 flames.add(new Flame(bombs.get(i).getXCenter(), bombs.get(i).getYCenter()));
                 map[bombs.get(i).getYCenter()][bombs.get(i).getXCenter()] = CHAR_GRASS;
                 bombs.remove(i);
