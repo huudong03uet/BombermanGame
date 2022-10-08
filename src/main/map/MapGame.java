@@ -1,6 +1,7 @@
 package main.map;
 
 import main.entities.Entity;
+import main.entities.items.FlameItem;
 import main.entities.items.SpeedItem;
 import main.entities.tile.Brick;
 import main.entities.tile.Grass;
@@ -35,7 +36,7 @@ public class MapGame {
             String line = scanner.nextLine();
             for (int j = 0; j < WIDTH_TILE; j++) {
                 mapFile[i][j] = line.charAt(j);
-                if (mapFile[i][j] == CHAR_PORTAL || mapFile[i][j] == SPEED_ITEM) {
+                if (mapFile[i][j] == CHAR_PORTAL || mapFile[i][j] == SPEED_ITEM || mapFile[i][j] == FLAME_ITEM) {
                     map[i][j] = CHAR_BRICK;
                 } else {
                     map[i][j] = mapFile[i][j];
@@ -61,6 +62,9 @@ public class MapGame {
                 }
                 if(map[i][j] == SPEED_ITEM) {
                     list.add(new SpeedItem(j, i, Sprite.powerup_speed.getFxImage()));
+                    stillObjects.add(new Brick(j, i, Sprite.brick.getFxImage()));
+                } else if(map[i][j] == FLAME_ITEM) {
+                    list.add(new FlameItem(j, i, Sprite.powerup_flames.getFxImage()));
                     stillObjects.add(new Brick(j, i, Sprite.brick.getFxImage()));
                 }
             }

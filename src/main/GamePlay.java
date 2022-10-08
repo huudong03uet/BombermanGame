@@ -112,7 +112,6 @@ public class GamePlay {
                 } else {
                     map[stillObjects.get(i).getYCenter()][stillObjects.get(i).getXCenter()] = mapFile[stillObjects.get(i).getYCenter()][stillObjects.get(i).getXCenter()];
                 }
-
                 stillObjects.remove(i);
             }
         }

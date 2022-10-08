@@ -120,15 +120,27 @@ public class Bomber extends CanMoveEntity {
     }
 
     public void getItem(char[][] map, List<Entity> items) {
-        if((x % (TILE_SIZE * SCALE) <= 10 || x % (TILE_SIZE * SCALE) >= 38) && (y % (TILE_SIZE * SCALE) <= 10 || y % (TILE_SIZE * SCALE) >= 38 )) {
-            if(map[y / (TILE_SIZE * SCALE)][x / (TILE_SIZE * SCALE)] == SPEED_ITEM) {
-                map[y / (TILE_SIZE * SCALE)][x / (TILE_SIZE * SCALE)] = CHAR_GRASS;
-                speed += 2;
-                for(int i = 0; i < items.size(); i++) {
-                    if(items.get(i).getXCenter() == getXCenter() && items.get(i).getYCenter() == getYCenter()) {
-                        items.remove(i);
-                        break;
-                    }
+        boolean hasIsItem = false;
+
+        if (map[getYCenter()][getXCenter()] == SPEED_ITEM) {
+            hasIsItem = true;
+            map[getYCenter()][getXCenter()] = CHAR_GRASS;
+            speed += 2;
+
+        }
+
+        if (map[getYCenter()][getXCenter()] == FLAME_ITEM) {
+            hasIsItem = true;
+            map[getYCenter()][getXCenter()] = CHAR_GRASS;
+            lengthFlameDefault = 2;
+        }
+
+
+        if (hasIsItem == true) {
+            for (int i = 0; i < items.size(); i++) {
+                if (items.get(i).getXCenter() == getXCenter() && items.get(i).getYCenter() == getYCenter()) {
+                    items.remove(i);
+                    break;
                 }
             }
         }
@@ -139,6 +151,7 @@ public class Bomber extends CanMoveEntity {
         xUnit = x / (TILE_SIZE * SCALE);
         yUnit = y / (TILE_SIZE * SCALE);
     }
+
     public void update(List<Entity> items) {
         xUnit = x / (TILE_SIZE * SCALE);
         yUnit = y / (TILE_SIZE * SCALE);

@@ -26,4 +26,5 @@ public class PropertiesStatic {
     // 3: up
 
     public static boolean placeBomb = false;
+    public static int lengthFlameDefault = 1;
 }

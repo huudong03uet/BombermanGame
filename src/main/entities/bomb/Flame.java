@@ -4,13 +4,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.entities.AnimateEntity;
 
-import static main.PropertiesStatic.xHide;
-import static main.PropertiesStatic.yHide;
-import static main.graphics.Sprite.*;
 import static main.PropertiesConstant.*;
 import static main.PropertiesStatic.*;
-
-import main.entities.bomb.Bomb.*;
+import static main.graphics.Sprite.*;
 
 public class Flame extends AnimateEntity {
     protected int countFlame = 0;
@@ -22,14 +18,14 @@ public class Flame extends AnimateEntity {
     protected Image[] imageVerticalUp = new Image[FLAME_VERTICAL_UP];
     protected Image[] imageVerticalDown = new Image[FLAME_VERTICAL_DOWN];
 
-    protected int lengthFlame = 1;
+    protected int lengthFlame = lengthFlameDefault;
+
     public Flame(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }
 
     public Flame(int x, int y) {
         super(x, y, explosion_vertical.getFxImage(explosion_vertical.get_realWidth(), explosion_vertical.get_realHeight()));
-
         imagesCenter[0] = bomb_exploded.getFxImage(bomb_exploded.get_realWidth(), bomb_exploded1.get_realHeight());
         imagesCenter[1] = bomb_exploded1.getFxImage(bomb_exploded1.get_realWidth(), bomb_exploded1.get_realHeight());
         imagesCenter[2] = bomb_exploded2.getFxImage(bomb_exploded2.get_realWidth(), bomb_exploded2.get_realHeight());
@@ -115,67 +111,85 @@ public class Flame extends AnimateEntity {
     }
 
     public boolean checkHideFlameByEntity(int x, int y) {
-        if(y < 0 || y > HEIGHT_TILE - 1 || x < 0 || x > WIDTH_TILE - 1) return false;
-        if(map[y][x] == '*') {
+        if (y < 0 || y > HEIGHT_TILE - 1 || x < 0 || x > WIDTH_TILE - 1) return false;
+        if (map[y][x] == '*') {
             return true;
         }
-        if(map[y][x] == '#') {
+        if (map[y][x] == '#') {
             return true;
         }
         return false;
     }
+
     @Override
     public void render(GraphicsContext gc) {
         int indexAnimate = countFlame / ((FRAME_PER_SECOND) / FLAME_HORIZONTAL_SPRITE);
 
 
-        if(!checkHideFlameByEntity(getXCenter(), getYCenter())) {
+        if (!checkHideFlameByEntity(getXCenter(), getYCenter())) {
             img = imagesCenter[indexAnimate];
             renderFlame(gc, x, y);
         }
 
-        if(lengthFlame == 2) {
-            if(!checkHideFlameByEntity(getXCenter() + 1, getYCenter())) {
+        if (lengthFlame == 2) {
+            if (!checkHideFlameByEntity(getXCenter() + 1, getYCenter())) {
                 img = imagesHorizontal[indexAnimate];
                 renderFlame(gc, x + TILE_SIZE * SCALE, y);
+                if (!checkHideFlameByEntity(getXCenter() + lengthFlame, getYCenter())) {
+                    img = imageHorizontalRight[indexAnimate];
+                    renderFlame(gc, x + TILE_SIZE * SCALE * lengthFlame, y);
+                }
             }
 
-            if(!checkHideFlameByEntity(getXCenter() - 1, getYCenter())) {
+            if (!checkHideFlameByEntity(getXCenter() - 1, getYCenter())) {
                 img = imagesHorizontal[indexAnimate];
                 renderFlame(gc, x - TILE_SIZE * SCALE, y);
+                if (!checkHideFlameByEntity(getXCenter() - lengthFlame, getYCenter())) {
+                    img = imageHorizontalLeft[indexAnimate];
+                    renderFlame(gc, x - TILE_SIZE * SCALE * lengthFlame, y);
+                }
             }
 
-            if(!checkHideFlameByEntity(getXCenter(), getYCenter() - 1)) {
+            if (!checkHideFlameByEntity(getXCenter(), getYCenter() - 1)) {
                 img = imagesVertical[indexAnimate];
                 renderFlame(gc, x, y - TILE_SIZE * SCALE);
+                if (!checkHideFlameByEntity(getXCenter(), getYCenter() - lengthFlame)) {
+                    img = imageVerticalUp[indexAnimate];
+                    renderFlame(gc, x, y - TILE_SIZE * SCALE * lengthFlame);
+                }
             }
 
-            if(!checkHideFlameByEntity(getXCenter(), getYCenter() + 1)) {
+            if (!checkHideFlameByEntity(getXCenter(), getYCenter() + 1)) {
                 img = imagesVertical[indexAnimate];
                 renderFlame(gc, x, y + TILE_SIZE * SCALE);
+                if (!checkHideFlameByEntity(getXCenter(), getYCenter() + lengthFlame)) {
+                    img = imageVerticalDown[indexAnimate];
+                    renderFlame(gc, x, y + TILE_SIZE * SCALE * lengthFlame);
+                }
             }
         }
 
-        if(!checkHideFlameByEntity(getXCenter() + lengthFlame, getYCenter())) {
-            img = imageHorizontalRight[indexAnimate];
-            renderFlame(gc, x + TILE_SIZE * SCALE * lengthFlame, y);
-        }
+        if (lengthFlame == 1) {
+            if (!checkHideFlameByEntity(getXCenter() + lengthFlame, getYCenter())) {
+                img = imageHorizontalRight[indexAnimate];
+                renderFlame(gc, x + TILE_SIZE * SCALE * lengthFlame, y);
+            }
 
-        if(!checkHideFlameByEntity(getXCenter() - lengthFlame, getYCenter())) {
-            img = imageHorizontalLeft[indexAnimate];
-            renderFlame(gc, x - TILE_SIZE * SCALE * lengthFlame, y);
-        }
+            if (!checkHideFlameByEntity(getXCenter() - lengthFlame, getYCenter())) {
+                img = imageHorizontalLeft[indexAnimate];
+                renderFlame(gc, x - TILE_SIZE * SCALE * lengthFlame, y);
+            }
 
-        if(!checkHideFlameByEntity(getXCenter(), getYCenter() + lengthFlame)) {
-            img = imageVerticalDown[indexAnimate];
-            renderFlame(gc, x, y + TILE_SIZE * SCALE * lengthFlame);
-        }
+            if (!checkHideFlameByEntity(getXCenter(), getYCenter() + lengthFlame)) {
+                img = imageVerticalDown[indexAnimate];
+                renderFlame(gc, x, y + TILE_SIZE * SCALE * lengthFlame);
+            }
 
-        if(!checkHideFlameByEntity(getXCenter(), getYCenter() - lengthFlame)) {
-            img = imageVerticalUp[indexAnimate];
-            renderFlame(gc, x, y - TILE_SIZE * SCALE * lengthFlame);
+            if (!checkHideFlameByEntity(getXCenter(), getYCenter() - lengthFlame)) {
+                img = imageVerticalUp[indexAnimate];
+                renderFlame(gc, x, y - TILE_SIZE * SCALE * lengthFlame);
+            }
         }
-
         countFlame++;
         if (countFlame >= TIME_REMAIN) {
             isRemove = true;

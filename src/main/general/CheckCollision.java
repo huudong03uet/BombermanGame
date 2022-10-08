@@ -4,6 +4,8 @@ import main.entities.Entity;
 import main.entities.bomb.Bomb;
 import main.entities.bomb.Flame;
 
+import static main.PropertiesStatic.lengthFlameDefault;
+import static main.PropertiesStatic.map;
 public class CheckCollision {
     private double bottomA;
     private double bottomB;
@@ -73,6 +75,23 @@ public class CheckCollision {
         if (yCenter == yFlame && (xCenter == xFlame + 1 || xCenter == xFlame - 1)) {
             return true;
         }
+
+        if(yCenter == yFlame && xCenter == xFlame + 2 && lengthFlameDefault == 2 && map[yCenter][xCenter + 1] != '#') {
+            return true;
+        }
+
+        if(yCenter == yFlame && xCenter == xFlame - 2 && lengthFlameDefault == 2 && map[yCenter][xCenter - 1] != '#') {
+            return true;
+        }
+
+        if(xCenter == xFlame && yCenter == yFlame + 2 && lengthFlameDefault == 2 && map[yCenter + 1][xCenter] != '#') {
+            return true;
+        }
+
+        if(xCenter == xFlame && yCenter == yFlame - 2 && lengthFlameDefault == 2 && map[yCenter - 1][xCenter] != '#') {
+            return true;
+        }
+
         return false;
     }
 }
