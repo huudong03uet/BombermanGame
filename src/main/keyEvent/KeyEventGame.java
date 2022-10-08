@@ -31,7 +31,7 @@ public class KeyEventGame {
                     keyCode = KeyCode.UP;
                     direction = UP;
                 }
-                if(keyEvent.getCode() == KeyCode.ENTER){
+                if(keyEvent.getCode() == KeyCode.ENTER || keyEvent.getCode() == KeyCode.SPACE) {
                     placeBomb = true;
                 }
             }

@@ -15,6 +15,7 @@ public class PropertiesStatic {
      * The map of the game.
      */
     public static char[][] map = new char[HEIGHT_TILE][WIDTH_TILE];
+    public static char[][] mapFile = new char[HEIGHT_TILE][WIDTH_TILE];
     /**
      * Direction of bomberman.
      */

@@ -60,7 +60,11 @@ public final class PropertiesConstant {
     public final static char CHAR_ONEAL = '2';
     public final static char CHAR_DOLL = '3';
 
-
+    /**
+     * The character of the item.
+     */
+    public final static char SPEED_ITEM = 's';
+public final static String TOTAL_ITEM = "s";
     /**
      * The feature of the bomberman.
      */

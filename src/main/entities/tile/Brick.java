@@ -9,6 +9,7 @@ import static main.graphics.Sprite.*;
 public class Brick extends StaticEntity {
     protected Image[] images = new Image[BRICK_EXPLOSION];
     protected int countIsRemove = 0;
+
     public Brick(int x, int y, Image img) {
         super(x, y, img);
         images[0] = brick_exploded.getFxImage(brick_exploded.get_realWidth(), brick_exploded.get_realHeight());
@@ -23,10 +24,10 @@ public class Brick extends StaticEntity {
 
     @Override
     public void render(GraphicsContext gc) {
-        if(isExploded == false) {
+        if (isExploded == false) {
             super.render(gc);
         } else {
-            int indexAnimate = (countIsRemove % TIME_REMAIN) / ((FRAME_PER_SECOND) / BRICK_EXPLOSION);
+            int indexAnimate = (countIsRemove % TIME_REMAIN) / (TIME_REMAIN / BRICK_EXPLOSION);
             img = images[indexAnimate];
             super.render(gc);
             countIsRemove++;
@@ -36,6 +37,4 @@ public class Brick extends StaticEntity {
             }
         }
     }
-
-
 }

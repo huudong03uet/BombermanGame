@@ -8,6 +8,8 @@ import main.entities.CanMoveEntity;
 import main.entities.Entity;
 import main.graphics.Sprite;
 
+import java.util.List;
+
 import static java.lang.Math.abs;
 import static main.PropertiesConstant.*;
 import static main.PropertiesStatic.*;
@@ -63,7 +65,6 @@ public class Bomber extends CanMoveEntity {
             } else {
                 isResult = optimizationCoordinateX(mapGame);
             }
-
             if (isResult == false) {
                 setCoordinateAfterMoveReverse();
             }
@@ -118,10 +119,30 @@ public class Bomber extends CanMoveEntity {
         }
     }
 
+    public void getItem(char[][] map, List<Entity> items) {
+        if((x % (TILE_SIZE * SCALE) <= 10 || x % (TILE_SIZE * SCALE) >= 38) && (y % (TILE_SIZE * SCALE) <= 10 || y % (TILE_SIZE * SCALE) >= 38 )) {
+            if(map[y / (TILE_SIZE * SCALE)][x / (TILE_SIZE * SCALE)] == SPEED_ITEM) {
+                map[y / (TILE_SIZE * SCALE)][x / (TILE_SIZE * SCALE)] = CHAR_GRASS;
+                speed += 2;
+                for(int i = 0; i < items.size(); i++) {
+                    if(items.get(i).getXCenter() == getXCenter() && items.get(i).getYCenter() == getYCenter()) {
+                        items.remove(i);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     public void update() {
         xUnit = x / (TILE_SIZE * SCALE);
         yUnit = y / (TILE_SIZE * SCALE);
+    }
+    public void update(List<Entity> items) {
+        xUnit = x / (TILE_SIZE * SCALE);
+        yUnit = y / (TILE_SIZE * SCALE);
+        getItem(map, items);
     }
 
     public void renderIsDead(GraphicsContext gc) {

@@ -38,6 +38,7 @@ public abstract class CanMoveEntity extends AnimateEntity
 
             return true;
         }
+
         return false;
     }
 
