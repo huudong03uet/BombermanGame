@@ -12,6 +12,7 @@ import main.entities.bomb.Flame;
 import main.entities.bomber.Bomber;
 import main.entities.enemy.Balloom;
 import main.entities.enemy.Doll;
+import main.entities.enemy.Minvo;
 import main.entities.enemy.Oneal;
 import main.entities.tile.Brick;
 import main.general.CheckCollision;
@@ -200,6 +201,8 @@ public class GamePlay {
                     enemies.add(new Oneal(j, i));
                 } else if (map[i][j] == '3') {
                     enemies.add(new Doll(j, i));
+                } else if (map[i][j] == '4') {
+                    enemies.add(new Minvo(j, i));
                 }
             }
         }
