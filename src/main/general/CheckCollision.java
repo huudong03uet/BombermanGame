@@ -4,6 +4,7 @@ import main.entities.Entity;
 import main.entities.bomb.Bomb;
 import main.entities.bomb.Flame;
 
+import static java.lang.Math.abs;
 import static main.PropertiesStatic.lengthFlameDefault;
 import static main.PropertiesStatic.map;
 public class CheckCollision {
@@ -68,27 +69,36 @@ public class CheckCollision {
         if (xCenter == xFlame && yCenter == yFlame) {
             return true;
         }
-        if (xCenter == xFlame && (yCenter == yFlame + 1 || yCenter == yFlame - 1)) {
+
+        if(abs(xCenter - xFlame) <= 1 && abs(yCenter - yFlame) <= 1) {
+            if (xCenter == xFlame && (yCenter == yFlame + 1 || yCenter == yFlame - 1)) {
+                return true;
+            }
+
+            if (yCenter == yFlame && (xCenter == xFlame + 1 || xCenter == xFlame - 1)) {
+                return true;
+            }
+            return false;
+        }
+
+
+        if(yCenter == yFlame && xCenter == xFlame + 2 && lengthFlameDefault == 2
+                && map[yCenter][xCenter - 1] != '#' && map[yCenter][xCenter - 1] != '*') {
             return true;
         }
 
-        if (yCenter == yFlame && (xCenter == xFlame + 1 || xCenter == xFlame - 1)) {
+        if(yCenter == yFlame && xCenter == xFlame - 2 && lengthFlameDefault == 2
+                && map[yCenter][xCenter + 1] != '#' && map[yCenter][xCenter + 1] != '*') {
             return true;
         }
 
-        if(yCenter == yFlame && xCenter == xFlame + 2 && lengthFlameDefault == 2 && map[yCenter][xCenter + 1] != '#') {
+        if(xCenter == xFlame && yCenter == yFlame + 2 && lengthFlameDefault == 2
+                && map[yCenter - 1][xCenter] != '#' && map[yCenter - 1][xCenter] != '*') {
             return true;
         }
 
-        if(yCenter == yFlame && xCenter == xFlame - 2 && lengthFlameDefault == 2 && map[yCenter][xCenter - 1] != '#') {
-            return true;
-        }
-
-        if(xCenter == xFlame && yCenter == yFlame + 2 && lengthFlameDefault == 2 && map[yCenter + 1][xCenter] != '#') {
-            return true;
-        }
-
-        if(xCenter == xFlame && yCenter == yFlame - 2 && lengthFlameDefault == 2 && map[yCenter - 1][xCenter] != '#') {
+        if(xCenter == xFlame && yCenter == yFlame - 2 && lengthFlameDefault == 2
+                && map[yCenter + 1][xCenter] != '#' && map[yCenter + 1][xCenter] != '*') {
             return true;
         }
 
