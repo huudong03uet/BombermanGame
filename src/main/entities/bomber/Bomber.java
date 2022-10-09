@@ -24,6 +24,7 @@ public class Bomber extends CanMoveEntity {
     private int indexAnimate = 0;
     boolean isDead = false;
     boolean isRemove = false;
+
     int countDead = 0;
 
     public Bomber(int x, int y) {
@@ -124,6 +125,16 @@ public class Bomber extends CanMoveEntity {
             if(map[y / (TILE_SIZE * SCALE)][x / (TILE_SIZE * SCALE)] == SPEED_ITEM) {
                 map[y / (TILE_SIZE * SCALE)][x / (TILE_SIZE * SCALE)] = CHAR_GRASS;
                 speed += 2;
+                for(int i = 0; i < items.size(); i++) {
+                    if(items.get(i).getXCenter() == getXCenter() && items.get(i).getYCenter() == getYCenter()) {
+                        items.remove(i);
+                        break;
+                    }
+                }
+            }
+            else if(map[y / (TILE_SIZE * SCALE)][x / (TILE_SIZE * SCALE)] == FLAME_PASS_ITEM) {
+                map[y / (TILE_SIZE * SCALE)][x / (TILE_SIZE * SCALE)] = CHAR_GRASS;
+                isHavingFlame = true;
                 for(int i = 0; i < items.size(); i++) {
                     if(items.get(i).getXCenter() == getXCenter() && items.get(i).getYCenter() == getYCenter()) {
                         items.remove(i);

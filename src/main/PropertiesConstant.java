@@ -64,6 +64,8 @@ public final class PropertiesConstant {
      * The character of the item.
      */
     public final static char SPEED_ITEM = 's';
+    public final static char FLAME_PASS_ITEM = 't';
+    public static boolean isHavingFlame = false;
 public final static String TOTAL_ITEM = "s";
     /**
      * The feature of the bomberman.

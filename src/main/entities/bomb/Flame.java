@@ -176,10 +176,21 @@ public class Flame extends AnimateEntity {
             renderFlame(gc, x, y - TILE_SIZE * SCALE * lengthFlame);
         }
 
-        countFlame++;
-        if (countFlame >= TIME_REMAIN) {
-            isRemove = true;
-            countFlame = 0;
+
+        if(isHavingFlame) {
+            countFlame++;
+            if (countFlame >= TIME_REMAIN * 2) {
+                isRemove = true;
+                countFlame = 0;
+                isHavingFlame = false;
+            }
+        }
+        else {
+            countFlame++;
+            if (countFlame >= TIME_REMAIN) {
+                isRemove = true;
+                countFlame = 0;
+            }
         }
     }
 }
