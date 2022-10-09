@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import static main.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
-import static main.graphics.Sprite.mob_dead3;
 
 public abstract class Enemy extends CanMoveEntity {
     protected int speed = SPEED_ENEMY;
@@ -25,6 +24,10 @@ public abstract class Enemy extends CanMoveEntity {
 
     public abstract void findCoordinatesRenderFromMap(char[][] mapGame);
 
+    /**
+     * Move randomly.
+     * @param mapGame - map game.
+     */
     public void setDirection(char[][] mapGame) {
         ArrayList<Integer> arrayList = new ArrayList<>();
         int directionAnimateNow = directionAnimate;
@@ -68,4 +71,6 @@ public abstract class Enemy extends CanMoveEntity {
             directionAnimate = arrayList.get(numberRandom);
         }
     }
+
+
 }

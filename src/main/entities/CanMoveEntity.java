@@ -48,7 +48,6 @@ public abstract class CanMoveEntity extends AnimateEntity
         super.setIsExploded(isExploded);
     }
 
-    public abstract void setCoordinate(char[][] mapGame);
     public abstract void setCoordinate(char[][] mapGame, Entity player);
     public abstract void setCoordinateAfterMove();
 

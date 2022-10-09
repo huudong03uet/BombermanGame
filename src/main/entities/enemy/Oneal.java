@@ -18,14 +18,7 @@ public class Oneal extends Enemy {
 
     }
 
-    @Override
-    public void setCoordinate(char[][] mapGame) {
-        if(directionAnimate == STOP) {
-            return;
-        }
-        setDirection(mapGame);
-        setCoordinateAfterMove();
-    }
+
 
     @Override
     public void setCoordinate(char[][] mapGame, Entity player) {

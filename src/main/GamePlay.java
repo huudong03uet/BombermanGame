@@ -66,8 +66,8 @@ public class GamePlay {
         mapGame.readMapFromFile(map);
         mapGame.updateMap(stillObjects, items, mapFile);
         mapGame.updateGrass(grassObject);
+        mapGame.createEnnemies(enemies);
 
-        createEntity();
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -99,7 +99,7 @@ public class GamePlay {
 
         for (int i = 0; i < flames.size(); i++) {
             if (flames.get(i).getIsRemove() == true) {
-                if(numberPass < 5) {
+                if(numberPass < NUMBER_PASS_MAX) {
                     enemies.add(new Pass(flames.get(i).getXCenter(), flames.get(i).getYCenter()));
                 }
                 flames.remove(i);
@@ -196,21 +196,7 @@ public class GamePlay {
         }
     }
 
-    public void createEntity() {
-        for (int i = 0; i < HEIGHT_TILE; i++) {
-            for (int j = 0; j < WIDTH_TILE; j++) {
-                if (map[i][j] == '1') {
-                    enemies.add(new Balloom(j, i));
-                } else if (map[i][j] == '2') {
-                    enemies.add(new Oneal(j, i));
-                } else if (map[i][j] == '3') {
-                    enemies.add(new Doll(j, i));
-                } else if (map[i][j] == '4') {
-                    enemies.add(new Minvo(j, i));
-                }
-            }
-        }
-    }
+
 
     public void setupBombAndFlame(Entity player) {
         if (placeBomb == true) {

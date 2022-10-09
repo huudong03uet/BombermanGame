@@ -2,6 +2,7 @@ package main.map;
 
 import main.entities.Entity;
 
+import main.entities.enemy.*;
 import main.entities.items.FlameItem;
 
 import main.entities.items.FlamePassItem;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static main.PropertiesConstant.*;
+import static main.PropertiesStatic.map;
 import static main.PropertiesStatic.mapFile;
 
 public class MapGame {
@@ -41,7 +43,6 @@ public class MapGame {
                 mapFile[i][j] = line.charAt(j);
 
                 if (mapFile[i][j] == CHAR_PORTAL || mapFile[i][j] == SPEED_ITEM || mapFile[i][j] == FLAME_PASS_ITEM || mapFile[i][j] == FLAME_ITEM) {
-
                     map[i][j] = CHAR_BRICK;
                 } else {
                     map[i][j] = mapFile[i][j];
@@ -88,6 +89,25 @@ public class MapGame {
         }
     }
 
+    public void createEnnemies(List<Entity> enemies) {
+
+            for (int i = 0; i < HEIGHT_TILE; i++) {
+                for (int j = 0; j < WIDTH_TILE; j++) {
+                    if (map[i][j] == CHAR_BALLOOM) {
+                        enemies.add(new Balloom(j, i));
+                    } else if (map[i][j] == CHAR_ONEAL) {
+                        enemies.add(new Oneal(j, i));
+                    } else if (map[i][j] == CHAR_DOLL) {
+                        enemies.add(new Doll(j, i));
+                    } else if (map[i][j] == CHAR_MINVO) {
+                        enemies.add(new Minvo(j, i));
+                    } else if(map[i][j] == CHAR_GHOST) {
+                        enemies.add(new Ghost(j, i));
+                    }
+                }
+            }
+
+    }
     public int getLevel() {
         return level;
     }

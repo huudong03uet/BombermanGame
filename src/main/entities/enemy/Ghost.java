@@ -9,48 +9,50 @@ import java.util.ArrayList;
 import static main.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
 
-public class Doll extends Enemy {
+public class Ghost extends Enemy {
+    protected double speed = SPEED_ENEMY;
     private final int FRAME_PER_ONE = FRAME_PER_SECOND / 2;
-    protected Image[][] imagesTwoWay = new Image[4][DOLL_SPRITE];
+    protected Image[][] imagesTwoWay = new Image[4][BALLOOM_SPRITE];
+    protected int timeHidden = 0;
+    protected boolean isHidden = false;
 
-    public Doll(int x, int y, Image img) {
+    public Ghost(int x, int y, Image img) {
         super(x, y, img);
+    }
+
+    public Ghost(int x, int y) {
+        super(x, y, ghost_right1.getFxImage(ghost_right1.get_realWidth(), ghost_right1.get_realHeight()));
+        imagesTwoWay[RIGHT][0] = ghost_right1.getFxImage(ghost_right1.get_realWidth(), ghost_right1.get_realHeight());
+        imagesTwoWay[DOWN][0] = ghost_right1.getFxImage(ghost_right1.get_realWidth(), ghost_right1.get_realHeight());
+        imagesTwoWay[LEFT][0] = ghost_left1.getFxImage(ghost_left1.get_realWidth(), ghost_left1.get_realHeight());
+        imagesTwoWay[UP][0] = ghost_left1.getFxImage(pass_left1.get_realWidth(), ghost_left1.get_realHeight());
+
+        imagesTwoWay[RIGHT][1] = ghost_right2.getFxImage(ghost_right2.get_realWidth(), ghost_right2.get_realHeight());
+        imagesTwoWay[DOWN][1] = ghost_right2.getFxImage(ghost_right2.get_realWidth(), ghost_right2.get_realHeight());
+        imagesTwoWay[LEFT][1] = ghost_left2.getFxImage(ghost_left2.get_realWidth(), ghost_left2.get_realHeight());
+        imagesTwoWay[UP][1] = ghost_left2.getFxImage(ghost_left2.get_realWidth(), ghost_left2.get_realHeight());
+
+        imagesTwoWay[RIGHT][2] = ghost_right3.getFxImage(ghost_right3.get_realWidth(), ghost_right3.get_realHeight());
+        imagesTwoWay[DOWN][2] = ghost_right3.getFxImage(ghost_right3.get_realWidth(), ghost_right3.get_realHeight());
+        imagesTwoWay[LEFT][2] = ghost_left3.getFxImage(ghost_left3.get_realWidth(), ghost_left3.get_realHeight());
+        imagesTwoWay[UP][2] = ghost_left3.getFxImage(ghost_left3.get_realWidth(), ghost_left3.get_realHeight());
+
+        imagesExploded[0] = ghost_dead.getFxImage(ghost_dead.get_realWidth(), ghost_dead.get_realHeight());
 
     }
 
-    public Doll(int x, int y) {
-        super(x, y, doll_right1.getFxImage(doll_right1.get_realWidth(), doll_right1.get_realHeight()));
-        imagesTwoWay[RIGHT][0] = doll_right1.getFxImage(doll_right1.get_realWidth(), doll_right1.get_realHeight());
-        imagesTwoWay[DOWN][0] = doll_left1.getFxImage(doll_left1.get_realWidth(), doll_left1.get_realHeight());
-        imagesTwoWay[LEFT][0] = doll_right1.getFxImage(doll_right1.get_realWidth(), doll_right1.get_realHeight());
-        imagesTwoWay[UP][0] = doll_left1.getFxImage(doll_left1.get_realWidth(), doll_left1.get_realHeight());
-
-        imagesTwoWay[RIGHT][1] = doll_right2.getFxImage(doll_right2.get_realWidth(), doll_right2.get_realHeight());
-        imagesTwoWay[DOWN][1] = doll_left2.getFxImage(doll_left2.get_realWidth(), doll_left2.get_realHeight());
-        imagesTwoWay[LEFT][1] = doll_right2.getFxImage(doll_right2.get_realWidth(), doll_right2.get_realHeight());
-        imagesTwoWay[UP][1] = doll_left2.getFxImage(doll_left2.get_realWidth(), doll_left2.get_realHeight());
-
-        imagesTwoWay[RIGHT][2] = doll_right3.getFxImage(doll_right3.get_realWidth(), doll_right3.get_realHeight());
-        imagesTwoWay[DOWN][2] = doll_left3.getFxImage(doll_left3.get_realWidth(), doll_left3.get_realHeight());
-        imagesTwoWay[LEFT][2] = doll_right3.getFxImage(doll_right3.get_realWidth(), doll_right3.get_realHeight());
-        imagesTwoWay[UP][2] = doll_left3.getFxImage(doll_left3.get_realWidth(), doll_left3.get_realHeight());
-
-        imagesExploded[0] = doll_dead.getFxImage(doll_dead.get_realWidth(), doll_dead.get_realHeight());
-    }
-
+    @Override
     public void setCoordinate(char[][] mapGame, Entity player) {
         if (directionAnimate == STOP) {
             return;
+        }
+        if (distanceObject(this, player) < DISTANCE_HIDDEN_GHOST) {
+            isHidden = false;
         }
         setDirection(mapGame, player);
         setCoordinateAfterMove();
     }
 
-    /**
-     * Override set direction for suitable with Doll follow player.
-     *
-     * @param mapGame - map game.
-     */
     public void setDirection(char[][] mapGame, Entity player) {
         ArrayList<Integer> arrayList = new ArrayList<>();
         int directionAnimateNow = directionAnimate;
@@ -115,10 +117,6 @@ public class Doll extends Enemy {
         }
     }
 
-    public double distanceObject(Entity entity1, Entity entity2) {
-        return Math.sqrt(Math.pow(entity1.getX() - entity2.getX(), 2) + Math.pow(entity1.getY() - entity2.getY(), 2));
-    }
-
     @Override
     public void setCoordinateAfterMove() {
         if (directionAnimate == 0) {
@@ -133,6 +131,8 @@ public class Doll extends Enemy {
     }
 
 
+
+
     @Override
     public void update() {
         updateSprite();
@@ -145,16 +145,17 @@ public class Doll extends Enemy {
         }
     }
 
+
     @Override
     public void setCoordinateAfterMoveReverse() {
         // 0: right, 1: down, 2: left, 3: up
-        if (directionAnimate == RIGHT) {
+        if (directionAnimate == 0) {
             x -= speed;
-        } else if (directionAnimate == DOWN) {
+        } else if (directionAnimate == 1) {
             y -= speed;
-        } else if (directionAnimate == LEFT) {
+        } else if (directionAnimate == 2) {
             x += speed;
-        } else if (directionAnimate == UP) {
+        } else if (directionAnimate == 3) {
             y += speed;
         }
     }
@@ -162,6 +163,18 @@ public class Doll extends Enemy {
 
     @Override
     public void render(GraphicsContext gc) {
+        isProtected += 1;
+        if (isProtected >= TIME_HIDDEN_GHOST) {
+            if (isHidden == false && isExploded == false) {
+                isHidden = true;
+            } else {
+                isHidden = false;
+            }
+            isProtected = 0;
+        }
+        if (isHidden == true) {
+            return;
+        }
         if (isExploded == true) {
             int frame = timeRemain % TIME_EXPLOYED / (TIME_EXPLOYED / BOMBER_SPRITE);
             timeRemain++;
@@ -193,7 +206,7 @@ public class Doll extends Enemy {
     public void findCoordinatesRenderFromMap(char[][] mapGame) {
         for (int i = 0; i < HEIGHT_TILE; i++) {
             for (int j = 0; j < WIDTH_TILE; j++) {
-                if (mapGame[i][j] == CHAR_DOLL) {
+                if (mapGame[i][j] == CHAR_BALLOOM) {
                     y = i * TILE_SIZE * SCALE;
                     x = j * TILE_SIZE * SCALE;
                     mapGame[i][j] = CHAR_BLANK;
@@ -202,4 +215,5 @@ public class Doll extends Enemy {
             }
         }
     }
+
 }

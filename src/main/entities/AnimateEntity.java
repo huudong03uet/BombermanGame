@@ -27,4 +27,8 @@ public abstract class AnimateEntity extends Entity
         }
     }
 
+    public double distanceObject(Entity entity1, Entity entity2) {
+        return Math.sqrt(Math.pow(entity1.getX() - entity2.getX(), 2) + Math.pow(entity1.getY() - entity2.getY(), 2));
+    }
+
 }

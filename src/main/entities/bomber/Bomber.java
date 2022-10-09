@@ -54,7 +54,6 @@ public class Bomber extends CanMoveEntity {
         super(x, y, img);
     }
 
-    @Override
     public void setCoordinate(char[][] mapGame) {
         setKeyCodeFromDirection();
         setCoordinateAfterMove();

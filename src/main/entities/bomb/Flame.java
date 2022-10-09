@@ -126,7 +126,6 @@ public class Flame extends AnimateEntity {
 
         int indexAnimate = countFlame % FRAME_PER_SECOND / (FRAME_PER_SECOND / FLAME_HORIZONTAL_SPRITE);
 
-
         if (!checkHideFlameByEntity(getXCenter(), getYCenter())) {
             img = imagesCenter[indexAnimate];
             renderFlame(gc, x, y);
@@ -193,6 +192,7 @@ public class Flame extends AnimateEntity {
         }
         countFlame += 2;
         if(isHavingFlame) {
+            countFlame -= 1;
             if (countFlame >= TIME_REMAIN * 2) {
                 isRemove = true;
                 countFlame = 0;

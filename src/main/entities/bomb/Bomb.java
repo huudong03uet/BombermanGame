@@ -16,9 +16,6 @@ public class Bomb extends AnimateEntity {
         super(xUnit, yUnit, img);
     }
 
-    public void update() {
-    }
-
     public Bomb(int x, int y) {
         super(x, y, bomb.getFxImage(bomb.get_realWidth(), bomb.get_realHeight()));
         images[0] = bomb.getFxImage(bomb.get_realWidth(), bomb.get_realHeight());
@@ -29,6 +26,10 @@ public class Bomb extends AnimateEntity {
         imageExplode[1] = bomb_exploded1.getFxImage(bomb_exploded1.get_realWidth(), bomb_exploded1.get_realHeight());
         imageExplode[2] = bomb_exploded2.getFxImage(bomb_exploded2.get_realWidth(), bomb_exploded2.get_realHeight());
     }
+    public void update() {
+    }
+
+
 
     @Override
     public void render(GraphicsContext gc) {

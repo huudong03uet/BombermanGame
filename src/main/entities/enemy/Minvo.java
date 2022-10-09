@@ -10,11 +10,11 @@ import static main.graphics.Sprite.*;
 
 import static main.PropertiesConstant.*;
 
-public class Minvo extends Enemy{
-    protected int speed = SPEED_ENEMY * 2
-            ;
+public class Minvo extends Enemy {
+    protected int speed = SPEED_ENEMY * 2;
     private final int FRAME_PER_ONE = FRAME_PER_SECOND / 2;
     protected Image[][] imagesTwoWay = new Image[4][DOLL_SPRITE];
+
     public Minvo(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -38,14 +38,9 @@ public class Minvo extends Enemy{
 
         imagesExploded[0] = minvo_dead.getFxImage(minvo_dead.get_realWidth(), minvo_dead.get_realHeight());
     }
-    @Override
-    public void setCoordinate(char[][] mapGame) {
-        setDirection(mapGame);
-        if(directionAnimate == STOP) {
-            return;
-        }
-        setCoordinateAfterMove();
-    }
+
+
+
     public void render(GraphicsContext gc) {
         if (isExploded == true) {
             int frame = timeRemain % TIME_EXPLOYED / (TIME_EXPLOYED / BOMBER_SPRITE);
@@ -74,6 +69,7 @@ public class Minvo extends Enemy{
         super.render(gc);
 
     }
+
     public void setDirection(char[][] mapGame, Entity player) {
         ArrayList<Integer> arrayList = new ArrayList<>();
         int directionAnimateNow = directionAnimate;
@@ -86,7 +82,7 @@ public class Minvo extends Enemy{
             setCoordinateAfterMoveReverse();
 
         }
-        if(arrayList.size() == 0) {
+        if (arrayList.size() == 0) {
             directionAnimate = STOP;
             return;
         }
@@ -137,12 +133,10 @@ public class Minvo extends Enemy{
             }
         }
     }
-    public double distanceObject(Entity entity1, Entity entity2) {
-        return Math.sqrt(Math.pow(entity1.getX() - entity2.getX(), 2) + Math.pow(entity1.getY() - entity2.getY(), 2));
-    }
+
     @Override
     public void setCoordinate(char[][] mapGame, Entity player) {
-        if(directionAnimate == STOP) {
+        if (directionAnimate == STOP) {
             return;
         }
         setDirection(mapGame, player);
