@@ -12,13 +12,16 @@ public class Pass extends Enemy {
     protected double speed = SPEED_ENEMY;
     private final int FRAME_PER_ONE = FRAME_PER_SECOND / 2;
     protected Image[][] imagesTwoWay = new Image[4][BALLOOM_SPRITE];
-    protected int timeRemain = 0;
 
 
     public Pass(int x, int y, Image img) {
         super(x, y, img);
     }
 
+    @Override
+    public void setIsExploded(boolean isExploded) {
+        this.isExploded = isExploded;
+    }
     @Override
     public void setCoordinate(char[][] mapGame) {
         if (directionAnimate == STOP) {

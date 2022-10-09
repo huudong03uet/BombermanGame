@@ -99,7 +99,7 @@ public class GamePlay {
 
         for (int i = 0; i < flames.size(); i++) {
             if (flames.get(i).getIsRemove() == true) {
-                if(numberPass <= 5) {
+                if(numberPass < 5) {
                     enemies.add(new Pass(flames.get(i).getXCenter(), flames.get(i).getYCenter()));
                 }
                 flames.remove(i);

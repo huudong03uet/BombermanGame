@@ -4,9 +4,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.graphics.Renderable;
 
-import static main.PropertiesStatic.*;
-import static main.graphics.Sprite.*;
-import static main.PropertiesConstant.*;
+import static main.PropertiesConstant.SCALE;
+import static main.PropertiesConstant.TILE_SIZE;
+import static main.PropertiesStatic.xHide;
+import static main.PropertiesStatic.yHide;
+import static main.graphics.Sprite.SCALED_SIZE;
 
 public abstract class Entity implements Renderable {
     //Tọa độ X tính từ góc trái trên trong Canvas
@@ -25,7 +27,8 @@ public abstract class Entity implements Renderable {
      * The entity can be rendered on the map.
      */
     protected boolean isExploded = false;
-
+    protected boolean isHidden = true;
+    protected int isProtected = 0;
     public boolean getIsExploded() {
         return isExploded;
     }

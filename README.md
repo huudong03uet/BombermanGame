@@ -31,7 +31,7 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 - ![](res/sprites/oneal_left1.png) *Oneal* có di chuyển ngẫu nhiên với tốc độ nhanh hơn Balloom.
 - ![](res/sprites/doll_left1.png) *Doll* Oneal di chuyển "thông minh" hơn so với Balloom (biết đuổi theo Bomber).
 - ![](res/sprites/minvo_left1.png) *Minvo* Minvo di chuyển "thông minh" như Doll, với tốc độ của Oneal.
-- ![](res/sprites/pass_left1.png) *Pass* Pass di chuyển đơn giản như Balloom, tuy nhiên nếu 1 màn chơi có Pass, các Pass khác sẽ xuất hiện khi người chơi đặt boom tại vị trí boom được đặt. Pass có thể có tối đa đến 5 con trong 1 khoảng thời gian.
+- ![](res/sprites/pass_left1.png) *Pass* Pass di chuyển đơn giản như Balloom, tuy nhiên nếu 1 màn chơi có sự xuất hiện của Pass, Pass sẽ xuất hiện từ vụ nổ của Bomb được Bomber đặt. Pass có thể có tối đa đến 5 con trong 1 khoảng thời gian.
 
 ## Mô tả game play, xử lý va chạm và xử lý bom nổ
 - Trong một màn chơi, Bomber sẽ được người chơi di chuyển, đặt và kích hoạt Bomb với mục tiêu chính là tiêu diệt tất cả Enemy và tìm ra vị trí Portal để có thể qua màn mới

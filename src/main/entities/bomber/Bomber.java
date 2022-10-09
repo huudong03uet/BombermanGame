@@ -24,6 +24,7 @@ public class Bomber extends CanMoveEntity {
     private int indexAnimate = 0;
     boolean isDead = false;
     boolean isRemove = false;
+
     int countDead = 0;
 
     public Bomber(int x, int y) {
@@ -134,6 +135,11 @@ public class Bomber extends CanMoveEntity {
             lengthFlameDefault = 2;
         }
 
+        if (map[y / (TILE_SIZE * SCALE)][x / (TILE_SIZE * SCALE)] == FLAME_PASS_ITEM) {
+            hasIsItem = true;
+            map[getYCenter()][getXCenter()] = CHAR_GRASS;
+            isHavingFlame = true;
+        }
 
         if (hasIsItem == true) {
             for (int i = 0; i < items.size(); i++) {
@@ -142,6 +148,7 @@ public class Bomber extends CanMoveEntity {
                     break;
                 }
             }
+
         }
     }
 
@@ -170,7 +177,6 @@ public class Bomber extends CanMoveEntity {
     @Override
     public void render(GraphicsContext gc) {
         updateSprite();
-        System.out.println(speed);
         if (isDead == true) {
             renderIsDead(gc);
             return;
