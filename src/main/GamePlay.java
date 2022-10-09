@@ -10,10 +10,7 @@ import main.entities.Entity;
 import main.entities.bomb.Bomb;
 import main.entities.bomb.Flame;
 import main.entities.bomber.Bomber;
-import main.entities.enemy.Balloom;
-import main.entities.enemy.Doll;
-import main.entities.enemy.Minvo;
-import main.entities.enemy.Oneal;
+import main.entities.enemy.*;
 import main.entities.tile.Brick;
 import main.general.CheckCollision;
 import main.keyEvent.KeyEventGame;
@@ -102,6 +99,9 @@ public class GamePlay {
 
         for (int i = 0; i < flames.size(); i++) {
             if (flames.get(i).getIsRemove() == true) {
+                if(numberPass <= 5) {
+                    enemies.add(new Pass(flames.get(i).getXCenter(), flames.get(i).getYCenter()));
+                }
                 flames.remove(i);
             }
         }
@@ -169,7 +169,12 @@ public class GamePlay {
 
     public void checkCollision() {
         for (int i = 0; i < enemies.size(); i++) {
-            if (checkCollision.checkCollision(bomberman, enemies.get(i))) {
+            if (enemies.get(i).getIsExploded() == false && checkCollision.checkCollision(bomberman, enemies.get(i))) {
+                bomberman.setIsDead(true);
+            }
+        }
+        for (int i = 0; i < flames.size(); i++) {
+            if (checkCollision.checkCollisionWithFlame(bomberman, flames.get(i))) {
                 bomberman.setIsDead(true);
             }
         }

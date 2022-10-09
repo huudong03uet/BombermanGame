@@ -11,7 +11,8 @@ import static main.graphics.Sprite.*;
 import static main.PropertiesConstant.*;
 
 public class Minvo extends Enemy{
-    protected int speed = SPEED_ENEMY * 2;
+    protected int speed = SPEED_ENEMY * 2
+            ;
     private final int FRAME_PER_ONE = FRAME_PER_SECOND / 2;
     protected Image[][] imagesTwoWay = new Image[4][DOLL_SPRITE];
     public Minvo(int x, int y, Image img) {

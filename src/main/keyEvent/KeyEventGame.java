@@ -36,6 +36,7 @@ public class KeyEventGame {
                 }
             }
         };
+
         keyEventGame1 = new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {

@@ -15,7 +15,7 @@ import static main.PropertiesConstant.*;
 import static main.PropertiesStatic.*;
 
 public class Bomber extends CanMoveEntity {
-    private int speed = SPEED_BOMBER;
+    protected int speed = SPEED_BOMBER * 2;
     protected Image[][] imagesTwoWay = new Image[4][BOMBER_SPRITE];
     protected Image[] imagesDead = new Image[BOMBER_DEAD_SPRITE];
     private KeyCode keyCode = null;
@@ -28,7 +28,6 @@ public class Bomber extends CanMoveEntity {
 
     public Bomber(int x, int y) {
         super(x, y, Sprite.player_right.getFxImage(Sprite.player_right.get_realWidth(), Sprite.player_right.get_realHeight()));
-        speed = SPEED_BOMBER;
 
         imagesTwoWay[RIGHT][0] = Sprite.player_right.getFxImage(Sprite.player_right.get_realWidth(), Sprite.player_right.get_realHeight());
         imagesTwoWay[DOWN][0] = Sprite.player_down.getFxImage(Sprite.player_down.get_realWidth(), Sprite.player_down.get_realHeight());
@@ -171,7 +170,7 @@ public class Bomber extends CanMoveEntity {
     @Override
     public void render(GraphicsContext gc) {
         updateSprite();
-
+        System.out.println(speed);
         if (isDead == true) {
             renderIsDead(gc);
             return;

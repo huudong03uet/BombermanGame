@@ -20,6 +20,10 @@ public abstract class Entity implements Renderable {
     protected Image img;
 
     protected boolean isRemove = false;
+
+    /**
+     * The entity can be rendered on the map.
+     */
     protected boolean isExploded = false;
 
     public boolean getIsExploded() {
