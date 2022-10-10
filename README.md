@@ -39,6 +39,7 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 - ![](res/sprites/minvo_left1.png) *Minvo* có di chuyển "thông minh" như Doll, với tốc độ của Oneal.
 - ![](res/sprites/pass_left1.png) *Pass* có di chuyển đơn giản như Balloom, tuy nhiên nếu 1 màn chơi có sự xuất hiện của Pass, Pass sẽ xuất hiện từ vụ nổ của Bomb được Bomber đặt. Pass có thể có tối đa đến 0 đến 5 con (tuỳ độ khó của màn chơi) trong 1 khoảng thời gian.
 - ![](res/sprites/ghost_left1.png) *Ghost* là Enemy di chuyển "thông minh" như Doll, tuy nhiên nếu Ghost ra ngoài phạm vi của Bomber, Ghost có thể tàng hình trong những khoảng thời gian. Trong thời gian tàng hình, Ghost có đầy đủ tính chất như 1 Enemy thông thường (có thể giết Bomber và có thể bị giết bởi bomb).
+- ![](res/sprites/kondoria_left1.png) *Kondoria* là Enemy có khả năng đặc biệt là có thể đi xuyên tường, đi với tốc độ nhanh để đuổi theo bạn 1 cách tối ưu nhất có thể. Bạn chỉ có thể giết được Kondoria nếu hơn 1 nửa thân của chúng không được Brick bảo vệ.
 
 ## Mô tả game play, xử lý va chạm và xử lý bom nổ
 - Trong một màn chơi, Bomber sẽ được người chơi di chuyển, đặt và kích hoạt Bomb với mục tiêu chính là tiêu diệt tất cả Enemy và tìm ra vị trí Portal để có thể qua màn mới

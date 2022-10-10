@@ -60,8 +60,9 @@ public final class PropertiesConstant {
     public final static char CHAR_ONEAL = '2';
     public final static char CHAR_DOLL = '3';
     public final static char CHAR_MINVO = '4';
-    public final static char CHAR_KONDORIA = '5';
-    public final static char CHAR_GHOST = '6';
+    public final static char CHAR_PASS = '5';
+    public final static char CHAR_GHOST = '5';
+    public final static char CHAR_KONDORIA = '6';
     /**
      * The character of the item.
      */
@@ -122,7 +123,7 @@ public final class PropertiesConstant {
  */
     public final static int GHOST_SPRITE = 3;
     public final static int TIME_HIDDEN_GHOST = 60 * 5;
-    public final static int DISTANCE_HIDDEN_GHOST = TILE_SIZE * SCALE * 3;
+    public final static int DISTANCE_HIDDEN_GHOST = TILE_SIZE * SCALE * 2;
     /**
      * The feature of the portal.
      */
@@ -131,4 +132,10 @@ public final class PropertiesConstant {
      * The feature of the pass.
      */
     public final static int NUMBER_PASS_MAX = 3;
+
+    /**
+     * The feature of the Kondoria.
+     */
+    public final static int KONDORIA_SPRITE = 3;
+    public final static int DISTANCE_SPEED_KONDORIA = TILE_SIZE * SCALE * 4;
 }

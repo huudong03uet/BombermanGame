@@ -103,6 +103,8 @@ public class MapGame {
                         enemies.add(new Minvo(j, i));
                     } else if(map[i][j] == CHAR_GHOST) {
                         enemies.add(new Ghost(j, i));
+                    } else if(map[i][j] == CHAR_KONDORIA) {
+                        enemies.add(new Kondoria(j, i));
                     }
                 }
             }
