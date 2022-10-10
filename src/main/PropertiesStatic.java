@@ -28,4 +28,5 @@ public class PropertiesStatic {
     public static boolean placeBomb = false;
     public static int lengthFlameDefault = 1;
     public static int numberPass = 0;
+    public static int numberBombDefault = 1;
 }

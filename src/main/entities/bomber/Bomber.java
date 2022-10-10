@@ -22,9 +22,13 @@ public class Bomber extends CanMoveEntity {
     private int directionPrevious = 0;
     private Image imageRender = img;
     private int indexAnimate = 0;
-    boolean isDead = false;
-    boolean isRemove = false;
+    protected boolean isDead = false;
+    protected boolean isRemove = false;
+    protected boolean canPassWall = false;
+    protected int timeRemainPassWall = TIME_REMAIN * 2 * 10;
 
+    protected boolean canProtected = false;
+    protected int timeRemainProtected = TIME_REMAIN * 2 * 10;
     int countDead = 0;
 
     public Bomber(int x, int y) {
@@ -54,9 +58,28 @@ public class Bomber extends CanMoveEntity {
         super(x, y, img);
     }
 
+    public void updateProtected() {
+        if(canProtected) {
+            timeRemainProtected--;
+            if(timeRemainProtected == 0) {
+                canProtected = false;
+                timeRemainProtected = TIME_REMAIN * 2 * 10;
+            }
+        }
+    }
+
     public void setCoordinate(char[][] mapGame) {
+        updateProtected();
+
         setKeyCodeFromDirection();
         setCoordinateAfterMove();
+
+        if (canPassWall == true) {
+            updateTimePassWall();
+            setCoordinatesRenderMap();
+            return;
+        }
+
         if (checkWallCollision(mapGame)) {
             boolean isResult = false;
             if (direction == 0 || direction == 2) {
@@ -69,6 +92,18 @@ public class Bomber extends CanMoveEntity {
             }
         }
         setCoordinatesRenderMap();
+    }
+
+    public void updateTimePassWall() {
+        if (timeRemainPassWall > 0) {
+            timeRemainPassWall--;
+        } else {
+            if (checkWallCollision(map) == true) {
+                return;
+            }
+            canPassWall = false;
+            timeRemainPassWall = TIME_REMAIN * 2 * 10;
+        }
     }
 
     @Override
@@ -138,6 +173,24 @@ public class Bomber extends CanMoveEntity {
             hasIsItem = true;
             map[getYCenter()][getXCenter()] = CHAR_GRASS;
             isHavingFlame = true;
+        }
+
+        if (map[getYCenter()][getXCenter()] == BOMB_ITEM) {
+            hasIsItem = true;
+            map[getYCenter()][getXCenter()] = CHAR_GRASS;
+            numberBombDefault += 1;
+        }
+
+        if (map[getYCenter()][getXCenter()] == WALL_PASS_ITEM) {
+            hasIsItem = true;
+            map[getYCenter()][getXCenter()] = CHAR_GRASS;
+            canPassWall = true;
+        }
+
+        if (map[getYCenter()][getXCenter()] == DETONATOR_ITEM) {
+            hasIsItem = true;
+            map[getYCenter()][getXCenter()] = CHAR_GRASS;
+            canProtected = true;
         }
 
         if (hasIsItem == true) {
@@ -231,6 +284,19 @@ public class Bomber extends CanMoveEntity {
     }
 
     public void setIsDead(boolean isDead) {
+        if (canProtected == true) {
+            return;
+        }
         this.isDead = isDead;
     }
+
+    @Override
+    public void setIsExploded(boolean isExploded) {
+        if (canProtected == true) {
+            return;
+        }
+        directionAnimate = STOP;
+        super.setIsExploded(isExploded);
+    }
+
 }

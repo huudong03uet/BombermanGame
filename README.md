@@ -27,9 +27,8 @@ Các *Item* cũng được giấu phía sau Brick và chỉ hiện ra khi Brick 
 - ![](res/sprites/powerup_bombs.png) *BombItem* Thông thường, nếu không có đối tượng Bomb nào đang trong trạng thái kích hoạt, Bomber sẽ được đặt và kích hoạt duy nhất một đối tượng Bomb. Item này giúp tăng số lượng Bomb có thể đặt thêm một.
 - ![](res/sprites/powerup_flamepass.png) *FlamepassItem* Item này cho phép Bomber tăng thêm sức mạnh của flames. Nếu kết hợp với FlameItem có thể phá huỷ được 2 Brick liên tiếp hoặc giết Enemy đứng sau Brick.
 - 
-- ![](res/sprites/powerup_wallpass.png) *WallpassItem* Item này cho phép Bomber đi qua các đối tượng Wall mà không bị chặn lại.
-- ![](res/sprites/powerup_detonator.png) *DetonatorItem* Item này cho phép Bomber kích hoạt Bomb mà không cần phải đợi 2s.
-- ![](res/sprites/powerup_bombpass.png) *BombpassItem* Item này cho phép Bomber đi qua các đối tượng Bomb mà không bị chặn lại.
+- ![](res/sprites/powerup_wallpass.png) *WallpassItem* Item này cho phép Bomber đi qua các đối tượng Wall mà không bị chặn lại trong thời gian cho phép (10 giây).
+- ![](res/sprites/powerup_detonator.png) *DetonatorItem* Item này cho phép Bomber bất tử trong thời gian cho phép (10 giây).
 
 
 Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này chỉ yêu cầu cài đặt hai loại Enemy dưới đây (nếu cài đặt thêm các loại khác sẽ được cộng thêm điểm):

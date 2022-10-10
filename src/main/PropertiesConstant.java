@@ -49,20 +49,22 @@ public final class PropertiesConstant {
     /**
      * The character of the map
      */
+    public final static int BRICK_EXPLOSION = 3;
     public final static char CHAR_BLANK = ' ';
     public final static char CHAR_GRASS = ' ';
 
     public final static char CHAR_WALL = '#';
     public final static char CHAR_BRICK = '*';
-    public final static int BRICK_EXPLOSION = 3;
+
     public final static char CHAR_PORTAL = 'x';
     public final static char CHAR_BALLOOM = '1';
     public final static char CHAR_ONEAL = '2';
     public final static char CHAR_DOLL = '3';
     public final static char CHAR_MINVO = '4';
-    public final static char CHAR_PASS = '5';
+    public final static char CHAR_PASS = '9';
     public final static char CHAR_GHOST = '5';
     public final static char CHAR_KONDORIA = '6';
+
     /**
      * The character of the item.
      */
@@ -71,7 +73,9 @@ public final class PropertiesConstant {
     public final static char FLAME_ITEM = 'f';
 
     public final static char FLAME_PASS_ITEM = 't';
-    public final static String USING = " #*xbodmkg   sft";
+    public final static char BOMB_ITEM = 'b';
+    public final static char WALL_PASS_ITEM = 'w';
+    public final static char DETONATOR_ITEM = 'd';
     public static boolean isHavingFlame = false;
     /**
      * The feature of the bomberman.
@@ -118,9 +122,10 @@ public final class PropertiesConstant {
      */
     public final static int DOLL_SPRITE = 3;
 
-/**
- * The feature of the ghost
- */
+
+    /**
+     * The feature of the ghost
+     */
     public final static int GHOST_SPRITE = 3;
     public final static int TIME_HIDDEN_GHOST = 60 * 5;
     public final static int DISTANCE_HIDDEN_GHOST = TILE_SIZE * SCALE * 2;
@@ -138,4 +143,5 @@ public final class PropertiesConstant {
      */
     public final static int KONDORIA_SPRITE = 3;
     public final static int DISTANCE_SPEED_KONDORIA = TILE_SIZE * SCALE * 4;
+
 }

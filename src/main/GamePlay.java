@@ -200,7 +200,11 @@ public class GamePlay {
 
     public void setupBombAndFlame(Entity player) {
         if (placeBomb == true) {
-            bombs.add(new Bomb(player.getXCenter(), player.getYCenter()));
+            if(Bomb.countBombMax < numberBombDefault){
+                if(map[player.getYCenter()][player.getXCenter()] == CHAR_GRASS){
+                    bombs.add(new Bomb(player.getXCenter(), player.getYCenter()));
+                }
+            }
             placeBomb = false;
         }
         for (int i = 0; i < bombs.size(); i++) {
