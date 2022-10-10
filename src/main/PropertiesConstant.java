@@ -113,4 +113,10 @@ public final class PropertiesConstant {
      * The feature of the doll.
      */
     public final static int DOLL_SPRITE = 3;
+
+    /**
+     * The feature of the Kondoria.
+     */
+    public final static int KONDORIA_SPRITE = 3;
+    public final static int DISTANCE_SPEED_KONDORIA = TILE_SIZE * SCALE * 4;
 }
