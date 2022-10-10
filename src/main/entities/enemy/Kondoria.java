@@ -40,9 +40,7 @@ public class Kondoria extends Enemy{
 
         imagesExploded[0] = kondoria_dead.getFxImage(kondoria_dead.get_realWidth(), kondoria_dead.get_realHeight());
     }
-    public void setCoordinate(char[][] mapGame) {
 
-    }
     public void render(GraphicsContext gc) {
         if (isExploded == true) {
             int frame = timeRemain % TIME_EXPLOYED / (TIME_EXPLOYED / BOMBER_SPRITE);

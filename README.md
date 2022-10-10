@@ -25,13 +25,20 @@ Các *Item* cũng được giấu phía sau Brick và chỉ hiện ra khi Brick 
 - ![](res/sprites/powerup_speed.png) *SpeedItem* Khi sử dụng Item này, Bomber sẽ được tăng vận tốc di chuyển thêm một giá trị thích hợp
 - ![](res/sprites/powerup_flames.png) *FlameItem* Item này giúp tăng phạm vi ảnh hưởng của Bomb khi nổ (độ dài các Flame lớn hơn)
 - ![](res/sprites/powerup_bombs.png) *BombItem* Thông thường, nếu không có đối tượng Bomb nào đang trong trạng thái kích hoạt, Bomber sẽ được đặt và kích hoạt duy nhất một đối tượng Bomb. Item này giúp tăng số lượng Bomb có thể đặt thêm một.
+- ![](res/sprites/powerup_flamepass.png) *FlamepassItem* Item này cho phép Bomber tăng thêm sức mạnh của flames. Nếu kết hợp với FlameItem có thể phá huỷ được 2 Brick liên tiếp hoặc giết Enemy đứng sau Brick.
+- 
+- ![](res/sprites/powerup_wallpass.png) *WallpassItem* Item này cho phép Bomber đi qua các đối tượng Wall mà không bị chặn lại.
+- ![](res/sprites/powerup_detonator.png) *DetonatorItem* Item này cho phép Bomber kích hoạt Bomb mà không cần phải đợi 2s.
+- ![](res/sprites/powerup_bombpass.png) *BombpassItem* Item này cho phép Bomber đi qua các đối tượng Bomb mà không bị chặn lại.
+
 
 Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này chỉ yêu cầu cài đặt hai loại Enemy dưới đây (nếu cài đặt thêm các loại khác sẽ được cộng thêm điểm):
 - ![](res/sprites/balloom_left1.png) *Balloom* là Enemy đơn giản nhất, di chuyển ngẫu nhiên với vận tốc cố định
 - ![](res/sprites/oneal_left1.png) *Oneal* có di chuyển ngẫu nhiên với tốc độ nhanh hơn Balloom.
-- ![](res/sprites/doll_left1.png) *Doll* Oneal di chuyển "thông minh" hơn so với Balloom (biết đuổi theo Bomber).
-- ![](res/sprites/minvo_left1.png) *Minvo* Minvo di chuyển "thông minh" như Doll, với tốc độ của Oneal.
-- ![](res/sprites/pass_left1.png) *Pass* Pass di chuyển đơn giản như Balloom, tuy nhiên nếu 1 màn chơi có sự xuất hiện của Pass, Pass sẽ xuất hiện từ vụ nổ của Bomb được Bomber đặt. Pass có thể có tối đa đến 5 con trong 1 khoảng thời gian.
+- ![](res/sprites/doll_left1.png) *Doll* là Enemy di chuyển "thông minh" hơn so với Balloom (biết đuổi theo Bomber).
+- ![](res/sprites/minvo_left1.png) *Minvo* có di chuyển "thông minh" như Doll, với tốc độ của Oneal.
+- ![](res/sprites/pass_left1.png) *Pass* có di chuyển đơn giản như Balloom, tuy nhiên nếu 1 màn chơi có sự xuất hiện của Pass, Pass sẽ xuất hiện từ vụ nổ của Bomb được Bomber đặt. Pass có thể có tối đa đến 0 đến 5 con (tuỳ độ khó của màn chơi) trong 1 khoảng thời gian.
+- ![](res/sprites/ghost_left1.png) *Ghost* là Enemy di chuyển "thông minh" như Doll, tuy nhiên nếu Ghost ra ngoài phạm vi của Bomber, Ghost có thể tàng hình trong những khoảng thời gian. Trong thời gian tàng hình, Ghost có đầy đủ tính chất như 1 Enemy thông thường (có thể giết Bomber và có thể bị giết bởi bomb).
 
 ## Mô tả game play, xử lý va chạm và xử lý bom nổ
 - Trong một màn chơi, Bomber sẽ được người chơi di chuyển, đặt và kích hoạt Bomb với mục tiêu chính là tiêu diệt tất cả Enemy và tìm ra vị trí Portal để có thể qua màn mới

@@ -59,7 +59,9 @@ public final class PropertiesConstant {
     public final static char CHAR_BALLOOM = '1';
     public final static char CHAR_ONEAL = '2';
     public final static char CHAR_DOLL = '3';
-
+    public final static char CHAR_MINVO = '4';
+    public final static char CHAR_KONDORIA = '6';
+    public final static char CHAR_GHOST = '5';
     /**
      * The character of the item.
      */
@@ -68,6 +70,7 @@ public final class PropertiesConstant {
     public final static char FLAME_ITEM = 'f';
 
     public final static char FLAME_PASS_ITEM = 't';
+    public final static String USING = " #*xbodmkg   sft";
     public static boolean isHavingFlame = false;
     /**
      * The feature of the bomberman.
@@ -114,9 +117,27 @@ public final class PropertiesConstant {
      */
     public final static int DOLL_SPRITE = 3;
 
+
+    /**
+     * The feature of the ghost
+     */
+    public final static int GHOST_SPRITE = 3;
+    public final static int TIME_HIDDEN_GHOST = 60 * 5;
+    public final static int DISTANCE_HIDDEN_GHOST = TILE_SIZE * SCALE * 3;
+    /**
+     * The feature of the portal.
+     */
+
+    /**
+     * The feature of the pass.
+     */
+    public final static int NUMBER_PASS_MAX = 3;
+
     /**
      * The feature of the Kondoria.
      */
     public final static int KONDORIA_SPRITE = 3;
     public final static int DISTANCE_SPEED_KONDORIA = TILE_SIZE * SCALE * 4;
+
+
 }
