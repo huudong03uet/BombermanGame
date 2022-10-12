@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import static main.graphics.Sprite.*;
 
-import static main.PropertiesConstant.*;
+import static main.settings.PropertiesConstant.*;
 
 public class Minvo extends Enemy {
     protected int speed = SPEED_ENEMY * 2;

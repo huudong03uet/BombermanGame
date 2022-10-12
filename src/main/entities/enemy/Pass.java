@@ -4,8 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.entities.Entity;
 
-import static main.PropertiesConstant.*;
-import static main.PropertiesStatic.*;
+import static main.settings.PropertiesConstant.*;
+import static main.settings.PropertiesStatic.*;
 import static main.graphics.Sprite.*;
 
 public class Pass extends Enemy {

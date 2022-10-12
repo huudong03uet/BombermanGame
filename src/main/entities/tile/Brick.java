@@ -3,7 +3,7 @@ package main.entities.tile;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-import static main.PropertiesConstant.*;
+import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
 
 public class Brick extends StaticEntity {

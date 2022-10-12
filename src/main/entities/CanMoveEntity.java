@@ -3,7 +3,7 @@ package main.entities;
 import javafx.scene.image.Image;
 import main.graphics.Renderable;
 
-import static main.PropertiesConstant.*;
+import static main.settings.PropertiesConstant.*;
 
 public abstract class CanMoveEntity extends AnimateEntity
         implements Renderable {

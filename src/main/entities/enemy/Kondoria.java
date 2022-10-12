@@ -7,8 +7,8 @@ import main.entities.Entity;
 import java.util.ArrayList;
 
 import static java.lang.Math.min;
-import static main.PropertiesConstant.*;
-import static main.PropertiesStatic.*;
+import static main.settings.PropertiesConstant.*;
+import static main.settings.PropertiesStatic.*;
 import static main.graphics.Sprite.*;
 
 public class Kondoria extends Enemy{

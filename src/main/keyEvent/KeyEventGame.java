@@ -4,9 +4,9 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import static main.PropertiesConstant.*;
-import static main.PropertiesStatic.direction;
-import static main.PropertiesStatic.placeBomb;
+import static main.settings.PropertiesConstant.*;
+import static main.settings.PropertiesStatic.direction;
+import static main.settings.PropertiesStatic.placeBomb;
 
 public class KeyEventGame {
 

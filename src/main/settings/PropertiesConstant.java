@@ -1,4 +1,4 @@
-package main;
+package main.settings;
 
 public final class PropertiesConstant {
 
@@ -136,7 +136,7 @@ public final class PropertiesConstant {
     /**
      * The feature of the pass.
      */
-    public final static int NUMBER_PASS_MAX = 3;
+    public final static int NUMBER_PASS_MAX = 0;
 
     /**
      * The feature of the Kondoria.

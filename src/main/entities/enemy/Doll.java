@@ -6,7 +6,7 @@ import main.entities.Entity;
 
 import java.util.ArrayList;
 
-import static main.PropertiesConstant.*;
+import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
 
 public class Doll extends Enemy {

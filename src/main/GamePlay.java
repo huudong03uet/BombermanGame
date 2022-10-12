@@ -10,85 +10,104 @@ import main.entities.Entity;
 import main.entities.bomb.Bomb;
 import main.entities.bomb.Flame;
 import main.entities.bomber.Bomber;
-import main.entities.enemy.*;
+import main.entities.enemy.Pass;
 import main.entities.tile.Brick;
 import main.general.CheckCollision;
 import main.keyEvent.KeyEventGame;
 import main.map.MapGame;
-import main.menu.MenuSetup;
+import main.settings.PropertiesStatic;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.PropertiesConstant.*;
-import static main.PropertiesStatic.*;
+import static main.settings.PropertiesConstant.*;
+import static main.settings.PropertiesStatic.*;
 
 public class GamePlay {
     private GraphicsContext gc;
     private Canvas canvas;
-
-    private MenuSetup menu;
     private MapGame mapGame;
-    private List<Entity> enemies = new ArrayList<>();
+    private List<Entity> enemies;
 
     private Bomber bomberman;
-    private List<Bomb> bombs = new ArrayList<>();
-    private List<Flame> flames = new ArrayList<>();
+    private List<Bomb> bombs;
+    private List<Flame> flames;
 
-    private final List<Entity> grassObject = new ArrayList<>();
+    private List<Entity> grassObject;
 
-    private final List<Entity> stillObjects = new ArrayList<>();
-    private final List<Entity> items = new ArrayList<>();
+    private  List<Entity> stillObjects;
+    private List<Entity> items;
 
 
     private CheckCollision checkCollision;
     KeyEventGame keyEventGame;
 
-    public GamePlay() {
-        menu = new MenuSetup();
-        canvas = new Canvas(WIDTH, HEIGHT);
-        BombermanGame.root.getChildren().add(canvas);
+    AnimationTimer timer = new AnimationTimer() {
+        @Override
+        public void handle(long l) {
+            bomberman.setCoordinate(map);
+            setupBombAndFlame(bomberman);
+            checkCollision();
+            render();
+            remove();
+            update();
 
-        menu.setMenuBar(BombermanGame.root);
-        keyEventGame = new KeyEventGame();
-        checkCollision = new CheckCollision();
+            if(bomberman.getIsRemove()== true) {
+                try {
+                    setGameDefault();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    };
 
-        mapGame = new MapGame();
-        bomberman = new Bomber(1, 1);
-    }
-
-
-    public void start(Stage stage) throws Exception {
-        gc = canvas.getGraphicsContext2D();
+    public void start(Stage stage) throws IOException {
         stage.addEventHandler(KeyEvent.KEY_PRESSED, keyEventGame.getKeyEventGame());
         stage.addEventHandler(KeyEvent.KEY_RELEASED, keyEventGame.getKeyEventGame1());
 
+        setGameDefault();
+    }
+
+    public GamePlay() {
+        canvas = new Canvas(WIDTH, HEIGHT);
+        BombermanGame.root.getChildren().add(canvas);
+
+        keyEventGame = new KeyEventGame();
+        checkCollision = new CheckCollision();
+
+        gc = canvas.getGraphicsContext2D();
+    }
+
+    public void setGameDefault() throws IOException {
+        enemies = new ArrayList<>();
+        stillObjects = new ArrayList<>();
+        items = new ArrayList<>();
+        grassObject = new ArrayList<>();
+        bombs = new ArrayList<>();
+        flames = new ArrayList<>();
+        mapGame = new MapGame();
+        bomberman = new Bomber(1, 1);
+
+        PropertiesStatic.setSettingGameDefault();
+        loadGameFromMap();
+        timer.start();
+    }
+
+    public void loadGameFromMap() throws IOException {
         mapGame.readMapFromFile(map);
         mapGame.updateMap(stillObjects, items, mapFile);
         mapGame.updateGrass(grassObject);
         mapGame.createEnnemies(enemies);
-
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long l) {
-                bomberman.setCoordinate(map);
-                setupBombAndFlame(bomberman);
-                checkCollision();
-                render();
-                remove();
-                update();
-            }
-
-        };
-
-        timer.start();
     }
+
+
 
 
     public void remove() {
         if (bomberman.getIsRemove()) {
-            System.out.println("remove");
-            System.exit(0);
+            return;
         }
 
         for (int i = 0; i < enemies.size(); i++) {
@@ -200,8 +219,8 @@ public class GamePlay {
 
     public void setupBombAndFlame(Entity player) {
         if (placeBomb == true) {
-            if(Bomb.countBombMax < numberBombDefault){
-                if(map[player.getYCenter()][player.getXCenter()] == CHAR_GRASS){
+            if(PropertiesStatic.countBombMax < numberBombDefault){
+                if(map[player.getYCenter()][player.getXCenter()] != CHAR_WALL && map[player.getYCenter()][player.getXCenter()] != CHAR_BRICK){
                     bombs.add(new Bomb(player.getXCenter(), player.getYCenter()));
                 }
             }
@@ -215,7 +234,6 @@ public class GamePlay {
             }
         }
     }
-
 }
 
 

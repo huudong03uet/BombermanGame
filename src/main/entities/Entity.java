@@ -4,10 +4,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.graphics.Renderable;
 
-import static main.PropertiesConstant.SCALE;
-import static main.PropertiesConstant.TILE_SIZE;
-import static main.PropertiesStatic.xHide;
-import static main.PropertiesStatic.yHide;
+import static main.settings.PropertiesConstant.SCALE;
+import static main.settings.PropertiesConstant.TILE_SIZE;
+import static main.settings.PropertiesStatic.xHide;
+import static main.settings.PropertiesStatic.yHide;
 import static main.graphics.Sprite.SCALED_SIZE;
 
 public abstract class Entity implements Renderable {

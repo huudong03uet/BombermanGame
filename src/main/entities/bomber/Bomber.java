@@ -11,8 +11,8 @@ import main.graphics.Sprite;
 import java.util.List;
 
 import static java.lang.Math.abs;
-import static main.PropertiesConstant.*;
-import static main.PropertiesStatic.*;
+import static main.settings.PropertiesConstant.*;
+import static main.settings.PropertiesStatic.*;
 
 public class Bomber extends CanMoveEntity {
     protected int speed = SPEED_BOMBER * 2;
@@ -23,7 +23,6 @@ public class Bomber extends CanMoveEntity {
     private Image imageRender = img;
     private int indexAnimate = 0;
     protected boolean isDead = false;
-    protected boolean isRemove = false;
     protected boolean canPassWall = false;
     protected int timeRemainPassWall = TIME_REMAIN * 2 * 10;
 
@@ -76,6 +75,9 @@ public class Bomber extends CanMoveEntity {
 
         if (canPassWall == true) {
             updateTimePassWall();
+            if(getXCenter() <= 0 || getXCenter() >= WIDTH_TILE - 1 || getYCenter() <= 0 || getYCenter() >= HEIGHT_TILE - 1) {
+                setCoordinateAfterMoveReverse();
+            }
             setCoordinatesRenderMap();
             return;
         }

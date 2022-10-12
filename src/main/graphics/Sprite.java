@@ -1,7 +1,7 @@
 package main.graphics;
 
 import javafx.scene.image.*;
-import main.PropertiesConstant;
+import main.settings.PropertiesConstant;
 
 /**
  * Lưu trữ thông tin các pixel của 1 sprite (hình ảnh game)

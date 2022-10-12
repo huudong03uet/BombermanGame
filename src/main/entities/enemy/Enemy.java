@@ -5,7 +5,7 @@ import main.entities.CanMoveEntity;
 
 import java.util.ArrayList;
 
-import static main.PropertiesConstant.*;
+import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
 
 public abstract class Enemy extends CanMoveEntity {

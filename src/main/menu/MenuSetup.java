@@ -47,14 +47,14 @@ public class MenuSetup {
 
     public void addGameMenu() {
         game.getItems().addAll(gameMenuNewGame, gameMenuPause, gameMenuExit);
-        gameMenuNewGame.setOnAction(e -> {
-            System.out.println("New");
+        gameMenuNewGame.setOnAction(event -> {
+
         });
         gameMenuPause.setOnAction(e -> {
-            System.out.println("Pause");
+
         });
         gameMenuExit.setOnAction(e -> {
-            System.out.println("Exit");
+            System.exit(0);
         });
         menuBar.getMenus().add(game);
     }
@@ -123,6 +123,7 @@ public class MenuSetup {
     public void setMenuBar(Group root) {
         addMenu();
         BorderPane borderPane = new BorderPane();
+
         borderPane.setTop(menuBar);
         root.getChildren().add(borderPane);
     }

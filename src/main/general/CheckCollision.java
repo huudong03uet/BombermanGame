@@ -5,8 +5,8 @@ import main.entities.bomb.Bomb;
 import main.entities.bomb.Flame;
 
 import static java.lang.Math.abs;
-import static main.PropertiesStatic.lengthFlameDefault;
-import static main.PropertiesStatic.map;
+import static main.settings.PropertiesStatic.lengthFlameDefault;
+import static main.settings.PropertiesStatic.map;
 public class CheckCollision {
     private double bottomA;
     private double bottomB;

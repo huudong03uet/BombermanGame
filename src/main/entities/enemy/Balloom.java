@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.entities.Entity;
 
-import static main.PropertiesConstant.*;
+import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
 
 public class Balloom extends Enemy {

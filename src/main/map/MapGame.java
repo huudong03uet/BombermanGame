@@ -16,9 +16,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-import static main.PropertiesConstant.*;
-import static main.PropertiesStatic.map;
-import static main.PropertiesStatic.mapFile;
+import static main.settings.PropertiesConstant.*;
+import static main.settings.PropertiesStatic.map;
+import static main.settings.PropertiesStatic.mapFile;
 
 public class MapGame {
     private int level;
