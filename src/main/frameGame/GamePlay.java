@@ -1,9 +1,7 @@
-package main;
+package main.frameGame;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.entities.CanMoveEntity;
 import main.entities.Entity;
@@ -13,7 +11,6 @@ import main.entities.bomber.Bomber;
 import main.entities.enemy.Pass;
 import main.entities.tile.Brick;
 import main.general.CheckCollision;
-import main.keyEvent.KeyEventGame;
 import main.map.MapGame;
 import main.settings.PropertiesStatic;
 
@@ -26,7 +23,7 @@ import static main.settings.PropertiesStatic.*;
 
 public class GamePlay {
     private GraphicsContext gc;
-    private Canvas canvas;
+
     private MapGame mapGame;
     private List<Entity> enemies;
 
@@ -36,48 +33,37 @@ public class GamePlay {
 
     private List<Entity> grassObject;
 
-    private  List<Entity> stillObjects;
+    private List<Entity> stillObjects;
     private List<Entity> items;
-
+    private Canvas canvas;
 
     private CheckCollision checkCollision;
-    KeyEventGame keyEventGame;
 
-    AnimationTimer timer = new AnimationTimer() {
-        @Override
-        public void handle(long l) {
-            bomberman.setCoordinate(map);
-            setupBombAndFlame(bomberman);
-            checkCollision();
-            render();
+
+    public void gameLoop() {
+        bomberman.setCoordinate(map);
+        setupBombAndFlame(bomberman);
+        checkCollision();
+        render();
+        try {
             remove();
-            update();
-
-            if(bomberman.getIsRemove()== true) {
-                try {
-                    setGameDefault();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-    };
-
-    public void start(Stage stage) throws IOException {
-        stage.addEventHandler(KeyEvent.KEY_PRESSED, keyEventGame.getKeyEventGame());
-        stage.addEventHandler(KeyEvent.KEY_RELEASED, keyEventGame.getKeyEventGame1());
-
-        setGameDefault();
+        update();
     }
 
-    public GamePlay() {
-        canvas = new Canvas(WIDTH, HEIGHT);
-        BombermanGame.root.getChildren().add(canvas);
+    public void start(Stage stage) throws IOException {
 
-        keyEventGame = new KeyEventGame();
+
+    }
+
+    public GamePlay(Canvas canvas) throws IOException {
+        this.canvas = canvas;
         checkCollision = new CheckCollision();
+        gc = this.canvas.getGraphicsContext2D();
 
-        gc = canvas.getGraphicsContext2D();
+        setGameDefault();
     }
 
     public void setGameDefault() throws IOException {
@@ -92,7 +78,6 @@ public class GamePlay {
 
         PropertiesStatic.setSettingGameDefault();
         loadGameFromMap();
-        timer.start();
     }
 
     public void loadGameFromMap() throws IOException {
@@ -103,10 +88,9 @@ public class GamePlay {
     }
 
 
-
-
-    public void remove() {
+    public void remove() throws IOException {
         if (bomberman.getIsRemove()) {
+            setGameDefault();
             return;
         }
 
@@ -118,7 +102,7 @@ public class GamePlay {
 
         for (int i = 0; i < flames.size(); i++) {
             if (flames.get(i).getIsRemove() == true) {
-                if(numberPass < NUMBER_PASS_MAX) {
+                if (numberPass < NUMBER_PASS_DEFAULT) {
                     enemies.add(new Pass(flames.get(i).getXCenter(), flames.get(i).getYCenter()));
                 }
                 flames.remove(i);
@@ -216,11 +200,10 @@ public class GamePlay {
     }
 
 
-
     public void setupBombAndFlame(Entity player) {
         if (placeBomb == true) {
-            if(PropertiesStatic.countBombMax < numberBombDefault){
-                if(map[player.getYCenter()][player.getXCenter()] != CHAR_WALL && map[player.getYCenter()][player.getXCenter()] != CHAR_BRICK){
+            if (PropertiesStatic.countBombMax < numberBombDefault) {
+                if (map[player.getYCenter()][player.getXCenter()] != CHAR_WALL && map[player.getYCenter()][player.getXCenter()] != CHAR_BRICK) {
                     bombs.add(new Bomb(player.getXCenter(), player.getYCenter()));
                 }
             }

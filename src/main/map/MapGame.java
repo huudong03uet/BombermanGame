@@ -21,10 +21,10 @@ import static main.settings.PropertiesStatic.map;
 import static main.settings.PropertiesStatic.mapFile;
 
 public class MapGame {
-    private int level;
+    public static int level = 1;
 
     public MapGame() {
-        level = 1;
+
     }
 
     public String mapPath() {

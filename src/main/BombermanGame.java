@@ -14,18 +14,18 @@ public class BombermanGame extends Application {
     }
 
     static Group root = new Group();
+
     @Override
     public void start(Stage stage) throws Exception {
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         stage.setScene(scene);
         stage.setTitle(TITLE);
-
         stage.show();
 
         MenuSetup menu = new MenuSetup();
-        menu.setMenuBar(root);
-
         GameFrame gameFrame = new GameFrame();
+
+        menu.setMenuBar(root);
         gameFrame.start(stage);
     }
 }

@@ -31,7 +31,7 @@ public class PropertiesStatic {
     public static int lengthFlameDefault = 1;
     public final static int LENGTH_FLAME_DEFAULT = 1;
     public static int numberPass = 0;
-    public final static int NUMBER_PASS_DEFAULT = 0;
+    public static int NUMBER_PASS_DEFAULT = 0;
     public static int numberBombDefault = 1;
     public final static int NUMBER_BOMB_DEFAULT = 1;
 
@@ -42,7 +42,7 @@ public class PropertiesStatic {
         direction = DIRECTION_DEFAULT;
         placeBomb = PLACE_BOMB_DEFAULT;
         lengthFlameDefault = LENGTH_FLAME_DEFAULT;
-        numberPass = NUMBER_PASS_DEFAULT;
+        numberPass = 0;
         numberBombDefault = NUMBER_BOMB_DEFAULT;
         countBombMax = COUNT_BOMB_MAX_DEFAULT;
     }
