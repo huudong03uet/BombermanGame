@@ -5,8 +5,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.frameGame.GamePlay;
+import main.frameGame.GameStart;
 import main.keyEvent.KeyEventGame;
-
 
 import java.io.IOException;
 
@@ -16,7 +16,10 @@ import static main.settings.StatusGame.*;
 
 public class GameFrame {
     private Canvas canvas;
+
+    GameStart gameStart;
     GamePlay gamePlay;
+
     KeyEventGame keyEventGame = new KeyEventGame();
 
     public GameFrame() {
@@ -28,11 +31,15 @@ public class GameFrame {
         stage.addEventHandler(KeyEvent.KEY_PRESSED, keyEventGame.getKeyEventGame());
         stage.addEventHandler(KeyEvent.KEY_RELEASED, keyEventGame.getKeyEventGame1());
 
+        gameStart = new GameStart(canvas);
         gamePlay = new GamePlay(canvas);
+
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-
+                if(status == GAME_MENU) {
+                    gameStart.startLoop();
+                }
                 if (status == GAME_PLAY) gamePlay.gameLoop();
                 if (status == GAME_PAUSE) {
 

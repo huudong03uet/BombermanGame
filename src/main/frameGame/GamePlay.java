@@ -2,7 +2,6 @@ package main.frameGame;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.stage.Stage;
 import main.entities.CanMoveEntity;
 import main.entities.Entity;
 import main.entities.bomb.Bomb;
@@ -51,11 +50,6 @@ public class GamePlay {
             throw new RuntimeException(e);
         }
         update();
-    }
-
-    public void start(Stage stage) throws IOException {
-
-
     }
 
     public GamePlay(Canvas canvas) throws IOException {

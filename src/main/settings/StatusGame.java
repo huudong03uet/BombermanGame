@@ -18,5 +18,5 @@ public class StatusGame {
     public static final int GAME_CHANGE_LEVEL = 8;
     public static final int GAME_CHANGE_DIFFICULTY = 9;
 
-    public static int status = GAME_PLAY;
+    public static int status = GAME_MENU;
 }

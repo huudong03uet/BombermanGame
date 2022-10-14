@@ -13,7 +13,7 @@ public class BombermanGame extends Application {
         launch(args);
     }
 
-    static Group root = new Group();
+    public static Group root = new Group();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -25,7 +25,7 @@ public class BombermanGame extends Application {
         MenuSetup menu = new MenuSetup();
         GameFrame gameFrame = new GameFrame();
 
-        menu.setMenuBar(root);
+      //  menu.setMenuBar(root);
         gameFrame.start(stage);
     }
 }
