@@ -3,8 +3,11 @@ package main;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import main.menu.MenuSetup;
+
 
 import static main.settings.PropertiesConstant.*;
 
@@ -21,7 +24,6 @@ public class BombermanGame extends Application {
         stage.setScene(scene);
         stage.setTitle(TITLE);
         stage.show();
-
         MenuSetup menu = new MenuSetup();
         GameFrame gameFrame = new GameFrame();
 
