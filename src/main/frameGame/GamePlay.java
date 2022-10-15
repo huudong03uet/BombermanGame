@@ -2,7 +2,10 @@ package main.frameGame;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+
 import javafx.stage.Stage;
+import main.SoundSetting.Sound;
+
 import main.entities.CanMoveEntity;
 import main.entities.Entity;
 import main.entities.bomb.Bomb;
@@ -35,6 +38,8 @@ public class GamePlay {
 
     private List<Entity> stillObjects;
     private List<Entity> items;
+    private Sound sound = new Sound();
+    private Sound enemyDieSound = new Sound();
     private Canvas canvas;
 
     private CheckCollision checkCollision;
@@ -43,6 +48,7 @@ public class GamePlay {
     public void gameLoop() {
         bomberman.setCoordinate(map);
         setupBombAndFlame(bomberman);
+
         checkCollision();
         render();
         try {
@@ -51,11 +57,6 @@ public class GamePlay {
             throw new RuntimeException(e);
         }
         update();
-    }
-
-    public void start(Stage stage) throws IOException {
-
-
     }
 
     public GamePlay(Canvas canvas) throws IOException {
@@ -75,7 +76,7 @@ public class GamePlay {
         flames = new ArrayList<>();
         mapGame = new MapGame();
         bomberman = new Bomber(1, 1);
-
+        sound.playMuzik(0);
         PropertiesStatic.setSettingGameDefault();
         loadGameFromMap();
     }
@@ -90,6 +91,7 @@ public class GamePlay {
 
     public void remove() throws IOException {
         if (bomberman.getIsRemove()) {
+            sound.stop();
             setGameDefault();
             return;
         }
@@ -193,6 +195,7 @@ public class GamePlay {
         for (int i = 0; i < enemies.size(); i++) {
             for (int j = 0; j < flames.size(); j++) {
                 if (checkCollision.checkCollisionWithFlame(enemies.get(i), flames.get(j))) {
+                    enemyDieSound.playSE(4);
                     enemies.get(i).setIsExploded(true);
                 }
             }

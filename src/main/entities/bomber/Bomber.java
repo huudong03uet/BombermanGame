@@ -7,18 +7,23 @@ import javafx.scene.input.KeyCode;
 import main.entities.CanMoveEntity;
 import main.entities.Entity;
 import main.graphics.Sprite;
+import main.SoundSetting.Sound;
 
 import java.util.List;
 
 import static java.lang.Math.abs;
 import static main.settings.PropertiesConstant.*;
 import static main.settings.PropertiesStatic.*;
+import static main.settings.StatusGame.status;
+
+
 
 public class Bomber extends CanMoveEntity {
     protected int speed = SPEED_BOMBER * 2;
     protected Image[][] imagesTwoWay = new Image[4][BOMBER_SPRITE];
     protected Image[] imagesDead = new Image[BOMBER_DEAD_SPRITE];
     private KeyCode keyCode = null;
+    private Sound bomberDie = new Sound();
     private int directionPrevious = 0;
     private Image imageRender = img;
     private int indexAnimate = 0;
@@ -231,7 +236,7 @@ public class Bomber extends CanMoveEntity {
     @Override
     public void render(GraphicsContext gc) {
         updateSprite();
-        if (isDead == true) {
+        if (isDead) {
             renderIsDead(gc);
             return;
         }
@@ -289,6 +294,7 @@ public class Bomber extends CanMoveEntity {
         if (canProtected == true) {
             return;
         }
+        bomberDie.playSE(2);
         this.isDead = isDead;
     }
 

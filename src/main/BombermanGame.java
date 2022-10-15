@@ -16,7 +16,7 @@ public class BombermanGame extends Application {
         launch(args);
     }
 
-    static Group root = new Group();
+    public static Group root = new Group();
 
     @Override
     public void start(Stage stage) throws Exception {

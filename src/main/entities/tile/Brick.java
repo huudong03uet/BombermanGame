@@ -2,6 +2,7 @@ package main.entities.tile;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import main.SoundSetting.Sound;
 
 import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
@@ -9,6 +10,7 @@ import static main.graphics.Sprite.*;
 public class Brick extends StaticEntity {
     protected Image[] images = new Image[BRICK_EXPLOSION];
     protected int countIsRemove = 0;
+    private Sound brickCrash = new Sound();
 
     public Brick(int x, int y, Image img) {
         super(x, y, img);
@@ -31,6 +33,9 @@ public class Brick extends StaticEntity {
             img = images[indexAnimate];
             super.render(gc);
             countIsRemove++;
+            if(countIsRemove == 1) {
+                brickCrash.playSE(3);
+            }
             if (countIsRemove >= TIME_REMAIN) {
                 countIsRemove = 0;
                 isRemove = true;

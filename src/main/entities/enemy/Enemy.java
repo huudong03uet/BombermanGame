@@ -72,5 +72,10 @@ public abstract class Enemy extends CanMoveEntity {
         }
     }
 
+    @Override
+    public void setIsExploded(boolean isExploded) {
+
+        super.setIsExploded(isExploded);
+    }
 
 }

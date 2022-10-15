@@ -7,12 +7,13 @@ import main.settings.PropertiesStatic;
 
 import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
+import main.SoundSetting.Sound;
 
 public class Bomb extends AnimateEntity {
     protected Image[] images = new Image[BOMB_SPRITE];
     protected Image[] imageExplode = new Image[BOMB_SPRITE];
     protected int countBomb = 0;
-
+    Sound bombSound = new Sound();
 
     public Bomb(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
@@ -48,6 +49,7 @@ public class Bomb extends AnimateEntity {
         if (countBomb >= TIME_REMAIN * 3) {
             countBomb = 0;
             setIsExploded(true);
+            bombSound.playSE(1);
         }
     }
 

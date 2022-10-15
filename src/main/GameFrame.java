@@ -6,8 +6,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.SoundSetting.Sound;
 import main.frameGame.GamePlay;
+import main.frameGame.GameStart;
 import main.keyEvent.KeyEventGame;
-
 
 import java.io.IOException;
 
@@ -16,31 +16,37 @@ import static main.settings.PropertiesConstant.WIDTH;
 import static main.settings.StatusGame.*;
 
 
+
 public class GameFrame {
     private Canvas canvas;
+
+    GameStart gameStart;
     GamePlay gamePlay;
+
     KeyEventGame keyEventGame = new KeyEventGame();
-    Sound sound;
+
     public GameFrame() {
         canvas = new Canvas(WIDTH, HEIGHT);
         BombermanGame.root.getChildren().add(canvas);
-        sound = new Sound();
+
     }
 
     public void start(Stage stage) throws Exception {
         stage.addEventHandler(KeyEvent.KEY_PRESSED, keyEventGame.getKeyEventGame());
         stage.addEventHandler(KeyEvent.KEY_RELEASED, keyEventGame.getKeyEventGame1());
 
+        gameStart = new GameStart(canvas);
         gamePlay = new GamePlay(canvas);
-       // sound.playBackGround();
+
+
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-
-                if (status == GAME_PLAY)
-                {
-                    gamePlay.gameLoop();
+                if(status == GAME_MENU) {
+                    gameStart.startLoop();
                 }
+                if (status == GAME_PLAY) gamePlay.gameLoop();
+
                 if (status == GAME_PAUSE) {
 
                 }
@@ -70,7 +76,6 @@ public class GameFrame {
                 if (status == GAME_CHANGE_DIFFICULTY) {
                     status = GAME_CHANGE_LEVEL;
                 }
-
 
             }
         };

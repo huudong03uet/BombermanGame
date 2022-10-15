@@ -17,6 +17,8 @@ public abstract class AnimateEntity extends Entity
         super(xUnit, yUnit, img);
     }
 
+
+
     public void setCoordinatesRenderMap() {
         if (x < WIDTH / 2) {
             xHide = 0;

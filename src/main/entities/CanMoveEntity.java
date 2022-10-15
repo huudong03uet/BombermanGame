@@ -15,6 +15,8 @@ public abstract class CanMoveEntity extends AnimateEntity
         super(x, y, img);
     }
 
+
+
     public boolean checkWallCollision(char[][] mapGame) {
         int xTopLeft = x / (TILE_SIZE * SCALE);
         int yTopLeft = y / (TILE_SIZE * SCALE);

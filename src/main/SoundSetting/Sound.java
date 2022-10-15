@@ -1,27 +1,43 @@
 package main.SoundSetting;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.io.File;
 
 public class Sound {
-    private String backGroundPath = "res\\muzik\\backGround.mp3";
-    private Media muzikBackground ;
-    private  MediaPlayer mediaPlayer = new MediaPlayer(muzikBackground);
+    private Clip clip;
+    private String[] sound = new String[10];
 
     public Sound() {
-        muzikBackground = new Media(new File(backGroundPath).toURI().toString());
-        mediaPlayer = new MediaPlayer(muzikBackground);
+        sound[0] = "res\\muzik\\backGround2.wav";
+        sound[1] = "res\\muzik\\bomb_explosion.wav";
+        sound[2] = "res\\muzik\\bomber_die.wav";
+        sound[3] = "res\\muzik\\crash_wall.wav";
+        sound[4] = "res\\muzik\\enemy_die.wav";
     }
 
-    public  void playBackGround () throws Exception{
-        try{
-            System.out.println(1);
-            mediaPlayer.setAutoPlay(true);
-        } catch (Exception e) {
-            System.err.println(e.getCause());
+    public void setFile(int i) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(sound[i]).getAbsoluteFile());
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+        } catch (Exception ex) {
+            System.out.println("Error with playing sound.");
+
         }
-
     }
-
+    public void playMuzik(int i) {
+        setFile(i);
+        clip.start();
+        clip.loop(-1);
+    }
+    public void stop() {
+        clip.stop();
+    }
+    public void playSE(int i) {
+        setFile(i);
+        clip.start();
+    }
 }
