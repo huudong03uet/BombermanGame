@@ -38,7 +38,6 @@ public class GameFrame {
         gameStart = new GameStart(canvas);
         gamePlay = new GamePlay(canvas);
 
-
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
