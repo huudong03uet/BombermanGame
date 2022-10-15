@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import main.soundSetting.Sound;
 import main.frameGame.GamePlay;
 import main.frameGame.GameStart;
 import main.keyEvent.KeyEventGame;
@@ -14,6 +15,7 @@ import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
 import static main.settings.StatusGame.*;
 
+
 public class GameFrame {
     private Canvas canvas;
 
@@ -21,10 +23,11 @@ public class GameFrame {
     GamePlay gamePlay;
 
     KeyEventGame keyEventGame = new KeyEventGame();
-
+    Sound sound;
     public GameFrame() {
         canvas = new Canvas(WIDTH, HEIGHT);
         BombermanGame.root.getChildren().add(canvas);
+        sound = new Sound();
     }
 
     public void start(Stage stage) throws Exception {
@@ -41,6 +44,7 @@ public class GameFrame {
                     gameStart.startLoop();
                 }
                 if (status == GAME_PLAY) gamePlay.gameLoop();
+
                 if (status == GAME_PAUSE) {
 
                 }
