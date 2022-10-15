@@ -4,7 +4,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 import javafx.stage.Stage;
-import main.SoundSetting.Sound;
+import main.soundSetting.Sound;
 
 import main.entities.CanMoveEntity;
 import main.entities.Entity;

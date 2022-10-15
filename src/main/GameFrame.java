@@ -4,7 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import main.SoundSetting.Sound;
+import main.soundSetting.Sound;
 import main.frameGame.GamePlay;
 import main.frameGame.GameStart;
 import main.keyEvent.KeyEventGame;

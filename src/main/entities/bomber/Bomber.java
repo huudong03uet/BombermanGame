@@ -7,7 +7,7 @@ import javafx.scene.input.KeyCode;
 import main.entities.CanMoveEntity;
 import main.entities.Entity;
 import main.graphics.Sprite;
-import main.SoundSetting.Sound;
+import main.soundSetting.Sound;
 
 import java.util.List;
 

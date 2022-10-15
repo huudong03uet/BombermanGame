@@ -2,7 +2,7 @@ package main.entities.tile;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import main.SoundSetting.Sound;
+import main.soundSetting.Sound;
 
 import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;

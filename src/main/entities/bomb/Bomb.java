@@ -7,7 +7,7 @@ import main.settings.PropertiesStatic;
 
 import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
-import main.SoundSetting.Sound;
+import main.soundSetting.Sound;
 
 public class Bomb extends AnimateEntity {
     protected Image[] images = new Image[BOMB_SPRITE];
