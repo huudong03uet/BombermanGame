@@ -11,11 +11,14 @@ public class Sound {
     private String[] sound = new String[10];
 
     public Sound() {
-        sound[0] = "res\\muzik\\backGround2.wav";
+        // sound[0] = "res\\muzik\\backGround2.wav";
+
+        sound[0] = "res\\muzik\\backGround1.wav";
         sound[1] = "res\\muzik\\bomb_explosion.wav";
         sound[2] = "res\\muzik\\bomber_die.wav";
         sound[3] = "res\\muzik\\crash_wall.wav";
         sound[4] = "res\\muzik\\enemy_die.wav";
+        sound[5] = "res\\muzik\\item.wav";
     }
 
     public void setFile(int i) {
@@ -28,14 +31,28 @@ public class Sound {
 
         }
     }
+
     public void playMuzik(int i) {
         setFile(i);
         clip.start();
         clip.loop(-1);
     }
+
+    public void isPlayMuzik(int i) {
+        if(clip == null) {
+            playMuzik(i);
+        }
+        if(!clip.isRunning()) {
+            clip.stop();
+             clip.start();
+             clip.loop(-1);
+        }
+    }
+
     public void stop() {
         clip.stop();
     }
+
     public void playSE(int i) {
         setFile(i);
         clip.start();

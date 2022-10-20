@@ -9,6 +9,10 @@ import javafx.scene.layout.BorderPane;
 import main.general.GeneralStatic;
 
 import javax.swing.*;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import static main.settings.StatusGame.*;
 
@@ -58,6 +62,17 @@ public class MenuSetup {
      */
     public Menu helpMenu = new Menu(" Help ");
     public MenuItem helpMenuInstruction = new MenuItem("Instruction");
+    public MenuItem helpMenuAbout = new MenuItem("About");
+    public MenuItem helpMenuUpdate = new MenuItem("Update");
+    public MenuItem helpMenuContact = new MenuItem("Contact");
+    public MenuItem helpMenuReport = new MenuItem("Report");
+    public MenuItem helpMenuFeedback = new MenuItem("Feedback");
+    public MenuItem helpMenuDonate = new MenuItem("Donate");
+    public MenuItem helpMenuRate = new MenuItem("Rate");
+    public MenuItem helpMenuShare = new MenuItem("Share");
+    public MenuItem helpMenuMore = new MenuItem("More");
+    public MenuItem helpMenuPrivacy = new MenuItem("Privacy");
+    public MenuItem gameOther = new MenuItem("Game other");
 
 
     public MenuSetup() {
@@ -162,11 +177,44 @@ public class MenuSetup {
     /**
      * Help menu:
      * - Instruction
+     * - About
+     * - Game other
      */
     public void addHelpMenu() {
-        helpMenu.getItems().addAll(helpMenuInstruction);
+        helpMenu.getItems().addAll(helpMenuInstruction, helpMenuAbout, gameOther);
         helpMenuInstruction.setOnAction(e -> {
             System.out.println("Instruction");
+        });
+
+        helpMenuAbout.setOnAction(e -> {
+            URL url = null;
+            try {
+                url = new URL("https://github.com/huudong03uet/BombermanGame");
+            } catch (MalformedURLException malformedURLException) {
+                malformedURLException.printStackTrace();
+            }
+            try {
+                java.awt.Desktop.getDesktop().browse(url.toURI());
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            } catch (URISyntaxException uriSyntaxException) {
+                uriSyntaxException.printStackTrace();
+            }
+        });
+        gameOther.setOnAction(e -> {
+            URL url = null;
+            try {
+                url = new URL("https://www.gamevui.vn/");
+            } catch (MalformedURLException malformedURLException) {
+                malformedURLException.printStackTrace();
+            }
+            try {
+                java.awt.Desktop.getDesktop().browse(url.toURI());
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            } catch (URISyntaxException uriSyntaxException) {
+                uriSyntaxException.printStackTrace();
+            }
         });
         menuBar.getMenus().add(helpMenu);
     }

@@ -74,7 +74,7 @@ public class Kondoria extends Enemy{
         if(map[getYCenter()][getXCenter()] == '#' || map[getYCenter()][getXCenter()] == '*') {
             return;
         }
-        this.isExploded = isExploded;
+        super.setIsExploded(isExploded);
     }
     public void setDirection(char[][] mapGame, Entity player) {
         if(x % (TILE_SIZE * 3) != 0 || y % (TILE_SIZE * 3) != 0) return;

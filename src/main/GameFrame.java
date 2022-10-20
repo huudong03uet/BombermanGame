@@ -4,13 +4,14 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import main.soundSetting.Sound;
 import main.frameGame.GamePlay;
 import main.frameGame.GameStart;
+import main.general.GeneralStatic;
 import main.keyEvent.KeyEventGame;
 
 import java.io.IOException;
 
+import static main.map.MapGame.level;
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
 import static main.settings.StatusGame.*;
@@ -44,7 +45,9 @@ public class GameFrame {
                 if(status == GAME_MENU) {
                     gameStart.startLoop();
                 }
-                if (status == GAME_PLAY) gamePlay.gameLoop();
+                if (status == GAME_PLAY) {
+                    gamePlay.gameLoop();
+                }
 
                 if (status == GAME_PAUSE) {
 
@@ -70,6 +73,7 @@ public class GameFrame {
                     status = GAME_PLAY;
                 }
                 if (status == GAME_CHANGE_LEVEL) {
+                    GeneralStatic.changeLevel(level);
                     status = GAME_RESTART_LEVEL;
                 }
                 if (status == GAME_CHANGE_DIFFICULTY) {

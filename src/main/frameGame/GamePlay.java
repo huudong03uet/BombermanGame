@@ -2,10 +2,6 @@ package main.frameGame;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-
-import javafx.stage.Stage;
-import main.soundSetting.Sound;
-
 import main.entities.CanMoveEntity;
 import main.entities.Entity;
 import main.entities.bomb.Bomb;
@@ -16,6 +12,7 @@ import main.entities.tile.Brick;
 import main.general.CheckCollision;
 import main.map.MapGame;
 import main.settings.PropertiesStatic;
+import main.soundSetting.Sound;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,7 +73,7 @@ public class GamePlay {
         flames = new ArrayList<>();
         mapGame = new MapGame();
         bomberman = new Bomber(1, 1);
-        sound.playMuzik(0);
+        sound.isPlayMuzik(0);
         PropertiesStatic.setSettingGameDefault();
         loadGameFromMap();
     }

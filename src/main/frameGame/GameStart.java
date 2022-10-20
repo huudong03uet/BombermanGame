@@ -11,6 +11,10 @@ import main.BombermanGame;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
@@ -29,7 +33,9 @@ public class GameStart {
 
     Button instructionButton = new Button();
     Button exitGameButton = new Button();
+    Button gameVuiButton = new Button();
     int xRender = 0;
+
     public GameStart(Canvas canvas) throws FileNotFoundException {
         gc = canvas.getGraphicsContext2D();
 
@@ -41,14 +47,14 @@ public class GameStart {
         setLevelGameButton();
         setInstructionButton();
         setExitGameButton();
-
+        setGameVuiButton();
 
         BombermanGame.root.getChildren().add(startGameButton);
         BombermanGame.root.getChildren().add(trainingButton);
         BombermanGame.root.getChildren().add(levelGameButton);
         BombermanGame.root.getChildren().add(instructionButton);
         BombermanGame.root.getChildren().add(exitGameButton);
-
+        BombermanGame.root.getChildren().add(gameVuiButton);
     }
 
 
@@ -139,15 +145,21 @@ public class GameStart {
         levelGameButton.setGraphic(img);
         levelGameButton.setBackground(null);
         levelGameButton.setLayoutX((WIDTH - image.getWidth()) / 2);
-        levelGameButton.setLayoutY((HEIGHT - image.getHeight()) / 2 +50);
+        levelGameButton.setLayoutY((HEIGHT - image.getHeight()) / 2 + 50);
         levelGameButton.setText("Level Game");
 
         levelGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent arg0) {
                 // TODO Auto-generated method stub
-                status = GAME_PLAY;
                 removeButtonInRoot();
+                LevelGame levelGame;
+                try {
+                    levelGame = new LevelGame(gc);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                levelGame.startLoop();
             }
         });
 
@@ -162,7 +174,7 @@ public class GameStart {
         });
     }
 
-    public void setInstructionButton () throws FileNotFoundException {
+    public void setInstructionButton() throws FileNotFoundException {
         FileInputStream input = new FileInputStream("res\\textures\\StartGame\\instruction.png");
         Image image = new Image(input);
         ImageView img = new ImageView(image);
@@ -227,6 +239,49 @@ public class GameStart {
         });
     }
 
+    public void setGameVuiButton() throws FileNotFoundException {
+        FileInputStream input = new FileInputStream("res\\textures\\StartGame\\gameVui.png");
+        Image image = new Image(input);
+        ImageView img = new ImageView(image);
+        img.setFitHeight(image.getHeight() * 0.3);
+        img.setFitWidth(image.getWidth() * 0.3);
+
+        gameVuiButton.setGraphic(img);
+        gameVuiButton.setBackground(null);
+        gameVuiButton.setLayoutX((WIDTH - img.getFitWidth()) - 30);
+        gameVuiButton.setLayoutY((HEIGHT - img.getFitHeight()) - 20);
+
+
+        gameVuiButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                // TODO Auto-generated method stub
+                URL url = null;
+                try {
+                    url = new URL("https://www.gamevui.vn/");
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    java.awt.Desktop.getDesktop().browse(url.toURI());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (URISyntaxException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        gameVuiButton.setOnMouseEntered(e -> {
+            gameVuiButton.setScaleX(SCALE_BUTTON);
+            gameVuiButton.setScaleY(SCALE_BUTTON);
+        });
+
+        gameVuiButton.setOnMouseExited(e -> {
+            gameVuiButton.setScaleX(1);
+            gameVuiButton.setScaleY(1);
+        });
+    }
 
 
     public void removeButtonInRoot() {
@@ -236,6 +291,6 @@ public class GameStart {
 
         BombermanGame.root.getChildren().remove(instructionButton);
         BombermanGame.root.getChildren().remove(exitGameButton);
+        BombermanGame.root.getChildren().remove(gameVuiButton);
     }
-
 }

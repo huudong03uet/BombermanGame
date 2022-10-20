@@ -12,10 +12,11 @@ import main.soundSetting.Sound;
 import java.util.List;
 
 import static java.lang.Math.abs;
+import static main.map.MapGame.level;
 import static main.settings.PropertiesConstant.*;
 import static main.settings.PropertiesStatic.*;
+import static main.settings.StatusGame.GAME_CHANGE_LEVEL;
 import static main.settings.StatusGame.status;
-
 
 
 public class Bomber extends CanMoveEntity {
@@ -34,6 +35,7 @@ public class Bomber extends CanMoveEntity {
     protected boolean canProtected = false;
     protected int timeRemainProtected = TIME_REMAIN * 2 * 10;
     int countDead = 0;
+    protected Sound sound = new Sound();
 
     public Bomber(int x, int y) {
         super(x, y, Sprite.player_right.getFxImage(Sprite.player_right.get_realWidth(), Sprite.player_right.get_realHeight()));
@@ -200,7 +202,17 @@ public class Bomber extends CanMoveEntity {
             canProtected = true;
         }
 
+        if(map[getYCenter()][getXCenter()] == CHAR_PORTAL) {
+            hasIsItem = true;
+            level++;
+            if(level == 6) {
+                level = 5;
+            }
+            status = GAME_CHANGE_LEVEL;
+        }
+
         if (hasIsItem == true) {
+            sound.playSE(5);
             for (int i = 0; i < items.size(); i++) {
                 if (items.get(i).getXCenter() == getXCenter() && items.get(i).getYCenter() == getYCenter()) {
                     items.remove(i);
