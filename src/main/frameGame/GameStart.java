@@ -18,8 +18,7 @@ import java.net.URL;
 
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
-import static main.settings.StatusGame.GAME_PLAY;
-import static main.settings.StatusGame.status;
+import static main.settings.StatusGame.*;
 
 public class GameStart {
     private final double SCALE_BUTTON = 1.2;
@@ -86,7 +85,7 @@ public class GameStart {
             @Override
             public void handle(ActionEvent arg0) {
                 // TODO Auto-generated method stub
-                status = GAME_PLAY;
+                status = GAME_CHANGE_LEVEL;
                 removeButtonInRoot();
             }
         });

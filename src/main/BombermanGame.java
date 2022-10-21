@@ -25,7 +25,10 @@ public class BombermanGame extends Application {
         stage.setTitle(TITLE);
         stage.show();
         MenuSetup menu = new MenuSetup();
+
+
         GameFrame gameFrame = new GameFrame();
+
 
         menu.setMenuBar(root);
         gameFrame.start(stage);

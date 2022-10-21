@@ -10,7 +10,9 @@ import main.entities.bomber.Bomber;
 import main.entities.enemy.Pass;
 import main.entities.tile.Brick;
 import main.general.CheckCollision;
+import main.general.TimeGame;
 import main.map.MapGame;
+import main.menu.InfoPlayer;
 import main.settings.PropertiesStatic;
 import main.soundSetting.Sound;
 
@@ -40,19 +42,21 @@ public class GamePlay {
     private Canvas canvas;
 
     private CheckCollision checkCollision;
-
+    private InfoPlayer infoPlayer;
+    private TimeGame timeGame;
 
     public void gameLoop() {
         bomberman.setCoordinate(map);
         setupBombAndFlame(bomberman);
-
         checkCollision();
         render();
+        timeGame.setTimeRemain();
         try {
             remove();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        infoPlayer.drawInfoPlayer(gc);
         update();
     }
 
@@ -72,8 +76,10 @@ public class GamePlay {
         bombs = new ArrayList<>();
         flames = new ArrayList<>();
         mapGame = new MapGame();
-        bomberman = new Bomber(1, 1);
+        bomberman = new Bomber(1, 2);
         sound.isPlayMuzik(0);
+        infoPlayer = new InfoPlayer();
+        timeGame = new TimeGame();
         PropertiesStatic.setSettingGameDefault();
         loadGameFromMap();
     }
@@ -89,6 +95,7 @@ public class GamePlay {
     public void remove() throws IOException {
         if (bomberman.getIsRemove()) {
             sound.stop();
+            lifeBomber--;
             setGameDefault();
             return;
         }

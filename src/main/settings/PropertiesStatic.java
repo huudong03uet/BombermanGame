@@ -38,6 +38,10 @@ public class PropertiesStatic {
     public static int countBombMax = 1;
     public final static int COUNT_BOMB_MAX_DEFAULT = 0;
 
+    public static int score = 0;
+    public static int timeRemain = 0;
+    public static int lifeBomber = 3;
+
     public static void setSettingGameDefault() {
         direction = DIRECTION_DEFAULT;
         placeBomb = PLACE_BOMB_DEFAULT;

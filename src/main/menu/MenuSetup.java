@@ -229,7 +229,6 @@ public class MenuSetup {
      */
     public void addMenu() {
         addGameMenu();
-        addPlayerMenu();
         addLevelMenu();
         addOptionsMenu();
         addHelpMenu();

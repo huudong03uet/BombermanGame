@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import main.entities.Entity;
 
 import static main.settings.PropertiesConstant.*;
+import static main.settings.PropertiesStatic.*;
 import static main.graphics.Sprite.*;
 
 public class Balloom extends Enemy {
@@ -133,4 +134,8 @@ public class Balloom extends Enemy {
         }
     }
 
+    @Override
+    public void increaseScore() {
+        score += 15;
+    }
 }

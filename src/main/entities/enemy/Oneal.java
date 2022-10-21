@@ -6,6 +6,7 @@ import main.entities.Entity;
 
 import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
+import static main.settings.PropertiesStatic.score;
 
 public class Oneal extends Enemy {
 
@@ -130,6 +131,8 @@ public class Oneal extends Enemy {
             }
         }
     }
-
+    public void increaseScore() {
+        score += 20;
+    }
 
 }

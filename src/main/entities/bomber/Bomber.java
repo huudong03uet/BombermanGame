@@ -319,4 +319,11 @@ public class Bomber extends CanMoveEntity {
         super.setIsExploded(isExploded);
     }
 
+    @Override
+    public void increaseScore() {
+        score -= 100;
+        if(score < 100) {
+            score = 0;
+        }
+    }
 }

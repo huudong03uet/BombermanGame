@@ -4,10 +4,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.entities.AnimateEntity;
 import main.settings.PropertiesStatic;
-
-import static main.settings.PropertiesConstant.*;
-import static main.graphics.Sprite.*;
 import main.soundSetting.Sound;
+
+import static main.graphics.Sprite.*;
+import static main.settings.PropertiesConstant.*;
 
 public class Bomb extends AnimateEntity {
     protected Image[] images = new Image[BOMB_SPRITE];
@@ -53,5 +53,11 @@ public class Bomb extends AnimateEntity {
         }
     }
 
-
+    @Override
+    public void increaseScore() {
+        PropertiesStatic.score -= 5;
+        if(PropertiesStatic.score < 0) {
+            PropertiesStatic.score = 0;
+        }
+    }
 }

@@ -206,4 +206,9 @@ public class Flame extends AnimateEntity {
             }
         }
     }
+
+    @Override
+    public void increaseScore() {
+        score -= 0;
+    }
 }

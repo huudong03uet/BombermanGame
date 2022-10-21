@@ -6,6 +6,7 @@ import main.soundSetting.Sound;
 
 import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
+import static main.settings.PropertiesStatic.score;
 
 public class Brick extends StaticEntity {
     protected Image[] images = new Image[BRICK_EXPLOSION];
@@ -41,5 +42,10 @@ public class Brick extends StaticEntity {
                 isRemove = true;
             }
         }
+    }
+
+    @Override
+    public void increaseScore() {
+        score += 5;
     }
 }

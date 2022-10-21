@@ -135,4 +135,7 @@ public class Pass extends Enemy {
         }
     }
 
+    public void increaseScore() {
+        score += 10;
+    }
 }

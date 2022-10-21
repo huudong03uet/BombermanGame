@@ -38,14 +38,14 @@ public abstract class Entity implements Renderable {
     }
 
     public boolean getIsRemove() {
+        if(isRemove) {
+            increaseScore();
+        }
         return isRemove;
     }
 
+    public abstract void increaseScore();
 
-
-    public boolean setIsRemove(boolean isRemove) {
-        return this.isRemove = isRemove;
-    }
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity(int xUnit, int yUnit, Image img) {
         this.xUnit = xUnit;

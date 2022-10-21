@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
+import static main.settings.PropertiesStatic.score;
 
 public class Ghost extends Enemy {
     protected double speed = SPEED_ENEMY;
@@ -216,4 +217,8 @@ public class Ghost extends Enemy {
         }
     }
 
+    @Override
+    public void increaseScore() {
+        score += 35;
+    }
 }

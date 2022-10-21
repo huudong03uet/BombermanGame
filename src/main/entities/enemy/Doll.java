@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
+import static main.settings.PropertiesStatic.score;
 
 public class Doll extends Enemy {
     private final int FRAME_PER_ONE = FRAME_PER_SECOND / 2;
@@ -201,5 +202,9 @@ public class Doll extends Enemy {
                 }
             }
         }
+    }
+
+    public void increaseScore() {
+        score += 25;
     }
 }

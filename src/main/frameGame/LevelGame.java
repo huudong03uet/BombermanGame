@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import main.BombermanGame;
+import main.general.GeneralStatic;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,7 +20,8 @@ import java.net.URL;
 import static main.map.MapGame.level;
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
-import static main.settings.StatusGame.*;
+import static main.settings.StatusGame.GAME_RESTART_LEVEL;
+import static main.settings.StatusGame.status;
 
 public class LevelGame {
     private final double SCALE_BUTTON = 1.2;
@@ -73,6 +75,7 @@ public class LevelGame {
                 public void handle(ActionEvent event) {
                     level = finalI + 1;
                     status = GAME_RESTART_LEVEL;
+                    GeneralStatic.changeLevel(level);
                     removeButtonInRoot();
 
                 }

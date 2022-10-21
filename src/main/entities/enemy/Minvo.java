@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import static main.graphics.Sprite.*;
 
 import static main.settings.PropertiesConstant.*;
+import static main.settings.PropertiesStatic.score;
 
 public class Minvo extends Enemy {
     protected int speed = SPEED_ENEMY * 2;
@@ -195,5 +196,9 @@ public class Minvo extends Enemy {
                 }
             }
         }
+    }
+
+    public void increaseScore() {
+        score += 30;
     }
 }
