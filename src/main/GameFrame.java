@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import main.frameGame.GameOver;
 import main.frameGame.GamePlay;
 import main.frameGame.GameStart;
 import main.general.GeneralStatic;
@@ -23,6 +24,7 @@ public class GameFrame {
 
     GameStart gameStart;
     GamePlay gamePlay;
+    GameOver gameOver;
 
     KeyEventGame keyEventGame = new KeyEventGame();
 
@@ -39,21 +41,30 @@ public class GameFrame {
         gameStart = new GameStart(canvas);
         gamePlay = new GamePlay(canvas);
 
+
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
+
                 if(status == GAME_MENU) {
                     gameStart.startLoop();
                 }
                 if (status == GAME_PLAY) {
                     gamePlay.gameLoop();
+                    if(status == GAME_OVER) {
+                        try {
+                            gameOver = new GameOver(canvas);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
 
                 if (status == GAME_PAUSE) {
 
                 }
                 if (status == GAME_OVER) {
-                    status = GAME_EXIT;
+                    gameOver.startLoop();
                 }
                 if (status == GAME_WIN) {
                     status = GAME_EXIT;
@@ -82,6 +93,7 @@ public class GameFrame {
 
             }
         };
+
         timer.start();
     }
 }
