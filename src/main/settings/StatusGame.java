@@ -8,6 +8,8 @@ public class StatusGame {
     public static final int GAME_WIN = 4;
     public static final int GAME_EXIT = 5; // Alt + F4 or Ctrl + W
     public static final int GAME_RESTART_GAME = 6;
+    public static final int GAME_TRAINING = 10;
+    public static boolean isTraining = false;
 
     /**
      * Change level:

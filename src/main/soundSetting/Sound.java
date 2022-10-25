@@ -25,7 +25,7 @@ public class Sound {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(sound[i]).getAbsoluteFile());
             clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
+        //    clip.open(audioInputStream);
         } catch (Exception ex) {
             System.out.println("Error with playing sound.");
 
@@ -34,7 +34,7 @@ public class Sound {
 
     public void playMuzik(int i) {
         setFile(i);
-        clip.start();
+     //   clip.start();
         clip.loop(-1);
     }
 

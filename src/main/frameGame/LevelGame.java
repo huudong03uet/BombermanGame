@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -20,8 +21,7 @@ import java.net.URL;
 import static main.map.MapGame.level;
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
-import static main.settings.StatusGame.GAME_RESTART_LEVEL;
-import static main.settings.StatusGame.status;
+import static main.settings.StatusGame.*;
 
 public class LevelGame {
     private final double SCALE_BUTTON = 1.2;
@@ -64,7 +64,8 @@ public class LevelGame {
 
             Image image = new Image(new FileInputStream("res\\textures\\StartGame\\levelGame.png"));
             levelButton[i].setGraphic(new ImageView(image));
-            levelButton[i].setStyle("-fx-background-color: transparent;");
+            levelButton[i].setStyle("-fx-background-color: transparent; -fx-font-size: 20px; -fx-text-fill: WHITE; -fx-font-weight: bold;");
+            levelButton[i].setContentDisplay(ContentDisplay.CENTER);
             levelButton[i].setText("Level " + (i + 1));
             levelButton[i].setLayoutX((WIDTH - image.getWidth()) / 2);
             levelButton[i].setLayoutY((HEIGHT - image.getHeight()) / 2 - 100 + i * 75);
@@ -74,10 +75,9 @@ public class LevelGame {
                 @Override
                 public void handle(ActionEvent event) {
                     level = finalI + 1;
-                    status = GAME_RESTART_LEVEL;
                     GeneralStatic.changeLevel(level);
+                    status = GAME_MENU;
                     removeButtonInRoot();
-
                 }
             });
 

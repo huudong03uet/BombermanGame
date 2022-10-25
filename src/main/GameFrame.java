@@ -6,6 +6,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.frameGame.GamePlay;
 import main.frameGame.GameStart;
+import main.frameGame.GameTraining;
 import main.general.GeneralStatic;
 import main.keyEvent.KeyEventGame;
 
@@ -23,13 +24,13 @@ public class GameFrame {
 
     GameStart gameStart;
     GamePlay gamePlay;
+    GameTraining gameTraining;
 
     KeyEventGame keyEventGame = new KeyEventGame();
 
     public GameFrame() {
         canvas = new Canvas(WIDTH, HEIGHT);
         BombermanGame.root.getChildren().add(canvas);
-
     }
 
     public void start(Stage stage) throws Exception {
@@ -38,6 +39,7 @@ public class GameFrame {
 
         gameStart = new GameStart(canvas);
         gamePlay = new GamePlay(canvas);
+        gameTraining = new GameTraining(canvas);
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -47,6 +49,9 @@ public class GameFrame {
                 }
                 if (status == GAME_PLAY) {
                     gamePlay.gameLoop();
+                }
+                if(status == GAME_TRAINING) {
+                    gameTraining.gameLoop();
                 }
 
                 if (status == GAME_PAUSE) {
@@ -66,14 +71,28 @@ public class GameFrame {
                 }
                 if (status == GAME_RESTART_LEVEL) {
                     try {
-                        gamePlay.setGameDefault();
+                        if(isTraining) {
+                            gameTraining.setGameDefault();
+                            status = GAME_TRAINING;
+                        } else {
+                            gamePlay.setGameDefault();
+                            status = GAME_PLAY;
+                        }
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    status = GAME_PLAY;
+
+                    try {
+                        Thread.sleep(1500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    // render level with black background
+
                 }
                 if (status == GAME_CHANGE_LEVEL) {
                     GeneralStatic.changeLevel(level);
+                    GeneralStatic.renderLevelBackground(canvas);
                     status = GAME_RESTART_LEVEL;
                 }
                 if (status == GAME_CHANGE_DIFFICULTY) {

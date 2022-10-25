@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import main.BombermanGame;
@@ -79,12 +80,16 @@ public class GameStart {
         startGameButton.setBackground(null);
         startGameButton.setLayoutX((WIDTH - image.getWidth()) / 2);
         startGameButton.setLayoutY((HEIGHT - image.getHeight()) / 2 - 100);
+
+        startGameButton.setStyle("-fx-font-size: 20px; -fx-text-fill: WHITE; -fx-font-weight: bold;");
+        startGameButton.setContentDisplay(ContentDisplay.CENTER);
         startGameButton.setText("Start Game");
 
         startGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent arg0) {
                 // TODO Auto-generated method stub
+                isTraining = false;
                 status = GAME_CHANGE_LEVEL;
                 removeButtonInRoot();
             }
@@ -112,15 +117,15 @@ public class GameStart {
         trainingButton.setBackground(null);
         trainingButton.setLayoutX((WIDTH - image.getWidth()) / 2);
         trainingButton.setLayoutY((HEIGHT - image.getHeight()) / 2 - 25);
+        trainingButton.setStyle("-fx-font-size: 20px; -fx-text-fill: WHITE; -fx-font-weight: bold;");
+        trainingButton.setContentDisplay(ContentDisplay.CENTER);
         trainingButton.setText("Training");
 
-        trainingButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent arg0) {
-                // TODO Auto-generated method stub
-                status = GAME_PLAY;
-                removeButtonInRoot();
-            }
+        trainingButton.setOnAction(arg0 -> {
+            // TODO Auto-generated method stub
+            isTraining = true;
+            status = GAME_CHANGE_LEVEL;
+            removeButtonInRoot();
         });
 
         trainingButton.setOnMouseEntered(e -> {
@@ -145,6 +150,8 @@ public class GameStart {
         levelGameButton.setBackground(null);
         levelGameButton.setLayoutX((WIDTH - image.getWidth()) / 2);
         levelGameButton.setLayoutY((HEIGHT - image.getHeight()) / 2 + 50);
+        levelGameButton.setStyle("-fx-font-size: 20px; -fx-text-fill: WHITE; -fx-font-weight: bold;");
+        levelGameButton.setContentDisplay(ContentDisplay.CENTER);
         levelGameButton.setText("Level Game");
 
         levelGameButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -184,15 +191,14 @@ public class GameStart {
         instructionButton.setBackground(null);
         instructionButton.setLayoutX((WIDTH - image.getWidth()) / 2);
         instructionButton.setLayoutY((HEIGHT - image.getHeight()) / 2 + 125);
+        instructionButton.setStyle("-fx-font-size: 20px; -fx-text-fill: WHITE; -fx-font-weight: bold;");
+        instructionButton.setContentDisplay(ContentDisplay.CENTER);
         instructionButton.setText("Instruction");
 
-        instructionButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent arg0) {
-                // TODO Auto-generated method stub
-                status = GAME_PLAY;
-                removeButtonInRoot();
-            }
+        instructionButton.setOnAction(arg0 -> {
+            // TODO Auto-generated method stub
+            status = GAME_CHANGE_LEVEL;
+            removeButtonInRoot();
         });
 
         instructionButton.setOnMouseEntered(e -> {
@@ -217,6 +223,10 @@ public class GameStart {
         exitGameButton.setBackground(null);
         exitGameButton.setLayoutX((WIDTH - image.getWidth()) / 2);
         exitGameButton.setLayoutY((HEIGHT - image.getHeight()) / 2 + 200);
+
+        //set style text
+        exitGameButton.setStyle("-fx-font-size: 20px; -fx-text-fill: WHITE; -fx-font-weight: bold;");
+        exitGameButton.setContentDisplay(ContentDisplay.CENTER);
         exitGameButton.setText("Exit Game");
 
         exitGameButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -292,4 +302,7 @@ public class GameStart {
         BombermanGame.root.getChildren().remove(exitGameButton);
         BombermanGame.root.getChildren().remove(gameVuiButton);
     }
+
+
+
 }

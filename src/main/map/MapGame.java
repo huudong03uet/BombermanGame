@@ -30,6 +30,9 @@ public class MapGame {
     public String mapPath() {
         return "res\\levels\\level" + level + ".txt";
     }
+    public String mapPathTraining() {
+        return "res\\levelTraining\\level" +level+ ".txt";
+    }
 
     public void readMapFromFile(char[][] map) throws IOException {
         File file = new File(mapPath());
@@ -52,6 +55,29 @@ public class MapGame {
         }
     }
 
+    public void readMapFromFile(char[][] map, boolean isTraining) throws IOException {
+        File file = null;
+        if (isTraining) {
+            file = new File(mapPathTraining());
+        }
+        Scanner scanner = new Scanner(file);
+        scanner.nextLine();
+        for (int i = 0; i < HEIGHT_TILE; i++) {
+            String line = scanner.nextLine();
+            for (int j = 0; j < WIDTH_TILE; j++) {
+                mapFile[i][j] = line.charAt(j);
+
+                if (mapFile[i][j] == CHAR_PORTAL || mapFile[i][j] == SPEED_ITEM
+                        || mapFile[i][j] == FLAME_PASS_ITEM || mapFile[i][j] == FLAME_ITEM
+                        || mapFile[i][j] == BOMB_ITEM || mapFile[i][j] == WALL_PASS_ITEM
+                        || mapFile[i][j] == DETONATOR_ITEM) {
+                    map[i][j] = CHAR_BRICK;
+                } else {
+                    map[i][j] = mapFile[i][j];
+                }
+            }
+        }
+    }
     public void updateMap(List<Entity> stillObjects, List<Entity> list, char[][] map) {
         for (int i = 0; i < HEIGHT_TILE; i++) {
             for (int j = 0; j < WIDTH_TILE; j++) {

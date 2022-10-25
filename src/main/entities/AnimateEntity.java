@@ -4,7 +4,6 @@ import javafx.scene.image.Image;
 import main.graphics.Renderable;
 
 import static main.settings.PropertiesConstant.*;
-import static main.settings.PropertiesConstant.WIDTH;
 import static main.settings.PropertiesStatic.xHide;
 
 public abstract class AnimateEntity extends Entity

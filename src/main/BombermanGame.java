@@ -54,6 +54,4 @@ public class BombermanGame extends Application {
 //    public void stop() throws Exception {
 //        networkConnection.closeConnection();
 //    }
-
-
 }

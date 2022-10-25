@@ -129,10 +129,6 @@ public final class PropertiesConstant {
     public final static int GHOST_SPRITE = 3;
     public final static int TIME_HIDDEN_GHOST = 60 * 5;
     public final static int DISTANCE_HIDDEN_GHOST = TILE_SIZE * SCALE * 2;
-    /**
-     * The feature of the portal.
-     */
-
 
     /**
      * The feature of the Kondoria.

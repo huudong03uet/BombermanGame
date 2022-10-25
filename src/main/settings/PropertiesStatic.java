@@ -42,6 +42,7 @@ public class PropertiesStatic {
     public static int timeRemain = 0;
     public static int lifeBomber = 3;
 
+
     public static void setSettingGameDefault() {
         direction = DIRECTION_DEFAULT;
         placeBomb = PLACE_BOMB_DEFAULT;
