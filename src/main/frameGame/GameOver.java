@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import main.BombermanGame;
@@ -60,8 +61,11 @@ public class GameOver {
         startMenuButton.setGraphic(img);
         startMenuButton.setBackground(null);
         startMenuButton.setLayoutX((WIDTH - image.getWidth()) / 2 - 150);
-        startMenuButton.setLayoutY((HEIGHT - image.getHeight()) / 2 - 100);
-        startMenuButton.setText("Menu");
+        startMenuButton.setLayoutY(500);
+
+        startMenuButton.setStyle("-fx-font-size: 20px; -fx-text-fill: WHITE; -fx-font-weight: bold;");
+        startMenuButton.setContentDisplay(ContentDisplay.CENTER);
+        startMenuButton.setText("Return Menu");
 
         startMenuButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -84,7 +88,7 @@ public class GameOver {
     }
 
     public void setExitGameButton() throws FileNotFoundException {
-        FileInputStream input = new FileInputStream("res\\textures\\StartGame\\exitGame.png");
+        FileInputStream input = new FileInputStream("res\\textures\\StartGame\\startGame.png");
         Image image = new Image(input);
         ImageView img = new ImageView(image);
         img.setFitHeight(image.getHeight());
@@ -93,7 +97,10 @@ public class GameOver {
         exitGameButton.setGraphic(img);
         exitGameButton.setBackground(null);
         exitGameButton.setLayoutX((WIDTH - image.getWidth()) / 2 + 150);
-        exitGameButton.setLayoutY((HEIGHT - image.getHeight()) / 2 - 100);
+        exitGameButton.setLayoutY(500);
+
+        exitGameButton.setStyle("-fx-font-size: 20px; -fx-text-fill: WHITE; -fx-font-weight: bold;");
+        exitGameButton.setContentDisplay(ContentDisplay.CENTER);
         exitGameButton.setText("Exit Game");
 
         exitGameButton.setOnAction(new EventHandler<ActionEvent>() {

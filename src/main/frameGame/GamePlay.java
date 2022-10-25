@@ -97,7 +97,7 @@ public class GamePlay {
         if (bomberman.getIsRemove()) {
             sound.stop();
             lifeBomber--;
-            if(lifeBomber == 0) {
+            if(lifeBomber < 0) {
                 status = GAME_OVER;
                 return;
             }

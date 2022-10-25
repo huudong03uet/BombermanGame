@@ -62,7 +62,7 @@ public class LevelGame {
         for (int i = 0; i < 5; i++) {
             levelButton[i] = new Button();
 
-            Image image = new Image(new FileInputStream("res\\textures\\StartGame\\levelGame.png"));
+            Image image = new Image(new FileInputStream("res\\textures\\StartGame\\startGame.png"));
             levelButton[i].setGraphic(new ImageView(image));
             levelButton[i].setStyle("-fx-background-color: transparent; -fx-font-size: 20px; -fx-text-fill: WHITE; -fx-font-weight: bold;");
             levelButton[i].setContentDisplay(ContentDisplay.CENTER);
@@ -76,7 +76,7 @@ public class LevelGame {
                 public void handle(ActionEvent event) {
                     level = finalI + 1;
                     GeneralStatic.changeLevel(level);
-                    status = GAME_MENU;
+                    status = GAME_SETTING_MENU;
                     removeButtonInRoot();
                 }
             });
@@ -155,7 +155,8 @@ public class LevelGame {
     public void removeButtonInRoot() {
         for (int i = 0; i < 5; i++) {
             BombermanGame.root.getChildren().remove(levelButton[i]);
-            BombermanGame.root.getChildren().remove(gameVuiButton);
+
         }
+        BombermanGame.root.getChildren().remove(gameVuiButton);
     }
 }

@@ -7,10 +7,11 @@ import javafx.stage.Stage;
 import main.frameGame.GameOver;
 import main.frameGame.GamePlay;
 import main.frameGame.GameStart;
-import main.frameGame.GameTraining;
+import main.frameGame.GameSurvival;
 import main.general.GeneralStatic;
 import main.keyEvent.KeyEventGame;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static main.map.MapGame.level;
@@ -24,7 +25,7 @@ public class GameFrame {
 
     GameStart gameStart;
     GamePlay gamePlay;
-    GameTraining gameTraining;
+    GameSurvival gameTraining;
     GameOver gameOver;
 
 
@@ -39,15 +40,21 @@ public class GameFrame {
         stage.addEventHandler(KeyEvent.KEY_PRESSED, keyEventGame.getKeyEventGame());
         stage.addEventHandler(KeyEvent.KEY_RELEASED, keyEventGame.getKeyEventGame1());
 
-        gameStart = new GameStart(canvas);
         gamePlay = new GamePlay(canvas);
-        gameTraining = new GameTraining(canvas);
+        gameTraining = new GameSurvival(canvas);
 
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-
+                if(status == GAME_SETTING_MENU) {
+                    try {
+                        gameStart = new GameStart(canvas);
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    status = GAME_MENU;
+                }
                 if (status == GAME_MENU) {
                     gameStart.startLoop();
                 }
@@ -63,6 +70,13 @@ public class GameFrame {
                 }
                 if (status == GAME_TRAINING) {
                     gameTraining.gameLoop();
+                    if (status == GAME_OVER) {
+                        try {
+                            gameOver = new GameOver(canvas);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
 
                 if (status == GAME_PAUSE) {
@@ -82,7 +96,7 @@ public class GameFrame {
                 }
                 if (status == GAME_RESTART_LEVEL) {
                     try {
-                        if (isTraining) {
+                        if (isSurvival) {
                             gameTraining.setGameDefault();
                             status = GAME_TRAINING;
                         } else {

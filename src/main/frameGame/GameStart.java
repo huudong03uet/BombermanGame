@@ -27,7 +27,7 @@ public class GameStart {
     Image backGroundImage;
     Image logo;
     Button startGameButton = new Button();
-    Button trainingButton = new Button();
+    Button survivalGame = new Button();
     Button levelGameButton = new Button();
 
 
@@ -43,18 +43,13 @@ public class GameStart {
         logo = new Image(new FileInputStream("res\\textures\\StartGame\\logo2.png"));
 
         setStartGameButton();
-        setTrainingButton();
+        setSurvivalButton();
         setLevelGameButton();
         setInstructionButton();
         setExitGameButton();
         setGameVuiButton();
 
-        BombermanGame.root.getChildren().add(startGameButton);
-        BombermanGame.root.getChildren().add(trainingButton);
-        BombermanGame.root.getChildren().add(levelGameButton);
-        BombermanGame.root.getChildren().add(instructionButton);
-        BombermanGame.root.getChildren().add(exitGameButton);
-        BombermanGame.root.getChildren().add(gameVuiButton);
+        setButtonInRoot();
     }
 
 
@@ -89,7 +84,7 @@ public class GameStart {
             @Override
             public void handle(ActionEvent arg0) {
                 // TODO Auto-generated method stub
-                isTraining = false;
+                isSurvival = false;
                 status = GAME_CHANGE_LEVEL;
                 removeButtonInRoot();
             }
@@ -106,41 +101,50 @@ public class GameStart {
         });
     }
 
-    public void setTrainingButton() throws FileNotFoundException {
-        FileInputStream input = new FileInputStream("res\\textures\\StartGame\\training.png");
+    public void setButtonInRoot() {
+        BombermanGame.root.getChildren().add(startGameButton);
+        BombermanGame.root.getChildren().add(survivalGame);
+        BombermanGame.root.getChildren().add(levelGameButton);
+        BombermanGame.root.getChildren().add(instructionButton);
+        BombermanGame.root.getChildren().add(exitGameButton);
+        BombermanGame.root.getChildren().add(gameVuiButton);
+    }
+
+    public void setSurvivalButton() throws FileNotFoundException {
+        FileInputStream input = new FileInputStream("res\\textures\\StartGame\\startGame.png");
         Image image = new Image(input);
         ImageView img = new ImageView(image);
         img.setFitHeight(image.getHeight());
         img.setFitWidth(image.getWidth());
 
-        trainingButton.setGraphic(img);
-        trainingButton.setBackground(null);
-        trainingButton.setLayoutX((WIDTH - image.getWidth()) / 2);
-        trainingButton.setLayoutY((HEIGHT - image.getHeight()) / 2 - 25);
-        trainingButton.setStyle("-fx-font-size: 20px; -fx-text-fill: WHITE; -fx-font-weight: bold;");
-        trainingButton.setContentDisplay(ContentDisplay.CENTER);
-        trainingButton.setText("Training");
+        survivalGame.setGraphic(img);
+        survivalGame.setBackground(null);
+        survivalGame.setLayoutX((WIDTH - image.getWidth()) / 2);
+        survivalGame.setLayoutY((HEIGHT - image.getHeight()) / 2 - 25);
+        survivalGame.setStyle("-fx-font-size: 20px; -fx-text-fill: WHITE; -fx-font-weight: bold;");
+        survivalGame.setContentDisplay(ContentDisplay.CENTER);
+        survivalGame.setText("Survival");
 
-        trainingButton.setOnAction(arg0 -> {
+        survivalGame.setOnAction(arg0 -> {
             // TODO Auto-generated method stub
-            isTraining = true;
+            isSurvival = true;
             status = GAME_CHANGE_LEVEL;
             removeButtonInRoot();
         });
 
-        trainingButton.setOnMouseEntered(e -> {
-            trainingButton.setScaleX(SCALE_BUTTON);
-            trainingButton.setScaleY(SCALE_BUTTON);
+        survivalGame.setOnMouseEntered(e -> {
+            survivalGame.setScaleX(SCALE_BUTTON);
+            survivalGame.setScaleY(SCALE_BUTTON);
         });
 
-        trainingButton.setOnMouseExited(e -> {
-            trainingButton.setScaleX(1);
-            trainingButton.setScaleY(1);
+        survivalGame.setOnMouseExited(e -> {
+            survivalGame.setScaleX(1);
+            survivalGame.setScaleY(1);
         });
     }
 
     public void setLevelGameButton() throws FileNotFoundException {
-        FileInputStream input = new FileInputStream("res\\textures\\StartGame\\levelGame.png");
+        FileInputStream input = new FileInputStream("res\\textures\\StartGame\\startGame.png");
         Image image = new Image(input);
         ImageView img = new ImageView(image);
         img.setFitHeight(image.getHeight());
@@ -181,7 +185,7 @@ public class GameStart {
     }
 
     public void setInstructionButton() throws FileNotFoundException {
-        FileInputStream input = new FileInputStream("res\\textures\\StartGame\\instruction.png");
+        FileInputStream input = new FileInputStream("res\\textures\\StartGame\\startGame.png");
         Image image = new Image(input);
         ImageView img = new ImageView(image);
         img.setFitHeight(image.getHeight());
@@ -213,7 +217,7 @@ public class GameStart {
     }
 
     public void setExitGameButton() throws FileNotFoundException {
-        FileInputStream input = new FileInputStream("res\\textures\\StartGame\\exitGame.png");
+        FileInputStream input = new FileInputStream("res\\textures\\StartGame\\startGame.png");
         Image image = new Image(input);
         ImageView img = new ImageView(image);
         img.setFitHeight(image.getHeight());
@@ -295,14 +299,13 @@ public class GameStart {
 
     public void removeButtonInRoot() {
         BombermanGame.root.getChildren().remove(startGameButton);
-        BombermanGame.root.getChildren().remove(trainingButton);
+        BombermanGame.root.getChildren().remove(survivalGame);
         BombermanGame.root.getChildren().remove(levelGameButton);
 
         BombermanGame.root.getChildren().remove(instructionButton);
         BombermanGame.root.getChildren().remove(exitGameButton);
         BombermanGame.root.getChildren().remove(gameVuiButton);
     }
-
 
 
 }

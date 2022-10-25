@@ -22,8 +22,10 @@ import java.util.List;
 
 import static main.settings.PropertiesConstant.*;
 import static main.settings.PropertiesStatic.*;
+import static main.settings.StatusGame.GAME_OVER;
+import static main.settings.StatusGame.status;
 
-public class GameTraining {
+public class GameSurvival {
     private GraphicsContext gc;
 
     private MapGame mapGame;
@@ -60,7 +62,7 @@ public class GameTraining {
         update();
     }
 
-    public GameTraining(Canvas canvas) throws IOException {
+    public GameSurvival(Canvas canvas) throws IOException {
         this.canvas = canvas;
         checkCollision = new CheckCollision();
         gc = this.canvas.getGraphicsContext2D();
@@ -96,6 +98,10 @@ public class GameTraining {
         if (bomberman.getIsRemove()) {
             sound.stop();
             lifeBomber--;
+            if(lifeBomber < 0) {
+                status = GAME_OVER;
+                return;
+            }
             setGameDefault();
             return;
         }
