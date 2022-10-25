@@ -8,6 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import main.BombermanGame;
 import main.general.ReadFileScore;
 
@@ -21,14 +24,14 @@ import java.util.ArrayList;
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
 import static main.settings.PropertiesStatic.score;
-import static main.settings.StatusGame.GAME_MENU;
-import static main.settings.StatusGame.status;
+import static main.settings.StatusGame.*;
 
 public class GameOver {
     private final double SCALE_BUTTON = 1.2;
     private GraphicsContext gc;
     Image backGroundImage;
     Image logo;
+    Image notify;
     Button startMenuButton = new Button();
     Button exitGameButton = new Button();
     int xRender = 0;
@@ -40,6 +43,7 @@ public class GameOver {
 
         backGroundImage = new Image(Files.newInputStream(Paths.get("res\\textures\\StartGame\\bg.png")));
         logo = new Image(Files.newInputStream(Paths.get("res\\textures\\StartGame\\logo2.png")));
+        notify = new Image(Files.newInputStream(Paths.get("res\\textures\\StartGame\\listScore.png")));
         setStartMenuButton();
         setExitGameButton();
 
@@ -53,6 +57,10 @@ public class GameOver {
     public void startLoop() {
         gc.drawImage(backGroundImage, -xRender, 0, WIDTH, HEIGHT);
         gc.drawImage(backGroundImage, WIDTH - xRender, 0, WIDTH, HEIGHT);
+        gc.drawImage(logo, (WIDTH - logo.getWidth()) / 2, 50);
+
+        // render notify to center of screen
+        gc.drawImage(notify, (WIDTH - notify.getWidth()) / 2, 200);
         drawScore();
         xRender++;
         if (xRender == WIDTH) xRender = 0;
@@ -60,9 +68,19 @@ public class GameOver {
     }
 
     private void drawScore() {
-        gc.fillText("Score: " + score, 50, 50);
+        // set text bold
+        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        gc.setFont(font);
+
+        Text text = new Text("Your score: " + score);
+        gc.fillText(text.getText(), (WIDTH - text.getLayoutBounds().getWidth()) / 2 - 25, 230);
+
+        text = new Text("High score: ");
+        gc.fillText(text.getText(), (WIDTH - text.getLayoutBounds().getWidth()) / 2 - 20, 268);
+
         for (int i = 0; i < 5 && i < listScore.size(); i++) {
-            gc.fillText("Score: " + listScore.get(i), 50, 100 + i * 50);
+            text = new Text("Top " + (i + 1) + ": " + listScore.get(i));
+            gc.fillText(text.getText(), (WIDTH - text.getLayoutBounds().getWidth()) / 2 - 20, 305 + i * 38);
         }
     }
 
@@ -88,7 +106,7 @@ public class GameOver {
             @Override
             public void handle(ActionEvent arg0) {
                 // TODO Auto-generated method stub
-                status = GAME_MENU;
+                status = GAME_SETTING_MENU;
                 removeButtonInRoot();
             }
         });

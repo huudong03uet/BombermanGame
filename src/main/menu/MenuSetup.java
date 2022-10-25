@@ -91,7 +91,7 @@ public class MenuSetup {
     public void addGameMenu() {
         game.getItems().addAll(gameMenuReturn, gameMenuNewGame, gameMenuPause, gameMenuContinue, gameMenuExit);
         gameMenuReturn.setOnAction(event -> {
-            status = GAME_MENU;
+            status = GAME_SETTING_MENU;
         });
         gameMenuNewGame.setOnAction(event -> {
             status = GAME_RESTART_LEVEL;

@@ -7,7 +7,7 @@ import main.entities.Entity;
 import main.entities.bomb.Bomb;
 import main.entities.bomb.Flame;
 import main.entities.bomber.Bomber;
-import main.entities.enemy.Pass;
+import main.entities.enemy.*;
 import main.entities.tile.Brick;
 import main.general.CheckCollision;
 import main.general.TimeGame;
@@ -108,6 +108,20 @@ public class GameSurvival {
 
         for (int i = 0; i < enemies.size(); i++) {
             if (enemies.get(i).getIsRemove()) {
+                Object object = enemies.get(i);
+                if (object instanceof Balloom) {
+                    enemies.add(new Balloom(1, 2));
+                } else if(object instanceof Doll) {
+                    enemies.add(new Doll(1, 2));
+                } else if(object instanceof Oneal) {
+                    enemies.add(new Oneal(1, 2));
+                } else if(object instanceof Minvo) {
+                    enemies.add(new Minvo(1, 2));
+                } else if(object instanceof Kondoria) {
+                    enemies.add(new Kondoria(1, 2));
+                } else if(object instanceof Ghost) {
+                    enemies.add(new Ghost(1, 2));
+                }
                 enemies.remove(i);
             }
         }

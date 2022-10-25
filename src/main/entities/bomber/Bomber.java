@@ -15,8 +15,7 @@ import static java.lang.Math.abs;
 import static main.map.MapGame.level;
 import static main.settings.PropertiesConstant.*;
 import static main.settings.PropertiesStatic.*;
-import static main.settings.StatusGame.GAME_CHANGE_LEVEL;
-import static main.settings.StatusGame.status;
+import static main.settings.StatusGame.*;
 
 
 public class Bomber extends CanMoveEntity {
@@ -206,9 +205,9 @@ public class Bomber extends CanMoveEntity {
             hasIsItem = true;
             level++;
             if(level == 6) {
-                level = 5;
+                status = GAME_OVER;
             }
-            status = GAME_CHANGE_LEVEL;
+            else status = GAME_CHANGE_LEVEL;
         }
 
         if (hasIsItem == true) {

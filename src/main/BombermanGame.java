@@ -9,7 +9,7 @@ import main.menu.MenuSetup;
 import static main.settings.PropertiesConstant.*;
 
 public class BombermanGame extends Application {
-    private boolean isServer = true;
+   // private boolean isServer = true;
    // private NetworkConnection networkConnection= isServer ? createServer() : createClient();
 
     public static void main(String[] args) {
@@ -24,11 +24,9 @@ public class BombermanGame extends Application {
         stage.setScene(scene);
         stage.setTitle(TITLE);
         stage.show();
+
         MenuSetup menu = new MenuSetup();
-
-
         GameFrame gameFrame = new GameFrame();
-
 
         menu.setMenuBar(root);
         gameFrame.start(stage);

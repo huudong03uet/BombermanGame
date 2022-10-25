@@ -14,6 +14,7 @@ import main.keyEvent.KeyEventGame;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import static main.BombermanGame.root;
 import static main.map.MapGame.level;
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
@@ -22,18 +23,16 @@ import static main.settings.StatusGame.*;
 
 public class GameFrame {
     private Canvas canvas;
-
     GameStart gameStart;
     GamePlay gamePlay;
     GameSurvival gameTraining;
     GameOver gameOver;
 
-
     KeyEventGame keyEventGame = new KeyEventGame();
 
     public GameFrame() {
         canvas = new Canvas(WIDTH, HEIGHT);
-        BombermanGame.root.getChildren().add(canvas);
+        root.getChildren().add(canvas);
     }
 
     public void start(Stage stage) throws Exception {
@@ -116,6 +115,7 @@ public class GameFrame {
 
                 }
                 if (status == GAME_CHANGE_LEVEL) {
+
                     GeneralStatic.changeLevel(level);
                     GeneralStatic.renderLevelBackground(canvas);
                     status = GAME_RESTART_LEVEL;

@@ -19,6 +19,7 @@ import java.net.URL;
 
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
+import static main.settings.PropertiesStatic.score;
 import static main.settings.StatusGame.*;
 
 public class GameStart {
@@ -86,6 +87,7 @@ public class GameStart {
                 // TODO Auto-generated method stub
                 isSurvival = false;
                 status = GAME_CHANGE_LEVEL;
+                score = 0;
                 removeButtonInRoot();
             }
         });
@@ -129,6 +131,7 @@ public class GameStart {
             // TODO Auto-generated method stub
             isSurvival = true;
             status = GAME_CHANGE_LEVEL;
+            score = 0;
             removeButtonInRoot();
         });
 
