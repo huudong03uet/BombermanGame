@@ -321,8 +321,8 @@ public class Bomber extends CanMoveEntity {
 
     @Override
     public void increaseScore() {
-        score -= 100;
-        if(score < 100) {
+        score -= 0;
+        if(score < 0) {
             score = 0;
         }
     }

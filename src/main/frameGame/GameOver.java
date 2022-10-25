@@ -9,16 +9,20 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import main.BombermanGame;
+import main.general.ReadFileScore;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
-import static main.settings.StatusGame.*;
+import static main.settings.PropertiesStatic.score;
+import static main.settings.StatusGame.GAME_MENU;
+import static main.settings.StatusGame.status;
 
 public class GameOver {
     private final double SCALE_BUTTON = 1.2;
@@ -28,25 +32,38 @@ public class GameOver {
     Button startMenuButton = new Button();
     Button exitGameButton = new Button();
     int xRender = 0;
+    ReadFileScore readFileScore = new ReadFileScore();
+    ArrayList<Integer> listScore = new ArrayList<>();
 
     public GameOver(Canvas canvas) throws IOException {
         gc = canvas.getGraphicsContext2D();
 
         backGroundImage = new Image(Files.newInputStream(Paths.get("res\\textures\\StartGame\\bg.png")));
         logo = new Image(Files.newInputStream(Paths.get("res\\textures\\StartGame\\logo2.png")));
-            setStartMenuButton();
-            setExitGameButton();
+        setStartMenuButton();
+        setExitGameButton();
 
-            BombermanGame.root.getChildren().add(startMenuButton);
-            BombermanGame.root.getChildren().add(exitGameButton);
+        readFileScore.addScore(score);
+        listScore = readFileScore.readScore();
+
+        BombermanGame.root.getChildren().add(startMenuButton);
+        BombermanGame.root.getChildren().add(exitGameButton);
     }
 
     public void startLoop() {
         gc.drawImage(backGroundImage, -xRender, 0, WIDTH, HEIGHT);
         gc.drawImage(backGroundImage, WIDTH - xRender, 0, WIDTH, HEIGHT);
+        drawScore();
         xRender++;
         if (xRender == WIDTH) xRender = 0;
         gc.drawImage(logo, (WIDTH - logo.getWidth()) / 2, 50);
+    }
+
+    private void drawScore() {
+        gc.fillText("Score: " + score, 50, 50);
+        for (int i = 0; i < 5 && i < listScore.size(); i++) {
+            gc.fillText("Score: " + listScore.get(i), 50, 100 + i * 50);
+        }
     }
 
 
