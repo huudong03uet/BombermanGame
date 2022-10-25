@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import main.frameGame.GameOver;
 import main.frameGame.GamePlay;
 import main.frameGame.GameStart;
 import main.frameGame.GameTraining;
@@ -18,13 +19,14 @@ import static main.settings.PropertiesConstant.WIDTH;
 import static main.settings.StatusGame.*;
 
 
-
 public class GameFrame {
     private Canvas canvas;
 
     GameStart gameStart;
     GamePlay gamePlay;
     GameTraining gameTraining;
+    GameOver gameOver;
+
 
     KeyEventGame keyEventGame = new KeyEventGame();
 
@@ -41,16 +43,25 @@ public class GameFrame {
         gamePlay = new GamePlay(canvas);
         gameTraining = new GameTraining(canvas);
 
+
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                if(status == GAME_MENU) {
+
+                if (status == GAME_MENU) {
                     gameStart.startLoop();
                 }
                 if (status == GAME_PLAY) {
                     gamePlay.gameLoop();
+                    if (status == GAME_OVER) {
+                        try {
+                            gameOver = new GameOver(canvas);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
-                if(status == GAME_TRAINING) {
+                if (status == GAME_TRAINING) {
                     gameTraining.gameLoop();
                 }
 
@@ -58,7 +69,7 @@ public class GameFrame {
 
                 }
                 if (status == GAME_OVER) {
-                    status = GAME_EXIT;
+                    gameOver.startLoop();
                 }
                 if (status == GAME_WIN) {
                     status = GAME_EXIT;
@@ -71,7 +82,7 @@ public class GameFrame {
                 }
                 if (status == GAME_RESTART_LEVEL) {
                     try {
-                        if(isTraining) {
+                        if (isTraining) {
                             gameTraining.setGameDefault();
                             status = GAME_TRAINING;
                         } else {
@@ -101,6 +112,7 @@ public class GameFrame {
 
             }
         };
+
         timer.start();
     }
 }

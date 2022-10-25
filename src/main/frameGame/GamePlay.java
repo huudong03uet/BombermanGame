@@ -22,6 +22,7 @@ import java.util.List;
 
 import static main.settings.PropertiesConstant.*;
 import static main.settings.PropertiesStatic.*;
+import static main.settings.StatusGame.*;
 
 public class GamePlay {
     private GraphicsContext gc;
@@ -96,6 +97,10 @@ public class GamePlay {
         if (bomberman.getIsRemove()) {
             sound.stop();
             lifeBomber--;
+            if(lifeBomber == 0) {
+                status = GAME_OVER;
+                return;
+            }
             setGameDefault();
             return;
         }
