@@ -9,6 +9,7 @@ import java.io.File;
 public class Sound {
     private Clip clip;
     private String[] sound = new String[10];
+    long clipTimePosition;
 
     public Sound() {
         // sound[0] = "res\\muzik\\backGround2.wav";
@@ -19,13 +20,14 @@ public class Sound {
         sound[3] = "res\\muzik\\crash_wall.wav";
         sound[4] = "res\\muzik\\enemy_die.wav";
         sound[5] = "res\\muzik\\item.wav";
+        clipTimePosition = 0;
     }
 
     public void setFile(int i) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(sound[i]).getAbsoluteFile());
             clip = AudioSystem.getClip();
-        //    clip.open(audioInputStream);
+            clip.open(audioInputStream);
         } catch (Exception ex) {
             System.out.println("Error with playing sound.");
 
@@ -34,7 +36,7 @@ public class Sound {
 
     public void playMuzik(int i) {
         setFile(i);
-     //   clip.start();
+        clip.start();
         clip.loop(-1);
     }
 
@@ -42,17 +44,25 @@ public class Sound {
         if(clip == null) {
             playMuzik(i);
         }
-        if(!clip.isRunning()) {
-            clip.stop();
-             clip.start();
-             clip.loop(-1);
+        else if(clip.isRunning()) {
+            stop();
+             //clip.start();
+             //clip.loop(-1);
         }
     }
 
     public void stop() {
         clip.stop();
     }
+    public void pause() {
+        clipTimePosition = clip.getMicrosecondPosition();
+        stop();
+    }
 
+    public void resume() {
+        clip.setMicrosecondPosition(clipTimePosition);
+        clip.start();
+    }
     public void playSE(int i) {
         setFile(i);
         clip.start();

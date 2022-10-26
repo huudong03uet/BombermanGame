@@ -26,6 +26,7 @@ public class PropertiesStatic {
     // 2: left
     // 3: up
 
+    public static boolean isPlayingMuzik = false;
     public static boolean placeBomb = false;
     public final static boolean PLACE_BOMB_DEFAULT = false;
     public static int lengthFlameDefault = 1;
@@ -41,6 +42,7 @@ public class PropertiesStatic {
     public static int score = 0;
     public static int timeRemain = 0;
     public static int lifeBomber = 0;
+    public static int LIFE_DEFAULT = 1;
 
 
     public static void setSettingGameDefault() {

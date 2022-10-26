@@ -7,6 +7,8 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import main.general.GeneralStatic;
+import main.soundSetting.Sound;
+import main.soundSetting.Sound.*;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -15,8 +17,10 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 import static main.settings.StatusGame.*;
+import static main.soundSetting.Sound.*;
 
 public class MenuSetup {
+    public Sound sound = new Sound();
     public MenuBar menuBar = new MenuBar();
     public MenuSelectionManager menuSelectionManager = new MenuSelectionManager();
 
@@ -139,6 +143,8 @@ public class MenuSetup {
         });
         optionsMenuMusic.setOnAction(e -> {
             System.out.println("Music");
+            
+            sound.pause();
         });
         optionsMenuControl.setOnAction(e -> {
             System.out.println("Control");

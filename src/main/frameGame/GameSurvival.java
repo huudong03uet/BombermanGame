@@ -79,7 +79,7 @@ public class GameSurvival {
         flames = new ArrayList<>();
         mapGame = new MapGame();
         bomberman = new Bomber(1, 2);
-        sound.isPlayMuzik(0);
+        //sound.isPlayMuzik(0);
         infoPlayer = new InfoPlayer();
         timeGame = new TimeGame();
         PropertiesStatic.setSettingGameDefault();
