@@ -42,7 +42,6 @@ public class GameFrame {
         gamePlay = new GamePlay(canvas);
         gameTraining = new GameSurvival(canvas);
 
-
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
