@@ -27,6 +27,7 @@ public class PropertiesStatic {
     // 3: up
 
     public static boolean isPlayingMuzik = false;
+    public static boolean isPlayingSound = true;
     public static boolean placeBomb = false;
     public final static boolean PLACE_BOMB_DEFAULT = false;
     public static int lengthFlameDefault = 1;

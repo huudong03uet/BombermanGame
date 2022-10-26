@@ -19,7 +19,7 @@ import static main.BombermanGame.root;
 import static main.map.MapGame.level;
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
-import static main.settings.PropertiesStatic.isPlayingMuzik;
+
 import static main.settings.StatusGame.*;
 
 
@@ -31,7 +31,6 @@ public class GameFrame {
     GameOver gameOver;
 
     KeyEventGame keyEventGame = new KeyEventGame();
-    Sound sound = new Sound();
 
     public GameFrame() {
         canvas = new Canvas(WIDTH, HEIGHT);
@@ -44,8 +43,6 @@ public class GameFrame {
 
         gamePlay = new GamePlay(canvas);
         gameTraining = new GameSurvival(canvas);
-        sound.playMuzik(0);
-
 
         AnimationTimer timer = new AnimationTimer() {
             @Override

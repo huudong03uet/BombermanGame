@@ -16,8 +16,10 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import static main.settings.PropertiesStatic.isPlayingSound;
 import static main.settings.StatusGame.*;
 import static main.soundSetting.Sound.*;
+import static main.settings.PropertiesStatic.isPlayingMuzik;
 
 public class MenuSetup {
     public Sound sound = new Sound();
@@ -139,12 +141,22 @@ public class MenuSetup {
     public void addOptionsMenu() {
         options.getItems().addAll(optionsMenuSound, optionsMenuMusic, optionsMenuControl);
         optionsMenuSound.setOnAction(e -> {
+            if(isPlayingSound) {
+                isPlayingSound = false;
+            }
+            else {
+                isPlayingSound = true;
+            }
             System.out.println("Sound");
         });
         optionsMenuMusic.setOnAction(e -> {
             System.out.println("Music");
-            
-            sound.pause();
+            if(isPlayingMuzik) {
+                sound.pause();
+            }
+            else {
+                sound.resume();
+            }
         });
         optionsMenuControl.setOnAction(e -> {
             System.out.println("Control");

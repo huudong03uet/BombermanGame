@@ -79,7 +79,6 @@ public class GamePlay {
         mapGame = new MapGame();
         bomberman = new Bomber(1, 2);
         sound.isPlayMuzik(0);
-        sound.stop();
         infoPlayer = new InfoPlayer();
         timeGame = new TimeGame();
         PropertiesStatic.setSettingGameDefault();

@@ -5,9 +5,10 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
+import static main.settings.PropertiesStatic.*;
 
 public class Sound {
-    private Clip clip;
+    private static Clip clip;
     private String[] sound = new String[10];
     long clipTimePosition;
 
@@ -38,21 +39,18 @@ public class Sound {
         setFile(i);
         clip.start();
         clip.loop(-1);
+        isPlayingMuzik = true;
     }
 
     public void isPlayMuzik(int i) {
-        if(clip == null) {
+        if (clip == null) {
             playMuzik(i);
-        }
-        else if(clip.isRunning()) {
-            stop();
-             //clip.start();
-             //clip.loop(-1);
         }
     }
 
     public void stop() {
         clip.stop();
+        isPlayingMuzik = false;
     }
     public void pause() {
         clipTimePosition = clip.getMicrosecondPosition();
@@ -62,9 +60,12 @@ public class Sound {
     public void resume() {
         clip.setMicrosecondPosition(clipTimePosition);
         clip.start();
+        isPlayingMuzik = true;
     }
     public void playSE(int i) {
         setFile(i);
-        clip.start();
+        if(isPlayingSound) {
+            clip.start();
+        }
     }
 }
