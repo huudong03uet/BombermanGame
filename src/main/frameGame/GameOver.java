@@ -69,7 +69,7 @@ public class GameOver {
 
     private void drawScore() {
         // set text bold
-        Font font = Font.font("Arial", FontWeight.BOLD, 20);
+        Font font = Font.font("Liberation Serif", FontWeight.BOLD, 20);
         gc.setFont(font);
 
         Text text = new Text("Your score: " + score);

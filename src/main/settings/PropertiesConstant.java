@@ -27,7 +27,7 @@ public final class PropertiesConstant {
     /**
      * The size of the screen according to the number of pixels.
      */
-    public final static int WIDTH = 16 * TILE_SIZE * SCALE;
+    public final static int WIDTH = 17 * TILE_SIZE * SCALE;
     public final static int HEIGHT = 14 * TILE_SIZE * SCALE;
 
 

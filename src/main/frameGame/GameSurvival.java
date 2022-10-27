@@ -39,7 +39,6 @@ public class GameSurvival {
 
     private List<Entity> stillObjects;
     private List<Entity> items;
-    private Sound sound = new Sound();
     private Sound enemyDieSound = new Sound();
     private Canvas canvas;
 
@@ -66,7 +65,6 @@ public class GameSurvival {
         this.canvas = canvas;
         checkCollision = new CheckCollision();
         gc = this.canvas.getGraphicsContext2D();
-
         setGameDefault();
     }
 
@@ -79,7 +77,7 @@ public class GameSurvival {
         flames = new ArrayList<>();
         mapGame = new MapGame();
         bomberman = new Bomber(1, 2);
-        //sound.isPlayMuzik(0);
+
         infoPlayer = new InfoPlayer();
         timeGame = new TimeGame();
         PropertiesStatic.setSettingGameDefault();
@@ -96,7 +94,6 @@ public class GameSurvival {
 
     public void remove() throws IOException {
         if (bomberman.getIsRemove()) {
-            sound.stop();
             lifeBomber--;
             if(lifeBomber < 0) {
                 status = GAME_OVER;

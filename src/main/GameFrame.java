@@ -3,6 +3,7 @@ package main;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.frameGame.GameOver;
 import main.frameGame.GamePlay;
@@ -10,6 +11,7 @@ import main.frameGame.GameStart;
 import main.frameGame.GameSurvival;
 import main.general.GeneralStatic;
 import main.keyEvent.KeyEventGame;
+import main.soundSetting.ListMusic;
 import main.soundSetting.Sound;
 
 import java.io.FileNotFoundException;
@@ -19,18 +21,21 @@ import static main.BombermanGame.root;
 import static main.map.MapGame.level;
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
-
+import static main.settings.PropertiesStatic.lifeBomber;
 import static main.settings.StatusGame.*;
 
 
 public class GameFrame {
     private Canvas canvas;
-    GameStart gameStart;
-    GamePlay gamePlay;
-    GameSurvival gameTraining;
-    GameOver gameOver;
+    private GameStart gameStart;
+    private GamePlay gamePlay;
+    private GameSurvival gameTraining;
+    private GameOver gameOver;
+    private Sound sound = new Sound();
+    private ListMusic listMusic = new ListMusic();
 
     KeyEventGame keyEventGame = new KeyEventGame();
+    MouseEvent mouseEvent;
 
     public GameFrame() {
         canvas = new Canvas(WIDTH, HEIGHT);
@@ -41,18 +46,27 @@ public class GameFrame {
         stage.addEventHandler(KeyEvent.KEY_PRESSED, keyEventGame.getKeyEventGame());
         stage.addEventHandler(KeyEvent.KEY_RELEASED, keyEventGame.getKeyEventGame1());
 
+        stage.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+            mouseEvent = e;
+            listMusic.click(mouseEvent);
+        });
+
+
         gamePlay = new GamePlay(canvas);
         gameTraining = new GameSurvival(canvas);
+        sound.isPlayMuzik(0);
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                if(status == GAME_SETTING_MENU) {
+
+                if (status == GAME_SETTING_MENU) {
                     try {
                         gameStart = new GameStart(canvas);
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);
                     }
+                    lifeBomber = 3;
                     status = GAME_MENU;
                 }
                 if (status == GAME_MENU) {
@@ -125,6 +139,7 @@ public class GameFrame {
                 if (status == GAME_CHANGE_DIFFICULTY) {
                     status = GAME_CHANGE_LEVEL;
                 }
+                listMusic.draw(canvas.getGraphicsContext2D());
 
             }
         };

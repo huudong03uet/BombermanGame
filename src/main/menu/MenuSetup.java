@@ -8,7 +8,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import main.general.GeneralStatic;
 import main.soundSetting.Sound;
-import main.soundSetting.Sound.*;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -18,8 +17,6 @@ import java.net.URL;
 
 import static main.settings.PropertiesStatic.isPlayingSound;
 import static main.settings.StatusGame.*;
-import static main.soundSetting.Sound.*;
-import static main.settings.PropertiesStatic.isPlayingMuzik;
 
 public class MenuSetup {
     public Sound sound = new Sound();
@@ -60,7 +57,6 @@ public class MenuSetup {
      */
     public Menu options = new Menu(" Options ");
     public MenuItem optionsMenuSound = new MenuItem("Sound");
-    public MenuItem optionsMenuMusic = new MenuItem("Music");
     public MenuItem optionsMenuControl = new MenuItem("Control");
 
     /**
@@ -69,15 +65,7 @@ public class MenuSetup {
     public Menu helpMenu = new Menu(" Help ");
     public MenuItem helpMenuInstruction = new MenuItem("Instruction");
     public MenuItem helpMenuAbout = new MenuItem("About");
-    public MenuItem helpMenuUpdate = new MenuItem("Update");
-    public MenuItem helpMenuContact = new MenuItem("Contact");
-    public MenuItem helpMenuReport = new MenuItem("Report");
-    public MenuItem helpMenuFeedback = new MenuItem("Feedback");
-    public MenuItem helpMenuDonate = new MenuItem("Donate");
-    public MenuItem helpMenuRate = new MenuItem("Rate");
-    public MenuItem helpMenuShare = new MenuItem("Share");
-    public MenuItem helpMenuMore = new MenuItem("More");
-    public MenuItem helpMenuPrivacy = new MenuItem("Privacy");
+
     public MenuItem gameOther = new MenuItem("Game other");
 
 
@@ -139,7 +127,8 @@ public class MenuSetup {
      * - Control
      */
     public void addOptionsMenu() {
-        options.getItems().addAll(optionsMenuSound, optionsMenuMusic, optionsMenuControl);
+
+        options.getItems().addAll( optionsMenuSound, optionsMenuControl);
         optionsMenuSound.setOnAction(e -> {
             if(isPlayingSound) {
                 isPlayingSound = false;
@@ -147,17 +136,8 @@ public class MenuSetup {
             else {
                 isPlayingSound = true;
             }
-            System.out.println("Sound");
         });
-        optionsMenuMusic.setOnAction(e -> {
-            System.out.println("Music");
-            if(isPlayingMuzik) {
-                sound.pause();
-            }
-            else {
-                sound.resume();
-            }
-        });
+
         optionsMenuControl.setOnAction(e -> {
             System.out.println("Control");
         });

@@ -42,7 +42,7 @@ public class PropertiesStatic {
 
     public static int score = 0;
     public static int timeRemain = 0;
-    public static int lifeBomber = 0;
+    public static int lifeBomber = 3;
     public static int LIFE_DEFAULT = 1;
 
 
