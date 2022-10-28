@@ -32,18 +32,17 @@ public class ListMusic {
             try {
                 // TODO: add more music
                 media = new LinkedList<>();
-                media.add(new Media(ListMusic.class.getResource("/muzik/Music/2_Phut_Hon.mp3").toURI().toString()));
-                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Levi_AMV.mp3").toURI().toString()));
-                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Hestisztd.mp3").toURI().toString()));
-                media.add(new Media(ListMusic.class.getResource("/muzik/Music/No_Friends.mp3").toURI().toString()));
-                media.add(new Media(ListMusic.class.getResource("/muzik/Music/I_Want_You_To_Know_Remix.mp3").toURI().toString()));
-                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Rise_Up.mp3").toURI().toString()));
-                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Plain_Jane.mp3").toURI().toString()));
-                media.add(new Media(ListMusic.class.getResource("/muzik/Music/That_Girl_Remix.mp3").toURI().toString()));
-                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Lost_Sky.mp3").toURI().toString()));
-                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Warriyo.mp3").toURI().toString()));
-                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Ai_No.mp3").toURI().toString()));
-                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Nightcore_Centuries.mp3").toURI().toString()));
+                media.add(new Media(ListMusic.class.getResource("/muzik/Music/5_Seconds_of_Summer.mp3").toURI().toString()));
+                media.add(new Media(ListMusic.class.getResource("/muzik/Music/CHAM_LAI.mp3").toURI().toString()));
+                media.add(new Media(ListMusic.class.getResource("/muzik/Music/LSD_Genius.mp3").toURI().toString()));
+                media.add(new Media(ListMusic.class.getResource("/muzik/Music/nam_ngoai_gio_nay.mp3").toURI().toString()));
+                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Tinh_Yeu_Xanh_La.mp3").toURI().toString()));
+                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Waiting_For_You.mp3").toURI().toString()));
+                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Thay_chua.mp3").toURI().toString()));
+                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Wait_A_Minute!.mp3").toURI().toString()));
+                media.add(new Media(ListMusic.class.getResource("/muzik/Music/ilomilo.mp3").toURI().toString()));
+                media.add(new Media(ListMusic.class.getResource("/muzik/Music/Shinunoga_E_wa.mp3").toURI().toString()));
+                media.add(new Media(ListMusic.class.getResource("/muzik/Music/YOASOBI.mp3").toURI().toString()));
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
