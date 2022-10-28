@@ -6,24 +6,35 @@ import java.net.Socket;
 import java.util.function.Consumer;
 
 public abstract class NetworkConnection {
-    private ConnectionThread connThread = new ConnectionThread();
+    private ConnectionThread connectionThread = new ConnectionThread();
     private Consumer<Serializable> onReceiveCallback;
 
     public NetworkConnection(Consumer<Serializable> onReceiveCallback) {
         this.onReceiveCallback = onReceiveCallback;
-        connThread.setDaemon(true);
+        connectionThread.setDaemon(true);
     }
 
     public void startConnection() throws Exception {
-        connThread.start();
+        connectionThread.start();
     }
 
+    /**
+     * Send data to the other side of the connection
+     *
+     * @param data
+     * @throws Exception
+     */
     public void send(Serializable data) throws Exception {
-        connThread.out.writeObject(data);
+        connectionThread.out.writeObject(data);
     }
 
+    /**
+     * Close the connection
+     *
+     * @throws Exception
+     */
     public void closeConnection() throws Exception {
-        connThread.socket.close();
+        connectionThread.socket.close();
     }
 
     protected abstract boolean isServer();
