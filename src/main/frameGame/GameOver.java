@@ -24,9 +24,10 @@ import java.util.ArrayList;
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
 import static main.settings.PropertiesStatic.score;
-import static main.settings.StatusGame.*;
+import static main.settings.StatusGame.GAME_SETTING_MENU;
+import static main.settings.StatusGame.status;
 
-public class GameOver {
+public class GameOver implements Frame {
     private final double SCALE_BUTTON = 1.2;
     private GraphicsContext gc;
     Image backGroundImage;

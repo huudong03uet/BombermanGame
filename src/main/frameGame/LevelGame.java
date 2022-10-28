@@ -23,7 +23,7 @@ import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
 import static main.settings.StatusGame.*;
 
-public class LevelGame {
+public class LevelGame implements Frame {
     private final double SCALE_BUTTON = 1.2;
     private GraphicsContext gc;
     Image backGroundImage;

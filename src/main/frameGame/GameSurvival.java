@@ -25,7 +25,7 @@ import static main.settings.PropertiesStatic.*;
 import static main.settings.StatusGame.GAME_OVER;
 import static main.settings.StatusGame.status;
 
-public class GameSurvival {
+public class GameSurvival implements Frame {
     private GraphicsContext gc;
 
     private MapGame mapGame;

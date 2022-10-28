@@ -24,7 +24,7 @@ import static main.settings.PropertiesConstant.*;
 import static main.settings.PropertiesStatic.*;
 import static main.settings.StatusGame.*;
 
-public class GamePlay {
+public class GamePlay implements Frame {
     private GraphicsContext gc;
 
     private MapGame mapGame;

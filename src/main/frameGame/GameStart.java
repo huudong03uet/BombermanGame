@@ -22,7 +22,7 @@ import static main.settings.PropertiesConstant.WIDTH;
 import static main.settings.PropertiesStatic.score;
 import static main.settings.StatusGame.*;
 
-public class GameStart {
+public class GameStart implements Frame {
     private final double SCALE_BUTTON = 1.2;
     private GraphicsContext gc;
     Image backGroundImage;
