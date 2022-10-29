@@ -48,7 +48,7 @@ public class GameFrame {
 
         stage.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             mouseEvent = e;
-            listMusic.click(mouseEvent);
+            listMusic.update(mouseEvent);
         });
 
 
@@ -139,6 +139,7 @@ public class GameFrame {
                 if (status == GAME_CHANGE_DIFFICULTY) {
                     status = GAME_CHANGE_LEVEL;
                 }
+<<<<<<< HEAD
                 if(status == GAME_INSTRUCTION_SETTING) {
                     try {
                         gameInstruction = new GameInstruction(canvas.getGraphicsContext2D());
@@ -151,6 +152,10 @@ public class GameFrame {
                     gameInstruction.startLoop();
                 }
                 listMusic.draw(canvas.getGraphicsContext2D());
+=======
+                listMusic.render(canvas.getGraphicsContext2D());
+
+>>>>>>> 4036d9c008cbd3acce7be3f6795dd1335895577a
             }
         };
 

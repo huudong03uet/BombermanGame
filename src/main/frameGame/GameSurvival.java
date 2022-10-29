@@ -25,7 +25,7 @@ import static main.settings.PropertiesStatic.*;
 import static main.settings.StatusGame.GAME_OVER;
 import static main.settings.StatusGame.status;
 
-public class GameSurvival {
+public class GameSurvival implements Frame {
     private GraphicsContext gc;
 
     private MapGame mapGame;
@@ -57,7 +57,7 @@ public class GameSurvival {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        infoPlayer.drawInfoPlayer(gc);
+        infoPlayer.render(gc);
         update();
     }
 

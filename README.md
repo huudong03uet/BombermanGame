@@ -2,15 +2,15 @@
 ## **Nhóm 44.**
 
 ## **Mục lục**
-1. [Thành viên](#thanh_vien)
-1. [Giới thiệu](#2-giới-thiệu)
-3. [Mô tả về các đối tượng trong trò chơi](#3-mô-tả-về-các-đối-tượng-trong-trò-chơi)
-4. [Controls and Options](#4-controls-and-options)
-5. [Chức năng đã làm theo yêu cầu](#5-chức-năng-đã-làm-theo-yêu-cầu)
-6. [Chức năng làm thêm](#6-chức-năng-làm-thêm)
-7. [Thư viện, IDE sử dụng](#7-thư-viện-ide-sử-dụng)
-8. [UML Diagram](#8-uml-diagram)
-9. [Demo](#9-demo)
+1. [Thành viên](https://github.com/huudong03uet/BombermanGame#1-th%C3%A0nh-vi%C3%AAn)
+1. [Giới thiệu](https://github.com/huudong03uet/BombermanGame#2-gi%E1%BB%9Bi-thi%E1%BB%87u)
+3. [Mô tả về các đối tượng trong trò chơi](https://github.com/huudong03uet/BombermanGame#3-m%C3%B4-t%E1%BA%A3-v%E1%BB%81-c%C3%A1c-%C4%91%E1%BB%91i-t%C6%B0%E1%BB%A3ng-trong-tr%C3%B2-ch%C6%A1i)
+4. [Controls and Options](https://github.com/huudong03uet/BombermanGame#4-controls-and-options)
+5. [Chức năng đã làm theo yêu cầu](https://github.com/huudong03uet/BombermanGame#5-ch%E1%BB%A9c-n%C4%83ng-%C4%91%C3%A3-l%C3%A0m-theo-y%C3%AAu-c%E1%BA%A7u)
+6. [Chức năng làm thêm](https://github.com/huudong03uet/BombermanGame#6-ch%E1%BB%A9c-n%C4%83ng-l%C3%A0m-th%C3%AAm)
+7. [Thư viện, IDE sử dụng](https://github.com/huudong03uet/BombermanGame#7-th%C6%B0-vi%E1%BB%87n-ide-s%E1%BB%AD-d%E1%BB%A5ng)
+8. [UML Diagram](https://github.com/huudong03uet/BombermanGame#8-uml-diagram)
+9. [Demo](https://github.com/huudong03uet/BombermanGame#9-demo)
 
 ## **1. Thành viên** 
 ### **Họ và tên: Nguyễn Hữu Đồng**
@@ -143,9 +143,9 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 ## **8. UML Diagram**
 
 ## **9. Demo**
-![](res/readme/startGame.png)
-![](res/readme/playGame.png)
-![](res/readme/endGame.png)
+![](res/readme/startGame.PNG)
+![](res/readme/playGame.PNG)
+![](res/readme/endGame.PNG)
 
 
 

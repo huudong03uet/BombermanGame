@@ -7,13 +7,14 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import main.graphics.Renderable;
 
 import java.net.URISyntaxException;
 import java.util.LinkedList;
 
 import static main.settings.PropertiesConstant.*;
 
-public class ListMusic {
+public class ListMusic implements Renderable {
     private static LinkedList<Media> media = null;
     private ButtonSound playLabel;
     private ButtonSound pauseLabel;
@@ -121,7 +122,12 @@ public class ListMusic {
         musicLabel.setText(media.get(index).getSource().replace(removeResource, "").replace("_", " ").replace(".mp3", ""));
     }
 
-    public void draw(GraphicsContext render) {
+    @Override
+    public void update() {
+
+    }
+
+    public void render(GraphicsContext render) {
         render.setFill(Color.BLACK);
         render.fillRect(0, HEIGHT - TILE_SIZE * SCALE, 1000, TILE_SIZE * SCALE);
 
@@ -140,7 +146,7 @@ public class ListMusic {
         }
     }
 
-    public void click(MouseEvent e) {
+    public void update(MouseEvent e) {
         if (e == null) return;
 
         if (playLabel.isClick(e)) {

@@ -6,18 +6,20 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import main.graphics.Renderable;
 
 import static main.map.MapGame.level;
 import static main.settings.PropertiesConstant.TILE_SIZE;
 import static main.settings.PropertiesConstant.WIDTH;
 import static main.settings.PropertiesStatic.*;
 
-public class InfoPlayer {
+public class InfoPlayer implements Renderable {
     public InfoPlayer() {
 
     }
 
-    public void drawInfoPlayer(GraphicsContext gc) {
+    @Override
+    public void render(GraphicsContext gc) {
 
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, WIDTH, TILE_SIZE * 3);
@@ -33,4 +35,10 @@ public class InfoPlayer {
         gc.fillText("Score: " + score, 550, 30);
         gc.fillText("Lives: " + lifeBomber, 700, 30);
     }
+
+    @Override
+    public void update() {
+
+    }
+
 }

@@ -24,7 +24,7 @@ import static main.settings.PropertiesConstant.*;
 import static main.settings.PropertiesStatic.*;
 import static main.settings.StatusGame.*;
 
-public class GamePlay {
+public class GamePlay implements Frame {
     private GraphicsContext gc;
 
     private MapGame mapGame;
@@ -57,7 +57,7 @@ public class GamePlay {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        infoPlayer.drawInfoPlayer(gc);
+        infoPlayer.render(gc);
         update();
     }
 
