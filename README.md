@@ -143,9 +143,9 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 ## **8. UML Diagram**
 
 ## **9. Demo**
-![](res/readme/startGame.png)
-![](res/readme/playGame.png)
-![](res/readme/endGame.png)
+![](res/readme/startGame.PNG)
+![](res/readme/playGame.PNG)
+![](res/readme/endGame.PNG)
 
 
 
