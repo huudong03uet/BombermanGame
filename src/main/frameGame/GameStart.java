@@ -194,6 +194,9 @@ public class GameStart {
         img.setFitHeight(image.getHeight());
         img.setFitWidth(image.getWidth());
 
+        FileInputStream input1 = new FileInputStream("res\\instruction\\Instruction.png");
+        Image imgIn = new Image(input1);
+
         instructionButton.setGraphic(img);
         instructionButton.setBackground(null);
         instructionButton.setLayoutX((WIDTH - image.getWidth()) / 2);
@@ -202,10 +205,15 @@ public class GameStart {
         instructionButton.setContentDisplay(ContentDisplay.CENTER);
         instructionButton.setText("Instruction");
 
-        instructionButton.setOnAction(arg0 -> {
+        instructionButton.setOnAction(new EventHandler<ActionEvent>() {
             // TODO Auto-generated method stub
-            status = GAME_CHANGE_LEVEL;
-            removeButtonInRoot();
+            @Override
+            public void handle(ActionEvent arg0) {
+                // TODO Auto-generated method stub
+                removeButtonInRoot();
+                status = GAME_INSTRUCTION_SETTING;
+            }
+
         });
 
         instructionButton.setOnMouseEntered(e -> {

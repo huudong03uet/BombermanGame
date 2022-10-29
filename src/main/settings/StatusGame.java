@@ -11,6 +11,7 @@ public class StatusGame {
     public static final int GAME_RESTART_GAME = 6;
     public static final int GAME_TRAINING = 10;
     public static final int GAME_LEVEL = 12;
+    public static final int GAME_INSTRUCTION_SETTING = 98;
     public static boolean isSurvival = false;
 
     /**
@@ -21,6 +22,7 @@ public class StatusGame {
 
     public static final int GAME_CHANGE_LEVEL = 8;
     public static final int GAME_CHANGE_DIFFICULTY = 9;
+    public static final int GAME_INSTRUCTION = 99;
 
     public static int status = GAME_SETTING_MENU;
 }

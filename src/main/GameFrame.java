@@ -5,10 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import main.frameGame.GameOver;
-import main.frameGame.GamePlay;
-import main.frameGame.GameStart;
-import main.frameGame.GameSurvival;
+import main.frameGame.*;
 import main.general.GeneralStatic;
 import main.keyEvent.KeyEventGame;
 import main.soundSetting.ListMusic;
@@ -21,6 +18,7 @@ import static main.BombermanGame.root;
 import static main.map.MapGame.level;
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
+import static main.settings.PropertiesStatic.direction;
 import static main.settings.PropertiesStatic.lifeBomber;
 import static main.settings.StatusGame.*;
 
@@ -33,6 +31,8 @@ public class GameFrame {
     private GameOver gameOver;
     private Sound sound = new Sound();
     private ListMusic listMusic = new ListMusic();
+    private GameInstruction gameInstruction;
+
 
     KeyEventGame keyEventGame = new KeyEventGame();
     MouseEvent mouseEvent;
@@ -55,11 +55,11 @@ public class GameFrame {
         gamePlay = new GamePlay(canvas);
         gameTraining = new GameSurvival(canvas);
         sound.isPlayMuzik(0);
+     //   gameInstruction = new GameInstruction(canvas.getGraphicsContext2D());
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-
                 if (status == GAME_SETTING_MENU) {
                     try {
                         gameStart = new GameStart(canvas);
@@ -139,8 +139,18 @@ public class GameFrame {
                 if (status == GAME_CHANGE_DIFFICULTY) {
                     status = GAME_CHANGE_LEVEL;
                 }
+                if(status == GAME_INSTRUCTION_SETTING) {
+                    try {
+                        gameInstruction = new GameInstruction(canvas.getGraphicsContext2D());
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    status = GAME_INSTRUCTION;
+                }
+                if(status == GAME_INSTRUCTION) {
+                    gameInstruction.startLoop();
+                }
                 listMusic.draw(canvas.getGraphicsContext2D());
-
             }
         };
 
