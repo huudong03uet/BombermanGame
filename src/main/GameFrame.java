@@ -18,7 +18,6 @@ import static main.BombermanGame.root;
 import static main.map.MapGame.level;
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
-import static main.settings.PropertiesStatic.direction;
 import static main.settings.PropertiesStatic.lifeBomber;
 import static main.settings.StatusGame.*;
 
@@ -139,7 +138,6 @@ public class GameFrame {
                 if (status == GAME_CHANGE_DIFFICULTY) {
                     status = GAME_CHANGE_LEVEL;
                 }
-<<<<<<< HEAD
                 if(status == GAME_INSTRUCTION_SETTING) {
                     try {
                         gameInstruction = new GameInstruction(canvas.getGraphicsContext2D());
@@ -151,11 +149,9 @@ public class GameFrame {
                 if(status == GAME_INSTRUCTION) {
                     gameInstruction.startLoop();
                 }
-                listMusic.draw(canvas.getGraphicsContext2D());
-=======
+
                 listMusic.render(canvas.getGraphicsContext2D());
 
->>>>>>> 4036d9c008cbd3acce7be3f6795dd1335895577a
             }
         };
 

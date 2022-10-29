@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import main.BombermanGame;
-import main.general.GeneralStatic;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,12 +17,12 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import static main.map.MapGame.level;
 import static main.settings.PropertiesConstant.HEIGHT;
 import static main.settings.PropertiesConstant.WIDTH;
-import static main.settings.StatusGame.*;
+import static main.settings.StatusGame.GAME_SETTING_MENU;
+import static main.settings.StatusGame.status;
 
-public class GameInstruction {
+public class GameInstruction implements Frame {
     private final double SCALE_BUTTON = 1.2;
     private GraphicsContext gc;
     Image backGroundImage;

@@ -141,7 +141,7 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 - Maven Framework
 
 ## **8. UML Diagram**
-
+![](BombermanGameImage_.png)
 ## **9. Demo**
 ![](res/readme/startGame.PNG)
 ![](res/readme/playGame.PNG)
