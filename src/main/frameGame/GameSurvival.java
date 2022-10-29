@@ -57,7 +57,7 @@ public class GameSurvival implements Frame {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        infoPlayer.drawInfoPlayer(gc);
+        infoPlayer.render(gc);
         update();
     }
 

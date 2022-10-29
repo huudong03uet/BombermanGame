@@ -1,12 +1,10 @@
 package main.entities;
 
 import javafx.scene.image.Image;
-import main.graphics.Renderable;
 
 import static main.settings.PropertiesConstant.*;
 
-public abstract class CanMoveEntity extends AnimateEntity
-        implements Renderable {
+public abstract class CanMoveEntity extends AnimateEntity {
     protected int directionAnimate;
 
     protected int indexAnimate = 0;

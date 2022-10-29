@@ -48,7 +48,7 @@ public class GameFrame {
 
         stage.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             mouseEvent = e;
-            listMusic.click(mouseEvent);
+            listMusic.update(mouseEvent);
         });
 
 
@@ -139,7 +139,7 @@ public class GameFrame {
                 if (status == GAME_CHANGE_DIFFICULTY) {
                     status = GAME_CHANGE_LEVEL;
                 }
-                listMusic.draw(canvas.getGraphicsContext2D());
+                listMusic.render(canvas.getGraphicsContext2D());
 
             }
         };
