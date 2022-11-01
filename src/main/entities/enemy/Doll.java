@@ -3,16 +3,17 @@ package main.entities.enemy;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import main.entities.Entity;
+import main.entities.enemy.AI.AStar;
 
-import java.util.ArrayList;
-
-import static main.settings.PropertiesConstant.*;
 import static main.graphics.Sprite.*;
+import static main.settings.PropertiesConstant.*;
 import static main.settings.PropertiesStatic.score;
 
 public class Doll extends Enemy {
     private final int FRAME_PER_ONE = FRAME_PER_SECOND / 2;
     protected Image[][] imagesTwoWay = new Image[4][DOLL_SPRITE];
+
+    AStar aStar = new AStar();
 
     public Doll(int x, int y, Image img) {
         super(x, y, img);
@@ -47,73 +48,33 @@ public class Doll extends Enemy {
         setCoordinateAfterMove();
     }
 
-    /**
-     * Override set direction for suitable with Doll follow player.
-     *
-     * @param mapGame - map game.
-     */
     public void setDirection(char[][] mapGame, Entity player) {
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        int directionAnimateNow = directionAnimate;
-        for (int i = 0; i < 4; i++) {
-            directionAnimate = i;
-            setCoordinateAfterMove();
-            if (checkWallCollision(mapGame) == false) {
-                arrayList.add(i);
-            }
-            setCoordinateAfterMoveReverse();
+        aStar.setNodes(this.getXCenter(), this.getYCenter(), player.getXCenter(), player.getYCenter());
+        if (aStar.searchPath()) {
+            int nextX = aStar.getPathArrayList().get(0).getColumn();
+            int nextY = aStar.getPathArrayList().get(0).getRow();
 
-        }
-        if (arrayList.size() == 0) {
-            directionAnimate = STOP;
-            return;
-        }
-        if (arrayList.size() == 2) {
-            if (directionAnimateNow == 0 && arrayList.contains(2) || directionAnimateNow == 2 && arrayList.contains(0)
-                    || directionAnimateNow == 1 && arrayList.contains(3) || directionAnimateNow == 3 && arrayList.contains(1)) {
+            int xTile = (x + 1) / SCALED_SIZE;
+            int yTile = (y + 1) / SCALED_SIZE;
 
-                directionAnimate = directionAnimateNow;
-            } else {
-                if (directionAnimateNow == arrayList.get(0)) {
-                    directionAnimate = arrayList.get(1);
-                } else {
-                    directionAnimate = arrayList.get(0);
+            int endRightX = (x + SCALED_SIZE - 1) / SCALED_SIZE;
+            int endBottomY = (y + SCALED_SIZE - 1) / SCALED_SIZE;
+
+            if (endRightX == xTile && endBottomY == yTile) {
+                if (nextX > xTile) {
+                    directionAnimate = RIGHT;
+                } else if (nextX < xTile) {
+                    directionAnimate = LEFT;
+                } else if (nextY > yTile) {
+                    directionAnimate = DOWN;
+                } else if (nextY < yTile) {
+                    directionAnimate = UP;
                 }
             }
-        } else if (arrayList.size() == 1) {
-            directionAnimate = arrayList.get(0);
         } else {
-            if (directionAnimateNow == 0) {
-                arrayList.remove((Integer) 2);
-            } else if (directionAnimateNow == 1) {
-                arrayList.remove((Integer) 3);
-            } else if (directionAnimateNow == 2) {
-                arrayList.remove((Integer) 0);
-            } else if (directionAnimateNow == 3) {
-                arrayList.remove((Integer) 1);
-            }
-
-            double min = 10000;
-            ArrayList<Double> arrayList1 = new ArrayList<>();
-
-            for (int i = 0; i < arrayList.size(); i++) {
-                directionAnimate = arrayList.get(i);
-                setCoordinateAfterMove();
-
-                double distance = distanceObject(this, player);
-                min = Math.min(min, distance);
-                arrayList1.add(distance);
-
-                setCoordinateAfterMoveReverse();
-            }
-
-            for (int i = 0; i < arrayList1.size(); i++) {
-                if (arrayList1.get(i) == min) {
-                    directionAnimate = arrayList.get(i);
-                    break;
-                }
-            }
+            setDirection(mapGame);
         }
+
     }
 
     public double distanceObject(Entity entity1, Entity entity2) {

@@ -113,7 +113,7 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 6. Xử lý bom nổ.
 7. Xử lý khi Bomber sử dụng các Item và khi đi vào vị trí Portal.
 
-8. Nâng cấp thuật toán tìm đường cho Enemy.
+8. Nâng cấp thuật toán tìm đường cho Enemy. (bằng thuật toán A* và 1 thuật toán đơn giản khác)
 9. Cài đặt thêm các loại Enemy khác.
 10. Xử lý hiệu ứng âm thanh (thêm music & sound effects).
 

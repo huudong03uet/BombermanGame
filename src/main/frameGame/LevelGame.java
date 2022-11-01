@@ -52,7 +52,6 @@ public class LevelGame implements Frame {
         gc.drawImage(backGroundImage, -xRender, 0, WIDTH, HEIGHT);
         gc.drawImage(backGroundImage, WIDTH - xRender, 0, WIDTH, HEIGHT);
         xRender++;
-        System.out.println(1);
         if (xRender == WIDTH) xRender = 0;
         gc.drawImage(logo, (WIDTH - logo.getWidth()) / 2, 50);
     }
